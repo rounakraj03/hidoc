@@ -37,7 +37,7 @@ class NetworkErrorHandler {
               final response = error.response;
               statusCode = response?.statusCode ?? 0;
               try {
-                networkExceptions = errorModel.getNetworkError(response!.data).errorMessage;
+                networkExceptions = errorModel.getNetworkError(response!.data).error;
               } catch (e) {
                 AppLogger.logError(e);
                 networkExceptions = "invalid_status_code: $statusCode";
@@ -64,6 +64,6 @@ class NetworkErrorHandler {
         networkExceptions = 'unexpected_error_occured';
       }
     }
-    return NetworkError(networkExceptions, statusCode.toString());
+    return NetworkError("", statusCode,networkExceptions, "");
   }
 }

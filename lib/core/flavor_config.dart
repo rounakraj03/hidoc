@@ -47,7 +47,8 @@ class FlavorConfig {
         switch (name) {
           case Name.hidoc:
             // return "https://us-central1-image-attempt-one.cloudfunctions.net/api/";
-            return "https://by4nlqu3yk.execute-api.ap-south-1.amazonaws.com/";
+            // return "https://by4nlqu3yk.execute-api.ap-south-1.amazonaws.com/";
+            return "http://devapi.hidoc.co:8080/HidocWebApp/api/";
         }
     }
   }

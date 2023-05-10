@@ -22,8 +22,9 @@ import 'package:hidoc/data/network/network_call.dart' as _i12;
 import 'package:hidoc/data/network/service/api_service.dart' as _i11;
 import 'package:hidoc/data/repo/auth_repository.dart' as _i13;
 import 'package:hidoc/data/repo/impl/auth_repository_impl.dart' as _i14;
-import 'package:hidoc/di/register_module.dart' as _i16;
-import 'package:hidoc/presentation/splash/bloc/splash_bloc.dart' as _i15;
+import 'package:hidoc/di/register_module.dart' as _i17;
+import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart' as _i15;
+import 'package:hidoc/presentation/splash/bloc/splash_bloc.dart' as _i16;
 import 'package:injectable/injectable.dart' as _i2;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -65,9 +66,11 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i12.NetworkCall>(),
           gh<_i10.StorageService>(),
         ));
-    gh.singleton<_i15.SplashBloc>(_i15.SplashBloc(gh<_i13.AuthRepository>()));
+    gh.singleton<_i15.DashboardBloc>(
+        _i15.DashboardBloc(gh<_i13.AuthRepository>()));
+    gh.singleton<_i16.SplashBloc>(_i16.SplashBloc(gh<_i13.AuthRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i16.RegisterModule {}
+class _$RegisterModule extends _i17.RegisterModule {}

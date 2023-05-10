@@ -11,9 +11,10 @@ NetworkResponse<T> _$NetworkResponseFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     NetworkResponse<T>(
-      json['status'] as String?,
+      json['success'] as int?,
       json['message'] as String?,
-      _$nullableGenericFromJson(json['result'], fromJsonT),
+      _$nullableGenericFromJson(json['data'], fromJsonT),
+      json['timestamp'] as String?,
     );
 
 Map<String, dynamic> _$NetworkResponseToJson<T>(
@@ -21,9 +22,10 @@ Map<String, dynamic> _$NetworkResponseToJson<T>(
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
-      'status': instance.status,
+      'success': instance.success,
       'message': instance.message,
-      'result': _$nullableGenericToJson(instance.result, toJsonT),
+      'timestamp': instance.timestamp,
+      'data': _$nullableGenericToJson(instance.data, toJsonT),
     };
 
 T? _$nullableGenericFromJson<T>(
@@ -41,7 +43,7 @@ Object? _$nullableGenericToJson<T>(
 EmptyNetworkResponse<T> _$EmptyNetworkResponseFromJson<T>(
         Map<String, dynamic> json) =>
     EmptyNetworkResponse<T>(
-      json['status'] as String?,
+      json['status'] as int?,
       json['message'] as String?,
     );
 

@@ -8,14 +8,12 @@ part of 'dashboard_data_tasks.dart';
 
 DashboardDataTask _$DashboardDataTaskFromJson(Map<String, dynamic> json) =>
     DashboardDataTask(
-      username: json['username'] as String,
-      page: json['page'] as int,
-      lastEvaluatedKey: json['lastEvaluatedKey'] as Map<String, dynamic>,
+      sid: json['sid'] as int,
+      userId: json['userId'] as int,
     );
 
 Map<String, dynamic> _$DashboardDataTaskToJson(DashboardDataTask instance) =>
     <String, dynamic>{
-      'username': instance.username,
-      'page': instance.page,
-      'lastEvaluatedKey': instance.lastEvaluatedKey,
+      'sid': instance.sid,
+      'userId': instance.userId,
     };

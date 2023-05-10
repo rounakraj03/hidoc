@@ -19,27 +19,28 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<NetworkResponse<CarLogo>> getCarLogo() async {
+  Future<NetworkResponse<DashboardData>> getDashboard(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(task.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<NetworkResponse<CarLogo>>(Options(
-      method: 'GET',
+        _setStreamType<NetworkResponse<DashboardData>>(Options(
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'app/carlogo',
+              'getArticlesByUid',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = NetworkResponse<CarLogo>.fromJson(
+    final value = NetworkResponse<DashboardData>.fromJson(
       _result.data!,
-      (json) => CarLogo.fromJson(json as Map<String, dynamic>),
+      (json) => DashboardData.fromJson(json as Map<String, dynamic>),
     );
     return value;
   }
@@ -188,7 +189,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'app/dashboard',
+              'getArticlesByUid',
               queryParameters: queryParameters,
               data: _data,
             )

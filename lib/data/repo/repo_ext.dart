@@ -19,7 +19,7 @@ extension EmptyNetworkResultExtension on Future<EmptyNetworkResponse> {
       AppLogger.logError(e);
       try{
         final networkError = _getNetworkError(e);
-        await throwIfCustomException(networkError.status, networkError.errorMessage);
+        await throwIfCustomException(networkError.status, networkError.error);
         return Left(networkError);
       } catch (e) {
         final networkError = _getNetworkError(e);
@@ -33,13 +33,13 @@ extension NetworkResultExtension<T> on Future<NetworkResponse<T>> {
   Future<Either<NetworkError, NetworkEntity<T>>> getResult() async {
     try {
       final res = await this;
-      await throwIfCustomException(res.status, res.message);
-      return Right(NetworkEntity<T>(res.status!, res.message!, res.result!));
+      await throwIfCustomException(res.success, res.message);
+      return Right(NetworkEntity<T>(res.success!, res.message!, res.data!,res.timestamp!));
     } catch(e) {
       AppLogger.logError(e);
       try {
         final networkError = _getNetworkError(e);
-        await throwIfCustomException(networkError.status, networkError.errorMessage);
+        await throwIfCustomException(networkError.status, networkError.error);
         return Left(networkError);
       } catch (e) {
         final networkError = _getNetworkError(e);

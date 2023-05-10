@@ -33,23 +33,23 @@ class AuthRepositoryImpl extends AuthRepository {
 
   AuthRepositoryImpl(this.networkCall, this._storageService);
 
-  @override
-  Future<Either<NetworkError, String>> getCarLogo() async {
-    var image = await _storageService.getCompanyLogo();
-    if (image.isNotEmpty) {
-      return Right(image);
-    }
-
-    final result = await networkCall.execute().getCarLogo().getResult();
-    result.forEach((r) {
-      _storageService.setCompanyName(r.result.companyName);
-      _storageService.setCompanyLogo(r.result.logoData);
-      print("Saved value is : ");
-      print(
-          "company logo is ${r.result.logoData} && company name is ${r.result.companyName} ");
-    });
-    return result.flatMap((a) => Right(a.result.logoData));
-  }
+  // @override
+  // Future<Either<NetworkError, String>> getCarLogo() async {
+  //   var image = await _storageService.getCompanyLogo();
+  //   if (image.isNotEmpty) {
+  //     return Right(image);
+  //   }
+  //
+  //   final result = await networkCall.execute().getCarLogo().getResult();
+  //   result.forEach((r) {
+  //     _storageService.setCompanyName(r.result.companyName);
+  //     _storageService.setCompanyLogo(r.result.logoData);
+  //     print("Saved value is : ");
+  //     print(
+  //         "company logo is ${r.result.logoData} && company name is ${r.result.companyName} ");
+  //   });
+  //   return result.flatMap((a) => Right(a.result.logoData));
+  // }
 
   @override
   void savePhoneNumber(String phoneNumber) async {
@@ -61,16 +61,16 @@ class AuthRepositoryImpl extends AuthRepository {
     return _storageService.getPhoneNumber();
   }
 
-  @override
-  Future<Either<NetworkError, DashboardData>> getDashboardData(
-      String username, int page, Map lastEvaluatedKey) async {
-    final result = await networkCall
-        .execute()
-        .getDashBoardData(DashboardDataTask(
-            username: username, page: page, lastEvaluatedKey: lastEvaluatedKey))
-        .getResult();
-    return result.flatMap((a) => Right(a.result));
-  }
+  // @override
+  // Future<Either<NetworkError, DashboardData>> getDashboardData(
+  //     String username, int page, Map lastEvaluatedKey) async {
+  //   final result = await networkCall
+  //       .execute()
+  //       .getDashBoardData(DashboardDataTask(
+  //           username: username, page: page, lastEvaluatedKey: lastEvaluatedKey))
+  //       .getResult();
+  //   return result.flatMap((a) => Right(a.result));
+  // }
 
   // @override
   // Future<Either<NetworkError, ProductDescriptionData>> getProductDescriptionData(String name) async {
@@ -167,51 +167,51 @@ class AuthRepositoryImpl extends AuthRepository {
         .getResult();
   }
 
-  @override
-  Future<Either<NetworkError, GetUserdataFromUserinfoTableData>>
-      getUserDataFromUserTable(String username) async {
-    final result = await networkCall
-        .execute()
-        .getUserDataFromUserInfoTable(
-            GetUserDataFromUserInfoTableTask(username))
-        .getResult();
-    return result.flatMap((a) => Right(a.result));
-  }
+  // @override
+  // Future<Either<NetworkError, GetUserdataFromUserinfoTableData>>
+  //     getUserDataFromUserTable(String username) async {
+  //   final result = await networkCall
+  //       .execute()
+  //       .getUserDataFromUserInfoTable(
+  //           GetUserDataFromUserInfoTableTask(username))
+  //       .getResult();
+  //   return result.flatMap((a) => Right(a.result));
+  // }
 
-  @override
-  Future<Either<NetworkError, DashboardData>> postDashboardData(
-      String item, String username, int page, Map lastEvaluatedKey) async {
-    final result = await networkCall
-        .execute()
-        .getDashBoardDataBySearch(GetDashboardDataBySearchTask(
-            item: item,
-            username: username,
-            page: page,
-            lastEvaluatedKey: lastEvaluatedKey))
-        .getResult();
-    return result.flatMap((a) => Right(a.result));
-  }
-
-  @override
-  Future<Either<NetworkError, HintData>> getSearchHint(
-      String item, String username) async {
-    final result = await networkCall
-        .execute()
-        .getSearchHints(GetHintDataTask(item: item, username: username))
-        .getResult();
-    return result.flatMap((a) => Right(a.result));
-  }
-
-  @override
-  Future<Either<NetworkError, FavouriteData>> getFavourites(
-      String username, int page, String lastEvaluatedKey) async {
-    final result = await networkCall
-        .execute()
-        .getFavorite(FavouriteDataTask(
-            username: username, page: page, lastEvaluatedKey: lastEvaluatedKey))
-        .getResult();
-    return result.flatMap((a) => Right(a.result));
-  }
+  // @override
+  // Future<Either<NetworkError, DashboardData>> postDashboardData(
+  //     String item, String username, int page, Map lastEvaluatedKey) async {
+  //   final result = await networkCall
+  //       .execute()
+  //       .getDashBoardDataBySearch(GetDashboardDataBySearchTask(
+  //           item: item,
+  //           username: username,
+  //           page: page,
+  //           lastEvaluatedKey: lastEvaluatedKey))
+  //       .getResult();
+  //   return result.flatMap((a) => Right(a.result));
+  // }
+  //
+  // @override
+  // Future<Either<NetworkError, HintData>> getSearchHint(
+  //     String item, String username) async {
+  //   final result = await networkCall
+  //       .execute()
+  //       .getSearchHints(GetHintDataTask(item: item, username: username))
+  //       .getResult();
+  //   return result.flatMap((a) => Right(a.result));
+  // }
+  //
+  // @override
+  // Future<Either<NetworkError, FavouriteData>> getFavourites(
+  //     String username, int page, String lastEvaluatedKey) async {
+  //   final result = await networkCall
+  //       .execute()
+  //       .getFavorite(FavouriteDataTask(
+  //           username: username, page: page, lastEvaluatedKey: lastEvaluatedKey))
+  //       .getResult();
+  //   return result.flatMap((a) => Right(a.result));
+  // }
 
   @override
   Future<Either<NetworkError, EmptyEntity>> addFavourites(
@@ -237,15 +237,15 @@ class AuthRepositoryImpl extends AuthRepository {
         .getResult();
   }
 
-  @override
-  Future<Either<NetworkError, ProductDescriptionData>> getMyProfileData(
-      String username) async {
-    final result = await networkCall
-        .execute()
-        .getMyProfile(GetUserDataFromUserInfoTableTask(username))
-        .getResult();
-    return result.flatMap((a) => Right(a.result));
-  }
+  // @override
+  // Future<Either<NetworkError, ProductDescriptionData>> getMyProfileData(
+  //     String username) async {
+  //   final result = await networkCall
+  //       .execute()
+  //       .getMyProfile(GetUserDataFromUserInfoTableTask(username))
+  //       .getResult();
+  //   return result.flatMap((a) => Right(a.result));
+  // }
 
   @override
   Future<Either<NetworkError, EmptyEntity>> updateMyProfileData(
@@ -273,14 +273,14 @@ class AuthRepositoryImpl extends AuthRepository {
         .getResult();
   }
 
-  @override
-  Future<Either<NetworkError, ProductDescriptionData>> getMyComments({required String designerUsername, required String customerUsername}) async {
-    final result = await networkCall
-        .execute()
-        .getMyComments(GetMyCommentsTask(designerUsername: designerUsername, customerUsername: customerUsername))
-        .getResult();
-    return result.flatMap((a) => Right(a.result));
-  }
+  // @override
+  // Future<Either<NetworkError, ProductDescriptionData>> getMyComments({required String designerUsername, required String customerUsername}) async {
+  //   final result = await networkCall
+  //       .execute()
+  //       .getMyComments(GetMyCommentsTask(designerUsername: designerUsername, customerUsername: customerUsername))
+  //       .getResult();
+  //   return result.flatMap((a) => Right(a.result));
+  // }
 
   @override
   Future<Either<NetworkError, EmptyEntity>> writeMyComments(
@@ -310,5 +310,14 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<void> saveName(String name) async {
     await _storageService.setName(name);
+  }
+
+  @override
+  Future<Either<NetworkError, DashboardData>> getDashboard(int sid, int userId) async {
+    final result = await networkCall
+        .execute()
+        .getDashBoardData(DashboardDataTask(sid: sid, userId: userId))
+        .getResult();
+    return result.flatMap((a) => Right(a.data));
   }
 }

@@ -1,12 +1,15 @@
 class NetworkError {
-  String errorMessage;
-  String status;
+  String timestamp;
+  int status;
+  String error;
+  String path;
 
-  NetworkError(this.errorMessage, this.status);
+
+  NetworkError(this.timestamp, this.status, this.error, this.path);
 
 
   @override
   String toString() {
-    return 'NetworkError{errorMessage: $errorMessage, status: $status }';
+    return 'NetworkError{errorMessage: $error, status: $status, path: $path, timestamp: $timestamp }';
   }
 }

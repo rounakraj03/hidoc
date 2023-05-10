@@ -9,7 +9,10 @@ import 'package:hidoc/data/network/models/request/getHintDataTask/hint_data.dart
 import '../network/models/common/product_description_data.dart';
 
 abstract class AuthRepository {
-  Future<Either<NetworkError, String>> getCarLogo();
+  // Future<Either<NetworkError, String>> getCarLogo();
+
+
+  Future<Either<NetworkError, DashboardData>> getDashboard(int sid, int userId);
 
   Future<Either<NetworkError, EmptyEntity>> addNewDashboardData(
       {required String name, required double rating, required List imageUrl});
@@ -40,13 +43,13 @@ abstract class AuthRepository {
 
   Future<Either<NetworkError, EmptyEntity>> deleteCar({required int id});
 
-  Future<Either<NetworkError, DashboardData>> getDashboardData(
-      String username, int page, Map lastEvaluatedKey);
-
-  Future<Either<NetworkError, ProductDescriptionData>> getMyProfileData(
-      String username);
-
-  Future<Either<NetworkError, ProductDescriptionData>> getMyComments({required String designerUsername, required String customerUsername});
+  // Future<Either<NetworkError, DashboardData>> getDashboardData(
+  //     String username, int page, Map lastEvaluatedKey);
+  //
+  // Future<Either<NetworkError, ProductDescriptionData>> getMyProfileData(
+  //     String username);
+  //
+  // Future<Either<NetworkError, ProductDescriptionData>> getMyComments({required String designerUsername, required String customerUsername});
 
   Future<Either<NetworkError, EmptyEntity>> writeMyComments({
     required String designerUsername,
@@ -68,14 +71,14 @@ abstract class AuthRepository {
       required String phone,
       required String profileImage});
 
-  Future<Either<NetworkError, DashboardData>> postDashboardData(
-      String item, String username, int page, Map lastEvaluatedKey);
+  // Future<Either<NetworkError, DashboardData>> postDashboardData(
+  //     String item, String username, int page, Map lastEvaluatedKey);
 
-  Future<Either<NetworkError, HintData>> getSearchHint(
-      String item, String username);
-
-  Future<Either<NetworkError, FavouriteData>> getFavourites(
-      String username, int page, String lastEvaluatedKey);
+  // Future<Either<NetworkError, HintData>> getSearchHint(
+  //     String item, String username);
+  //
+  // Future<Either<NetworkError, FavouriteData>> getFavourites(
+  //     String username, int page, String lastEvaluatedKey);
 
   Future<Either<NetworkError, EmptyEntity>> addFavourites(
       {required String username,
@@ -85,8 +88,8 @@ abstract class AuthRepository {
   Future<Either<NetworkError, EmptyEntity>> deleteFavourites(
       {required String username, required String favouriteEmail});
 
-  Future<Either<NetworkError, GetUserdataFromUserinfoTableData>>
-      getUserDataFromUserTable(String username);
+  // Future<Either<NetworkError, GetUserdataFromUserinfoTableData>>
+  //     getUserDataFromUserTable(String username);
 
   // Future<Either<NetworkError, ProductDescriptionData>> getProductDescriptionData(String name);
 

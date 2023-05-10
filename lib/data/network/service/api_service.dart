@@ -51,7 +51,7 @@ abstract class ApiService {
     return _ApiService(dio, baseUrl: baseUrl);
   }
   static const String CAR_LOGO = "app/carlogo";
-  static const String DASHBOARD = "app/dashboard";
+  static const String DASHBOARD = "getArticlesByUid";
   static const String DASHBOARDDATA = "app/dashboardData";
   static const String GET_FAVOURITE = "app/getUsersFavourite";
   static const String ADD_FAVOURITE = "app/addUserFavourite";
@@ -68,8 +68,8 @@ abstract class ApiService {
   static const String GET_USER_DATA = "app/getDataToUserInfoTableDatabase";
   static const String ADD_USER_DATA = "app/addDataToUserInfoTableDatabase";
 
-  @GET(CAR_LOGO)
-  Future<NetworkResponse<CarLogo>> getCarLogo();
+  @POST(DASHBOARD)
+  Future<NetworkResponse<DashboardData>> getDashboard(@Body() DashboardDataTask task);
 
   @POST(DASHBOARDDATA)
   Future<NetworkResponse<DashboardData>> getDashBoardData(

@@ -4,12 +4,14 @@ part 'dashboard_data_tasks.g.dart';
 
 @JsonSerializable()
 class DashboardDataTask {
-  String username;
-  int page;
-  Map lastEvaluatedKey;
+  int sid;
+  int userId;
 
 
-  DashboardDataTask({required this.username, required this.page, required this.lastEvaluatedKey});
+  // {"sid":500,"userId":423914}
+
+
+  DashboardDataTask({required this.sid, required this.userId});
 
   factory DashboardDataTask.fromJson(Map<String, dynamic> json) =>
       _$DashboardDataTaskFromJson(json);

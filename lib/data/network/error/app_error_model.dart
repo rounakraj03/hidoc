@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 class AppErrorModel extends ErrorModel{
   @override
   NetworkError getNetworkError(Map<String, dynamic> json) {
-    return NetworkError((json['message'] ?? ''), json['status'] ?? '');
+    // return NetworkError((json['message'] ?? ''), json['status'] ?? '');
+    return NetworkError(json['timestamp']??'', json['status']??'', json['error']??'', json['path'] ?? '');
   }
 }

@@ -4,14 +4,16 @@ part 'base_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class NetworkResponse<T> {
-  @JsonKey(name: "status")
-  String? status;
+  @JsonKey(name: "success")
+  int? success;
   @JsonKey(name: "message")
   String? message;
-  @JsonKey(name: "result")
-  T? result;
+  @JsonKey(name: "timestamp")
+  String? timestamp;
+  @JsonKey(name: "data")
+  T? data;
 
-  NetworkResponse(this.status, this.message, this.result);
+  NetworkResponse(this.success, this.message, this.data, this.timestamp);
 
   factory NetworkResponse.fromJson(
       Map<String, dynamic> json,
@@ -19,24 +21,25 @@ class NetworkResponse<T> {
       ) => _$NetworkResponseFromJson(json, fromJsonT);
 
   NetworkEntity toEntity() {
-    return NetworkEntity(status!, message!, result!);
+    return NetworkEntity(success!, message!, data!, timestamp!);
   }
 }
 
 
 class NetworkEntity<T> {
-  String status;
+  int success;
   String message;
-  T result;
+  String timestamp;
+  T data;
 
-  NetworkEntity(this.status, this.message, this.result);
+  NetworkEntity(this.success, this.message, this.data, this.timestamp);
 }
 
 
 @JsonSerializable()
 class EmptyNetworkResponse<T> {
   @JsonKey(name: "status")
-  String? status;
+  int? status;
   @JsonKey(name: "message")
   String? message;
 
@@ -55,7 +58,7 @@ class EmptyNetworkResponse<T> {
 }
 
 class EmptyEntity {
-  String status;
+  int status;
   String message;
 
   EmptyEntity(this.status, this.message);

@@ -1,5 +1,6 @@
 import 'package:hidoc/data/repo/auth_repository.dart';
-import 'package:hidoc/presentation/splash/state/splash_state.dart';
+import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
+
 import 'package:hidoc/routes/route_data.dart';
 import 'package:hidoc/routes/routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,14 +9,14 @@ import 'package:injectable/injectable.dart';
 import 'package:hidoc/res/static_values.dart';
 
 @singleton
-class SplashBloc extends Cubit<SplashState> {
+class DashboardBloc extends Cubit<DashboardState> {
   AuthRepository authRepository;
-  SplashBloc(this.authRepository) : super(const SplashState());
+  DashboardBloc(this.authRepository) : super(const DashboardState());
 
-  void initialize() async {
-    // await fetchLogo();
-    // checkForRoute();
-  }
+  // void initialize() async {
+  //   await fetchLogo();
+  //   // checkForRoute();
+  // }
 
   Future<void> checkForRoute() async {
     navigate();
@@ -34,10 +35,11 @@ class SplashBloc extends Cubit<SplashState> {
     });
   }
 
-  Future<void> fetchLogo() async {
-    // var carInfo = await authRepository.getCarLogo();
-    // carInfo.forEach((r) {
-    //   emit(state.copyWith(logo: Image.network(r)));
-    // });
+  Future<void> initialize() async {
+    var carInfo = await authRepository.getDashboard(500, 423914);
+    carInfo.forEach((r) {
+      print("result->? $r");
+      // emit(state.copyWith(logo: Image.network(r)));
+    });
   }
 }
