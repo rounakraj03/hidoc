@@ -313,10 +313,11 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<NetworkError, DashboardData>> getDashboard(int sid, int userId) async {
+  Future<Either<NetworkError, DashboardData>> getDashboard(
+      int sid, int userId) async {
     final result = await networkCall
         .execute()
-        .getDashBoardData(DashboardDataTask(sid: sid, userId: userId))
+        .getDashboard(DashboardDataTask(sid: sid, userId: userId))
         .getResult();
     return result.flatMap((a) => Right(a.data));
   }
