@@ -27,8 +27,8 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion flutter.compileSdkVersion
-//    compileSdkVersion 33
-    ndkVersion flutter.ndkVersion
+    compileSdkVersion 33
+//    ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -55,7 +55,7 @@ android {
         versionName flutterVersionName
     }
     signingConfigs{
-        houseofcars {
+        hidoc {
             def keystorePropertiesFile = rootProject.file('keypaths/hidoc/key.properties')
             def keystoreProperties = new Properties()
             keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
@@ -73,10 +73,10 @@ android {
     }
     flavorDimensions "default"
     productFlavors {
-        househackers {
+        hidoc {
             dimension "default"
             applicationId "com.rounak.hidoc"
-            signingConfig signingConfigs.houseofcars
+            signingConfig signingConfigs.hidoc
         }
     }
 
