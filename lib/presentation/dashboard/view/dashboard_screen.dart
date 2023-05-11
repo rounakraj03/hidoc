@@ -18,7 +18,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    dashboardBloc.initialize();
+    // dashboardBloc.initialize();
   }
 
 
@@ -29,14 +29,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: BlocBuilder<DashboardBloc, DashboardState>(
           builder: (context, state) {
             return Scaffold(
-              backgroundColor: AppColors.black,
-              body: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(50.0),
-                  // child: state.logo ?? Container(),
-                  child: Text("H", style: TextStyle(color: Colors.white)),
+              // appBar: AppBar(),
+              // backgroundColor: AppColors.black,
+              body: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xFFC2E59C), Color(0xFF64B5F6)],
+                    tileMode: TileMode.repeated
+                  )
                 ),
-              ),
+                child: Center(child: Text("hello World")),
+              )
             );
           }
         ));
