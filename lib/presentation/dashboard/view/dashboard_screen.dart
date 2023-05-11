@@ -30,54 +30,93 @@ class _DashboardScreenState extends State<DashboardScreen> {
         value: dashboardBloc,
         child: BlocBuilder<DashboardBloc, DashboardState>(
           builder: (context, state) {
-            return SafeArea(
-              child: Scaffold(
-                // appBar: Container(child: Row(children: [SvgPicture.asset(Assets.house), Column(children: [Text("hidoc", style: TextStyle(backgroundColor: Colors.blue),)],)]),)
-                // backgroundColor: AppColors.black,
-                body:
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.transparent,
-                      height: 150,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            SvgPicture.asset(Assets.house,width: 60,
-                                // color: Colors.white
-                            ),
-                            Expanded(
-                              child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text("hidoc", style: TextStyle(backgroundColor: Colors.blue,fontSize: 18, color:Colors.white,fontWeight: FontWeight.bold,)),
-                                  Text("ARTICLES", style: TextStyle(fontWeight: FontWeight.w900,color: Colors.black,fontSize: 24),
-                                )
-                                ],
-                              ),
-                            )
-                          ]
-                      ),
+            return Scaffold(
+              // appBar: Container(child: Row(children: [SvgPicture.asset(Assets.house), Column(children: [Text("hidoc", style: TextStyle(backgroundColor: Colors.blue),)],)]),)
+              // backgroundColor: AppColors.black,
+              body:
+              Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(top: 30),
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Color(0xFFFC6868), Color(0xFF64B5F6)],
+                            tileMode: TileMode.mirror
+                        )
                     ),
-
-                    Expanded(
-                      child: Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [Color(0xFFFC6868), Color(0xFF64B5F6)],
-                              tileMode: TileMode.mirror
-                          )
-                      ),
-                      child: Center(child: Text("hello Worlds")),
-                  ),
-                    )],
-                )
-
-              ),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 150,
+                          child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SvgPicture.asset(Assets.house,width: 60,
+                                  // color: Colors.white
+                                ),
+                                Expanded(
+                                  child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text("hidoc", style: TextStyle(backgroundColor: Colors.blue,fontSize: 18, color:Colors.white,fontWeight: FontWeight.bold,)),
+                                      Text("ARTICLES", style: TextStyle(fontWeight: FontWeight.w900,color: Colors.black,fontSize: 24),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ]
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: ListView.separated(itemBuilder: (context, index) {
+                              if(index == 0){
+                                return Text("Hidoc Bulletin", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 22));
+                              }
+                              return HidocBulletin(
+                                  "Vaccine hesitancy: Where are we and where are we going?",
+                                  "A justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human exsistence.",
+                                  "https://bulletin.hidoc.co/details.php?id=2z59Vo");
+                              },
+                              itemCount: 16,
+                              separatorBuilder: (context, index) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: 15,),
+                                  Container(height: 8,width: 100,color: Colors.blue[400],),
+                                  SizedBox(height: 8,),
+                                ],
+                              );
+                            },),
+                          ),
+                        )
+                      ],
+                    ),
+                ),
+                  )
+                ],
+              )
             );
           }
         ));
+  }
+
+  Widget HidocBulletin(String heading, String data, String redirectLink){
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(heading, style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+          Text(data, maxLines: 3,overflow: TextOverflow.ellipsis,style: TextStyle(color: Colors.black,),),
+          SizedBox(height: 10,),
+          RichText(text: TextSpan(text: "Read more",style: TextStyle(color: Colors.blue)),)
+        ],
+      ),
+    );
   }
 }
