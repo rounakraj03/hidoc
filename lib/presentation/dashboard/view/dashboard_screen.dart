@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
@@ -31,8 +33,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: BlocBuilder<DashboardBloc, DashboardState>(
           builder: (context, state) {
             return Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(image:  AssetImage(Assets.bgImage),fit: BoxFit.cover)
+              decoration: const BoxDecoration(
+                image: DecorationImage(image:  AssetImage(Assets.bg2Image),fit: BoxFit.cover)
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -51,7 +53,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Text("hidoc", style: TextStyle(backgroundColor: Colors.blue,fontSize: 18, color:Colors.white,fontWeight: FontWeight.bold,)),
+                                  Opacity(
+                                    opacity: 0.4,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                      decoration: BoxDecoration(
+                                          color: Colors.blue[300],
+                                          borderRadius: BorderRadiusDirectional.only(
+                                              bottomStart: Radius.circular(15),
+                                              bottomEnd: Radius.circular(15))
+                                    ),
+                                      child: Text("hidoc", style: TextStyle(fontSize: 18, color:Colors.white,fontWeight: FontWeight.bold,)),
+                                    ),
+                                  ),
                                   SizedBox(height: 20,),
                                   Text("ARTICLES", style: TextStyle(fontWeight: FontWeight.w900,color: Colors.black,fontSize: 24),
                                   )
