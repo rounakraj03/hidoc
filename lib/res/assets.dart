@@ -9,6 +9,7 @@ class Assets {
   static const String sold = "assets/images/sold.png";
   static const String noImageFound = "assets/images/no_image_icon.png";
   static const String noResultFound = "assets/images/no_result.png";
+  static const String bgImage = "assets/images/bg.png";
 
   //icons
   static const String angleRight = "assets/icons/angle-right.svg";
