@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:hidoc/res/assets.dart';
 import 'package:hidoc/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final dashboardBloc = inject<DashboardBloc>();
 
@@ -116,7 +118,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Text(heading, style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
           Text(data, maxLines: 3,overflow: TextOverflow.ellipsis,style: TextStyle(color: Colors.black,),),
           SizedBox(height: 10,),
-          RichText(text: TextSpan(text: "Read more",style: TextStyle(color: Colors.blue)),)
+          RichText(text: TextSpan(recognizer: TapGestureRecognizer()
+              ..onTap = ()
+              {
+                launchUrl(Uri.parse(redirectLink),mode: LaunchMode.platformDefault);
+              }
+              ,text: "Read more",style: TextStyle(color: Colors.blue)),)
         ],
       ),
     );
