@@ -16,6 +16,7 @@ class Assets {
   static const String calendar = "assets/icons/calendar.svg";
   static const String chequeBook = "assets/icons/checkbook.svg";
   static const String home = "assets/icons/home.svg";
+  static const String house = "assets/icons/house.svg";
   static const String lock = "assets/icons/lock.svg";
   static const String menuBurger = "assets/icons/menu-burger.svg";
   static const String payment = "assets/icons/payment.svg";
