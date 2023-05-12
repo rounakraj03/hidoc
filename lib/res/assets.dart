@@ -11,6 +11,8 @@ class Assets {
   static const String noResultFound = "assets/images/no_result.png";
   static const String bgImage = "assets/images/bg.png";
   static const String bg2Image = "assets/images/bg2.png";
+  static const String calculator = "assets/images/calc.png";
+  static const String trophy = "assets/images/trophy.png";
 
   //icons
   static const String angleRight = "assets/icons/angle-right.svg";
