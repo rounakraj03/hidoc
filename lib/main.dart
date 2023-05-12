@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'dart:developer';
 
 
-import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+// import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +34,7 @@ Future<void> bootstrap() async {
   // final crashlyticsService = inject<CrashlyticsService>();
   // crashlyticsService.initialize();
 
-  await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
   await runZonedGuarded(() async {
     runApp(const MainApp());
   }, (error, stackTrace) {

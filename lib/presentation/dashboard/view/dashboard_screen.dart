@@ -94,7 +94,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: ListView.separated(itemBuilder: (context, index) {
                           if(index == 0){
-                            return CriticalCareWidget();
+                            // return CriticalCareWidget();
+                            return SizedBox();
                           }
                           else if(index == 1){
                             return HidocBulletin();
