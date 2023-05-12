@@ -109,7 +109,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           else if(index ==7){
                             return VisitWidget();
                           }
-                          return Text("Hello WOerld");
+                          return Text("Hello World");
                           },
                           itemCount: 8,
                           separatorBuilder: (context, index) {
@@ -117,8 +117,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 15,),
-                              // Container(height: 8,width: 100,color: Colors.blue[400],),
-                              // SizedBox(height: 8,),
                             ],
                           );
                         },),
@@ -139,14 +137,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: BlocBuilder<DashboardBloc, DashboardState>(
             builder: (context, state) {
               return Container(
-                padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 20,),
                     ListView.separated(itemBuilder: (context, index) {
                       if(index == 0){
-                        return Text("Hidoc Bulletin", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28));
+                        return Text("Hidoc Bulletin",
+                            style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28));
                       }
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
