@@ -33,7 +33,7 @@ extension NetworkResultExtension<T> on Future<NetworkResponse<T>> {
   Future<Either<NetworkError, NetworkEntity<T>>> getResult() async {
     try {
       final res = await this;
-      await throwIfCustomException(res.success, res.message);
+      // await throwIfCustomException(res.success, res.message);
       return Right(NetworkEntity<T>(res.success!, res.message!, res.data!,res.timestamp!));
     } catch(e) {
       AppLogger.logError(e);

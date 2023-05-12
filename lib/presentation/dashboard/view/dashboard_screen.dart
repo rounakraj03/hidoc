@@ -24,7 +24,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    // dashboardBloc.initialize();
+    dashboardBloc.initialize();
   }
 
 
@@ -96,6 +96,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           else if(index ==2){
                             return LatestArticle();
                           }
+                          return Text("Hello WOerld");
                           },
                           itemCount: 3,
                           separatorBuilder: (context, index) {

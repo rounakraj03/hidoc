@@ -16,8 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DashboardState {
-  Image? get logo => throw _privateConstructorUsedError;
-  dynamic get deviceRootedMessage => throw _privateConstructorUsedError;
+  List<dynamic> get news => throw _privateConstructorUsedError;
+  List<dynamic> get trandingBulletin => throw _privateConstructorUsedError;
+  dynamic get specialityName => throw _privateConstructorUsedError;
+  List<dynamic> get latestArticle => throw _privateConstructorUsedError;
+  List<dynamic> get exploreArticle => throw _privateConstructorUsedError;
+  List<dynamic> get trandingArticle => throw _privateConstructorUsedError;
+  Map<dynamic, dynamic> get article => throw _privateConstructorUsedError;
+  List<dynamic> get bulletin => throw _privateConstructorUsedError;
+  int get sID => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DashboardStateCopyWith<DashboardState> get copyWith =>
@@ -30,7 +37,16 @@ abstract class $DashboardStateCopyWith<$Res> {
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res, DashboardState>;
   @useResult
-  $Res call({Image? logo, dynamic deviceRootedMessage});
+  $Res call(
+      {List<dynamic> news,
+      List<dynamic> trandingBulletin,
+      dynamic specialityName,
+      List<dynamic> latestArticle,
+      List<dynamic> exploreArticle,
+      List<dynamic> trandingArticle,
+      Map<dynamic, dynamic> article,
+      List<dynamic> bulletin,
+      int sID});
 }
 
 /// @nodoc
@@ -46,18 +62,53 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? logo = freezed,
-    Object? deviceRootedMessage = freezed,
+    Object? news = null,
+    Object? trandingBulletin = null,
+    Object? specialityName = freezed,
+    Object? latestArticle = null,
+    Object? exploreArticle = null,
+    Object? trandingArticle = null,
+    Object? article = null,
+    Object? bulletin = null,
+    Object? sID = null,
   }) {
     return _then(_value.copyWith(
-      logo: freezed == logo
-          ? _value.logo
-          : logo // ignore: cast_nullable_to_non_nullable
-              as Image?,
-      deviceRootedMessage: freezed == deviceRootedMessage
-          ? _value.deviceRootedMessage
-          : deviceRootedMessage // ignore: cast_nullable_to_non_nullable
+      news: null == news
+          ? _value.news
+          : news // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      trandingBulletin: null == trandingBulletin
+          ? _value.trandingBulletin
+          : trandingBulletin // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      specialityName: freezed == specialityName
+          ? _value.specialityName
+          : specialityName // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      latestArticle: null == latestArticle
+          ? _value.latestArticle
+          : latestArticle // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      exploreArticle: null == exploreArticle
+          ? _value.exploreArticle
+          : exploreArticle // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      trandingArticle: null == trandingArticle
+          ? _value.trandingArticle
+          : trandingArticle // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      article: null == article
+          ? _value.article
+          : article // ignore: cast_nullable_to_non_nullable
+              as Map<dynamic, dynamic>,
+      bulletin: null == bulletin
+          ? _value.bulletin
+          : bulletin // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      sID: null == sID
+          ? _value.sID
+          : sID // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -70,7 +121,16 @@ abstract class _$$_DashboardStateCopyWith<$Res>
       __$$_DashboardStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Image? logo, dynamic deviceRootedMessage});
+  $Res call(
+      {List<dynamic> news,
+      List<dynamic> trandingBulletin,
+      dynamic specialityName,
+      List<dynamic> latestArticle,
+      List<dynamic> exploreArticle,
+      List<dynamic> trandingArticle,
+      Map<dynamic, dynamic> article,
+      List<dynamic> bulletin,
+      int sID});
 }
 
 /// @nodoc
@@ -84,17 +144,51 @@ class __$$_DashboardStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? logo = freezed,
-    Object? deviceRootedMessage = freezed,
+    Object? news = null,
+    Object? trandingBulletin = null,
+    Object? specialityName = freezed,
+    Object? latestArticle = null,
+    Object? exploreArticle = null,
+    Object? trandingArticle = null,
+    Object? article = null,
+    Object? bulletin = null,
+    Object? sID = null,
   }) {
     return _then(_$_DashboardState(
-      logo: freezed == logo
-          ? _value.logo
-          : logo // ignore: cast_nullable_to_non_nullable
-              as Image?,
-      deviceRootedMessage: freezed == deviceRootedMessage
-          ? _value.deviceRootedMessage!
-          : deviceRootedMessage,
+      news: null == news
+          ? _value._news
+          : news // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      trandingBulletin: null == trandingBulletin
+          ? _value._trandingBulletin
+          : trandingBulletin // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      specialityName:
+          freezed == specialityName ? _value.specialityName! : specialityName,
+      latestArticle: null == latestArticle
+          ? _value._latestArticle
+          : latestArticle // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      exploreArticle: null == exploreArticle
+          ? _value._exploreArticle
+          : exploreArticle // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      trandingArticle: null == trandingArticle
+          ? _value._trandingArticle
+          : trandingArticle // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      article: null == article
+          ? _value._article
+          : article // ignore: cast_nullable_to_non_nullable
+              as Map<dynamic, dynamic>,
+      bulletin: null == bulletin
+          ? _value._bulletin
+          : bulletin // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      sID: null == sID
+          ? _value.sID
+          : sID // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -102,17 +196,98 @@ class __$$_DashboardStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DashboardState implements _DashboardState {
-  const _$_DashboardState({this.logo, this.deviceRootedMessage = ""});
+  const _$_DashboardState(
+      {final List<dynamic> news = const [],
+      final List<dynamic> trandingBulletin = const [],
+      this.specialityName = "",
+      final List<dynamic> latestArticle = const [],
+      final List<dynamic> exploreArticle = const [],
+      final List<dynamic> trandingArticle = const [],
+      final Map<dynamic, dynamic> article = const {},
+      final List<dynamic> bulletin = const [],
+      this.sID = 0})
+      : _news = news,
+        _trandingBulletin = trandingBulletin,
+        _latestArticle = latestArticle,
+        _exploreArticle = exploreArticle,
+        _trandingArticle = trandingArticle,
+        _article = article,
+        _bulletin = bulletin;
 
-  @override
-  final Image? logo;
+  final List<dynamic> _news;
   @override
   @JsonKey()
-  final dynamic deviceRootedMessage;
+  List<dynamic> get news {
+    if (_news is EqualUnmodifiableListView) return _news;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_news);
+  }
+
+  final List<dynamic> _trandingBulletin;
+  @override
+  @JsonKey()
+  List<dynamic> get trandingBulletin {
+    if (_trandingBulletin is EqualUnmodifiableListView)
+      return _trandingBulletin;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_trandingBulletin);
+  }
+
+  @override
+  @JsonKey()
+  final dynamic specialityName;
+  final List<dynamic> _latestArticle;
+  @override
+  @JsonKey()
+  List<dynamic> get latestArticle {
+    if (_latestArticle is EqualUnmodifiableListView) return _latestArticle;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_latestArticle);
+  }
+
+  final List<dynamic> _exploreArticle;
+  @override
+  @JsonKey()
+  List<dynamic> get exploreArticle {
+    if (_exploreArticle is EqualUnmodifiableListView) return _exploreArticle;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_exploreArticle);
+  }
+
+  final List<dynamic> _trandingArticle;
+  @override
+  @JsonKey()
+  List<dynamic> get trandingArticle {
+    if (_trandingArticle is EqualUnmodifiableListView) return _trandingArticle;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_trandingArticle);
+  }
+
+  final Map<dynamic, dynamic> _article;
+  @override
+  @JsonKey()
+  Map<dynamic, dynamic> get article {
+    if (_article is EqualUnmodifiableMapView) return _article;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_article);
+  }
+
+  final List<dynamic> _bulletin;
+  @override
+  @JsonKey()
+  List<dynamic> get bulletin {
+    if (_bulletin is EqualUnmodifiableListView) return _bulletin;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bulletin);
+  }
+
+  @override
+  @JsonKey()
+  final int sID;
 
   @override
   String toString() {
-    return 'DashboardState(logo: $logo, deviceRootedMessage: $deviceRootedMessage)';
+    return 'DashboardState(news: $news, trandingBulletin: $trandingBulletin, specialityName: $specialityName, latestArticle: $latestArticle, exploreArticle: $exploreArticle, trandingArticle: $trandingArticle, article: $article, bulletin: $bulletin, sID: $sID)';
   }
 
   @override
@@ -120,14 +295,34 @@ class _$_DashboardState implements _DashboardState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DashboardState &&
-            (identical(other.logo, logo) || other.logo == logo) &&
+            const DeepCollectionEquality().equals(other._news, _news) &&
             const DeepCollectionEquality()
-                .equals(other.deviceRootedMessage, deviceRootedMessage));
+                .equals(other._trandingBulletin, _trandingBulletin) &&
+            const DeepCollectionEquality()
+                .equals(other.specialityName, specialityName) &&
+            const DeepCollectionEquality()
+                .equals(other._latestArticle, _latestArticle) &&
+            const DeepCollectionEquality()
+                .equals(other._exploreArticle, _exploreArticle) &&
+            const DeepCollectionEquality()
+                .equals(other._trandingArticle, _trandingArticle) &&
+            const DeepCollectionEquality().equals(other._article, _article) &&
+            const DeepCollectionEquality().equals(other._bulletin, _bulletin) &&
+            (identical(other.sID, sID) || other.sID == sID));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, logo,
-      const DeepCollectionEquality().hash(deviceRootedMessage));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_news),
+      const DeepCollectionEquality().hash(_trandingBulletin),
+      const DeepCollectionEquality().hash(specialityName),
+      const DeepCollectionEquality().hash(_latestArticle),
+      const DeepCollectionEquality().hash(_exploreArticle),
+      const DeepCollectionEquality().hash(_trandingArticle),
+      const DeepCollectionEquality().hash(_article),
+      const DeepCollectionEquality().hash(_bulletin),
+      sID);
 
   @JsonKey(ignore: true)
   @override
@@ -138,13 +333,34 @@ class _$_DashboardState implements _DashboardState {
 
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
-      {final Image? logo,
-      final dynamic deviceRootedMessage}) = _$_DashboardState;
+      {final List<dynamic> news,
+      final List<dynamic> trandingBulletin,
+      final dynamic specialityName,
+      final List<dynamic> latestArticle,
+      final List<dynamic> exploreArticle,
+      final List<dynamic> trandingArticle,
+      final Map<dynamic, dynamic> article,
+      final List<dynamic> bulletin,
+      final int sID}) = _$_DashboardState;
 
   @override
-  Image? get logo;
+  List<dynamic> get news;
   @override
-  dynamic get deviceRootedMessage;
+  List<dynamic> get trandingBulletin;
+  @override
+  dynamic get specialityName;
+  @override
+  List<dynamic> get latestArticle;
+  @override
+  List<dynamic> get exploreArticle;
+  @override
+  List<dynamic> get trandingArticle;
+  @override
+  Map<dynamic, dynamic> get article;
+  @override
+  List<dynamic> get bulletin;
+  @override
+  int get sID;
   @override
   @JsonKey(ignore: true)
   _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
