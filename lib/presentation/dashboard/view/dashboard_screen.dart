@@ -123,7 +123,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               {
                 launchUrl(Uri.parse(redirectLink),mode: LaunchMode.platformDefault);
               }
-              ,text: "Read more",style: TextStyle(color: Colors.blue)),)
+              // ,text: "Read more",style: TextStyle(color: Colors.blue)),)
+              ,text: "Read more",style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, decorationColor: Colors.blue)),)
         ],
       ),
     );
