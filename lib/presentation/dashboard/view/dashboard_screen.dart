@@ -26,10 +26,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
   TextStyle textStyle1 = TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 26);
   TextStyle textStyle2 = TextStyle(color: Colors.black,fontWeight: FontWeight.bold);
 
+  late String _selectedItem;
+
+  List<String> _dropdownItems = [
+    'Critical Care',
+  ];
+
+
   @override
   void initState() {
     super.initState();
     dashboardBloc.initialize();
+    _selectedItem = _dropdownItems[0];
   }
 
 
@@ -86,32 +94,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: ListView.separated(itemBuilder: (context, index) {
                           if(index == 0){
+                            return CriticalCareWidget();
+                          }
+                          else if(index == 1){
                             return HidocBulletin();
                           }
-                          else if(index==1){
+                          else if(index==2){
                             return TrendingHidocBulletin();
                           }
-                          else if(index ==2){
+                          else if(index ==3){
                             return LatestArticle();
                           }
-                          else if(index ==3){
+                          else if(index ==4){
                             return TrendingArticle();
                           }
-                          else if(index ==4){
+                          else if(index ==5){
                             return ExploreArticle();
                           }
-                          else if(index ==5){
+                          else if(index ==6){
                             return News();
                           }
-                          else if(index ==6){
+                          else if(index ==7){
                             return Quiz();
                           }
-                          else if(index ==7){
+                          else if(index ==8){
                             return VisitWidget();
                           }
                           return Text("Hello World");
                           },
-                          itemCount: 8,
+                          itemCount: 9,
                           separatorBuilder: (context, index) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,6 +141,112 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ));
   }
 
+Widget CriticalCareWidget(){
+    return BlocProvider.value(
+      value: dashboardBloc,
+      child: BlocBuilder<DashboardBloc,DashboardState>(
+        builder: (context, state) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[50],
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: DropdownButton(
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    isExpanded: true,
+                    elevation: 10,
+                    value: _selectedItem,
+                    items: _dropdownItems.map((e) => DropdownMenuItem(child:  Center(child: Text(e)), value: e,)).toList(),
+                    onChanged:(value) {
+                      setState(() {
+                        print("Value -> $value");
+                        _selectedItem = value!;
+                      });
+                    },
+                  ),
+                ),
+
+                SizedBox(height: 30,),
+
+                Container(
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),  // shadow color
+                          spreadRadius: 5,  // spread radius
+                          blurRadius: 5,   // blur radius
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                      color: Colors.white,
+                      // borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30))
+                      borderRadius: BorderRadius.all(Radius.circular(30))
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                          decoration: BoxDecoration(
+                              // color: Colors.grey[200],
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30))
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
+                              child: Image.network(state.exploreArticle[0]["articleImg"],width: double.maxFinite, fit: BoxFit.fill,))),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(children: [
+                          SizedBox(height: 20,),
+                          Text(state.exploreArticle[0]["articleTitle"], style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),maxLines: 2,overflow: TextOverflow.fade,),
+                          SizedBox(height: 15,),
+                          Text(state.exploreArticle[0]["articleDescription"],overflow: TextOverflow.ellipsis, maxLines: 2,),
+                          SizedBox(height: 30,),
+                        ],),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: RichText(text: TextSpan(text: "Read full article to earn more points",
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = ()
+                                  {
+                                    launchUrl(Uri.parse(state.exploreArticle[0]["redirectLink"]),mode: LaunchMode.externalApplication);
+                                  },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue)),),
+                          ),
+
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                            decoration: BoxDecoration(
+                                color: Colors.cyan,
+                                borderRadius: BorderRadius.only(bottomRight: Radius.circular(20))
+                            ),
+                            child: Column(
+                              children: [
+                                Text("Points", style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.white)),
+                                SizedBox(height: 5,),
+                                Text(state.exploreArticle[0]["rewardPoints"].toString(), style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.white),)
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+
+                    ],
+                  ),
+                )
+              ],
+            ),
+          );
+        },
+      ),
+    );
+}
 
   Widget HidocBulletin(){
     return BlocProvider.value(
