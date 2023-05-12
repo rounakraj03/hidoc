@@ -160,9 +160,9 @@ Widget CriticalCareWidget(){
                     elevation: 10,
                     value: state.selectedArticle["id"],
                     items: state.exploreArticle.map((e) {
-                      print("e -> $e");
+                      // print("e -> $e");
                       return DropdownMenuItem(
-                        child: Center(child: Text(e["articleTitle"],overflow: TextOverflow.ellipsis)),
+                        child: Center(child: Text(e["articleTitle"],overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 16),)),
                         value: e["id"],
                       );
                     }).toList(),
