@@ -13,6 +13,7 @@ class DashboardState with _$DashboardState {
     @Default([]) List exploreArticle,
     @Default([]) List trandingArticle,
     @Default({}) Map article,
+    @Default({"articleTitle":"","redirectLink":"","articleDescription":"","rewardPoints":0,"articleImg":""}) Map selectedArticle,
     @Default([]) List bulletin,
     @Default(0) int sID,
   }) =

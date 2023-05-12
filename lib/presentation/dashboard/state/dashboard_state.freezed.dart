@@ -23,6 +23,8 @@ mixin _$DashboardState {
   List<dynamic> get exploreArticle => throw _privateConstructorUsedError;
   List<dynamic> get trandingArticle => throw _privateConstructorUsedError;
   Map<dynamic, dynamic> get article => throw _privateConstructorUsedError;
+  Map<dynamic, dynamic> get selectedArticle =>
+      throw _privateConstructorUsedError;
   List<dynamic> get bulletin => throw _privateConstructorUsedError;
   int get sID => throw _privateConstructorUsedError;
 
@@ -45,6 +47,7 @@ abstract class $DashboardStateCopyWith<$Res> {
       List<dynamic> exploreArticle,
       List<dynamic> trandingArticle,
       Map<dynamic, dynamic> article,
+      Map<dynamic, dynamic> selectedArticle,
       List<dynamic> bulletin,
       int sID});
 }
@@ -69,6 +72,7 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
     Object? exploreArticle = null,
     Object? trandingArticle = null,
     Object? article = null,
+    Object? selectedArticle = null,
     Object? bulletin = null,
     Object? sID = null,
   }) {
@@ -101,6 +105,10 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
           ? _value.article
           : article // ignore: cast_nullable_to_non_nullable
               as Map<dynamic, dynamic>,
+      selectedArticle: null == selectedArticle
+          ? _value.selectedArticle
+          : selectedArticle // ignore: cast_nullable_to_non_nullable
+              as Map<dynamic, dynamic>,
       bulletin: null == bulletin
           ? _value.bulletin
           : bulletin // ignore: cast_nullable_to_non_nullable
@@ -129,6 +137,7 @@ abstract class _$$_DashboardStateCopyWith<$Res>
       List<dynamic> exploreArticle,
       List<dynamic> trandingArticle,
       Map<dynamic, dynamic> article,
+      Map<dynamic, dynamic> selectedArticle,
       List<dynamic> bulletin,
       int sID});
 }
@@ -151,6 +160,7 @@ class __$$_DashboardStateCopyWithImpl<$Res>
     Object? exploreArticle = null,
     Object? trandingArticle = null,
     Object? article = null,
+    Object? selectedArticle = null,
     Object? bulletin = null,
     Object? sID = null,
   }) {
@@ -181,6 +191,10 @@ class __$$_DashboardStateCopyWithImpl<$Res>
           ? _value._article
           : article // ignore: cast_nullable_to_non_nullable
               as Map<dynamic, dynamic>,
+      selectedArticle: null == selectedArticle
+          ? _value._selectedArticle
+          : selectedArticle // ignore: cast_nullable_to_non_nullable
+              as Map<dynamic, dynamic>,
       bulletin: null == bulletin
           ? _value._bulletin
           : bulletin // ignore: cast_nullable_to_non_nullable
@@ -204,6 +218,13 @@ class _$_DashboardState implements _DashboardState {
       final List<dynamic> exploreArticle = const [],
       final List<dynamic> trandingArticle = const [],
       final Map<dynamic, dynamic> article = const {},
+      final Map<dynamic, dynamic> selectedArticle = const {
+        "articleTitle": "",
+        "redirectLink": "",
+        "articleDescription": "",
+        "rewardPoints": 0,
+        "articleImg": ""
+      },
       final List<dynamic> bulletin = const [],
       this.sID = 0})
       : _news = news,
@@ -212,6 +233,7 @@ class _$_DashboardState implements _DashboardState {
         _exploreArticle = exploreArticle,
         _trandingArticle = trandingArticle,
         _article = article,
+        _selectedArticle = selectedArticle,
         _bulletin = bulletin;
 
   final List<dynamic> _news;
@@ -272,6 +294,15 @@ class _$_DashboardState implements _DashboardState {
     return EqualUnmodifiableMapView(_article);
   }
 
+  final Map<dynamic, dynamic> _selectedArticle;
+  @override
+  @JsonKey()
+  Map<dynamic, dynamic> get selectedArticle {
+    if (_selectedArticle is EqualUnmodifiableMapView) return _selectedArticle;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_selectedArticle);
+  }
+
   final List<dynamic> _bulletin;
   @override
   @JsonKey()
@@ -287,7 +318,7 @@ class _$_DashboardState implements _DashboardState {
 
   @override
   String toString() {
-    return 'DashboardState(news: $news, trandingBulletin: $trandingBulletin, specialityName: $specialityName, latestArticle: $latestArticle, exploreArticle: $exploreArticle, trandingArticle: $trandingArticle, article: $article, bulletin: $bulletin, sID: $sID)';
+    return 'DashboardState(news: $news, trandingBulletin: $trandingBulletin, specialityName: $specialityName, latestArticle: $latestArticle, exploreArticle: $exploreArticle, trandingArticle: $trandingArticle, article: $article, selectedArticle: $selectedArticle, bulletin: $bulletin, sID: $sID)';
   }
 
   @override
@@ -307,6 +338,8 @@ class _$_DashboardState implements _DashboardState {
             const DeepCollectionEquality()
                 .equals(other._trandingArticle, _trandingArticle) &&
             const DeepCollectionEquality().equals(other._article, _article) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedArticle, _selectedArticle) &&
             const DeepCollectionEquality().equals(other._bulletin, _bulletin) &&
             (identical(other.sID, sID) || other.sID == sID));
   }
@@ -321,6 +354,7 @@ class _$_DashboardState implements _DashboardState {
       const DeepCollectionEquality().hash(_exploreArticle),
       const DeepCollectionEquality().hash(_trandingArticle),
       const DeepCollectionEquality().hash(_article),
+      const DeepCollectionEquality().hash(_selectedArticle),
       const DeepCollectionEquality().hash(_bulletin),
       sID);
 
@@ -340,6 +374,7 @@ abstract class _DashboardState implements DashboardState {
       final List<dynamic> exploreArticle,
       final List<dynamic> trandingArticle,
       final Map<dynamic, dynamic> article,
+      final Map<dynamic, dynamic> selectedArticle,
       final List<dynamic> bulletin,
       final int sID}) = _$_DashboardState;
 
@@ -357,6 +392,8 @@ abstract class _DashboardState implements DashboardState {
   List<dynamic> get trandingArticle;
   @override
   Map<dynamic, dynamic> get article;
+  @override
+  Map<dynamic, dynamic> get selectedArticle;
   @override
   List<dynamic> get bulletin;
   @override
