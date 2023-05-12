@@ -158,11 +158,20 @@ Widget CriticalCareWidget(){
                     style: TextStyle(fontSize: 18, color: Colors.black),
                     isExpanded: true,
                     elevation: 10,
-                    // value: _selectedItem,
-                    items: _dropdownItems.map((e) => DropdownMenuItem(child:  Center(child: Text(e)), value: e,)).toList(),
+                    value: state.selectedArticle["id"],
+                    items: state.exploreArticle.map((e) {
+                      print("e -> $e");
+                      return DropdownMenuItem(
+                        child: Center(child: Text(e["articleTitle"],overflow: TextOverflow.ellipsis)),
+                        value: e["id"],
+                      );
+                    }).toList(),
                     onChanged:(value) {
+                      dashboardBloc.changeSelectedArticle(value as int);
                       setState(() {
+
                         print("Value -> $value");
+
                         // _selectedItem = value!;
                       });
                     },

@@ -28,9 +28,11 @@ class DashboardBloc extends Cubit<DashboardState> {
   }
 
 
-  void changeSelectedArticle(int i){
-    if(state.exploreArticle.length >i){
-      emit(state.copyWith(selectedArticle: state.exploreArticle[0]));
+  void changeSelectedArticle(int id){
+    for(var i in state.exploreArticle){
+      if(id == i["id"]){
+        emit(state.copyWith(selectedArticle: i));
+      }
     }
   }
 
