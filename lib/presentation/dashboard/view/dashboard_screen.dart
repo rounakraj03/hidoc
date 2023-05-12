@@ -87,15 +87,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 "A justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human exsistence.",
                                 "https://bulletin.hidoc.co/details.php?id=2z59Vo");
                           }
-                          if(index==1){
+                          else if(index==1){
                             return TrendingHidocBulletin(
                                 "Vaccine hesitancy: Where are we and where are we going?",
                                 "A justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human exsistence.",
                                 "https://bulletin.hidoc.co/details.php?id=2z59Vo");
                           }
-
+                          else if(index ==2){
+                            return LatestArticle();
+                          }
                           },
-                          itemCount: 2,
+                          itemCount: 3,
                           separatorBuilder: (context, index) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,5 +258,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         );}
       ));
+  }
+
+
+  Widget LatestArticle(){
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black, width: 2)
+      ), child: Text("Hello World"),
+    );
   }
 }
