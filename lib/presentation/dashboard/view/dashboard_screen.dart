@@ -495,8 +495,19 @@ Widget CriticalCareWidget(){
                   Text("What's more on Hidoc Dr.", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 26),),
                   SizedBox(height: 20,),
                   Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),  // shadow color
+                          spreadRadius: 5,  // spread radius
+                          blurRadius: 5,   // blur radius
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
                     padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-                    color: Colors.grey[200],
+                    // color: Colors.grey[200],
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
