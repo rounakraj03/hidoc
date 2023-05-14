@@ -58,7 +58,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            SvgPicture.asset(Assets.house,width: 60,
+                            GestureDetector(
+                              onTapDown: (details){dashboardBloc.initialize();},
+                              child: SvgPicture.asset(Assets.house,width: 60,
+                              ),
                             ),
                             Expanded(
                               child: Column(
@@ -87,6 +90,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ]
                       ),
                     ),
+                    //todo add here refresh indicator
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),

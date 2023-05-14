@@ -1,3 +1,4 @@
+import 'package:hidoc/core/loader/app_loader.dart';
 import 'package:hidoc/data/repo/auth_repository.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +10,9 @@ class DashboardBloc extends Cubit<DashboardState> {
   DashboardBloc(this.authRepository) : super(const DashboardState());
 
   Future<void> initialize() async {
+    AppLoader.showLoader();
     var carInfo = await authRepository.getDashboard(500, 423914);
+    AppLoader.dismissLoader();
     carInfo.forEach((r) {
       emit(state.copyWith(news: r.news));
       emit(state.copyWith(trandingBulletin: r.trandingBulletin));
