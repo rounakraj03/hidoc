@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hidoc/di/di.dart';
@@ -13,6 +14,7 @@ import 'package:hidoc/widgets/app_button.dart';
 import 'package:hidoc/widgets/critical_care.dart';
 import 'package:hidoc/widgets/explore_article.dart';
 import 'package:hidoc/widgets/hidoc_bulletin.dart';
+import 'package:hidoc/widgets/hidoc_nav_bar.dart';
 import 'package:hidoc/widgets/latest_article.dart';
 import 'package:hidoc/widgets/news.dart';
 import 'package:hidoc/widgets/quiz.dart';
@@ -62,6 +64,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 backgroundColor: Colors.transparent,
                 body: Column(
                   children: [
+                    kIsWeb ? HidocNavBar() :
                     Container(
                       height: 150,
                       child: Row(
