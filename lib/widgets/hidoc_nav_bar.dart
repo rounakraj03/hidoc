@@ -24,6 +24,12 @@ class _HidocNavBarState extends State<HidocNavBar> {
   Widget build(BuildContext context) {
     var blue = Colors.cyan;
     return Container(
+      decoration: BoxDecoration(color: Colors.white,boxShadow: [BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0,3)
+      )]),
       padding: EdgeInsets.symmetric(horizontal: 50),
       height: 80,
       child: Row(
