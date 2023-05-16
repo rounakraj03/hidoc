@@ -108,7 +108,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 80),
                         child: ListView.separated(itemBuilder: (context, index) {
                           if(index == 0){
-                            return CriticalCareWidget();
+                            return Column(
+                              children: [
+                              SizedBox(height: 20,),
+                              Text("ARTICLES", style: TextStyle(fontWeight: FontWeight.w900,color: Colors.black,fontSize: 24)),
+                              CriticalCareWidget(),
+                              ],
+                            );
                             // return SizedBox();
                           }
                           else if(index == 1){
