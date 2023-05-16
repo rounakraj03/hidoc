@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
+import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,8 +19,8 @@ Widget News(){
           builder: (context, state) {
             return Column(
               children: [
-                Text("What's more on Hidoc Dr.", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 26),),
-                SizedBox(height: 20,),
+                Visibility(visible: !kIsWeb,child: Text("What's more on Hidoc Dr.", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 26),)),
+                Visibility(visible: !kIsWeb,child: SizedBox(height: 20,)),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.grey[200],
@@ -39,7 +41,28 @@ Widget News(){
                       Text("News", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 26),),
                       SizedBox(height: 20,),
                       ListView.separated(itemBuilder: (context, index) {
-                        return Column(
+                        return kIsWeb ?
+                        Row(
+                          // crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Flexible(
+                                flex: 1,
+                                child: Text(state.news[index]["title"],
+                                  style: AppTextStyles.subtitle1
+                                )
+                            ),
+                            Flexible(
+                              flex:1,
+                              child: Image.network(state.news[index]["urlToImage"],
+                                width: double.maxFinite,
+                                errorBuilder: (context, error, stackTrace) {
+                                return Image.asset(Assets.error,fit: BoxFit.cover);
+                              },),
+                            )
+                          ],
+                        )
+                            :
+                          Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(state.news[index]["title"], style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),

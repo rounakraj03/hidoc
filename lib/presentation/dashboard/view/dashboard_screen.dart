@@ -153,17 +153,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             );
                           }
                           else if(index ==4){
-                            return News();
+                            return Column(
+                              children: [
+                                Text("What's more on Hidoc Dr.", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 26),),
+                                SizedBox(height: 30,),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(flex: 1,child: News()),
+                                    SizedBox(width: 10,),
+                                    Flexible(flex: 1,child: Quiz())
+                                  ],
+                                ),
+                              ],
+                            );
                           }
                           else if(index ==5){
-                            return Quiz();
-                          }
-                          else if(index ==6){
                             return VisitWidget();
                           }
                           return Text("Hello World");
                         },
-                          itemCount: 7,
+                          itemCount: 6,
                           separatorBuilder: (context, index) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
