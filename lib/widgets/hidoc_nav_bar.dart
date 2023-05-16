@@ -22,6 +22,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    var blue = Colors.cyan;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 50),
       height: 80,
@@ -51,7 +52,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       selectedValue = 0;
                     });
                   },
-                  child: Text("Social",style: TextStyle(color: (hoverValue[0] || selectedValue == 0 ) ? Colors.blue: Colors.black))),
+                  child: Text("Social",style: TextStyle(color: (hoverValue[0] || selectedValue == 0 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3, ),
               InkWell(
                   onHover: (value) {
@@ -66,7 +67,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 1;
                     });
-                  },child: Text("Cases",style: TextStyle(color: (hoverValue[1] || selectedValue == 1 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Cases",style: TextStyle(color: (hoverValue[1] || selectedValue == 1 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -81,7 +82,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 2;
                     });
-                  },child: Text("Quizzes",style: TextStyle(color: (hoverValue[2] || selectedValue == 2 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Quizzes",style: TextStyle(color: (hoverValue[2] || selectedValue == 2 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -96,7 +97,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 3;
                     });
-                  },child: Text("Articles",style: TextStyle(color: (hoverValue[3] || selectedValue == 3 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Articles",style: TextStyle(color: (hoverValue[3] || selectedValue == 3 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -111,7 +112,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 4;
                     });
-                  },child: Text("Drugs",style: TextStyle(color: (hoverValue[4] || selectedValue == 4 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Drugs",style: TextStyle(color: (hoverValue[4] || selectedValue == 4 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -126,7 +127,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 5;
                     });
-                  },child: Text("Webinars",style: TextStyle(color: (hoverValue[5] || selectedValue == 5 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Webinars",style: TextStyle(color: (hoverValue[5] || selectedValue == 5 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -141,7 +142,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 6;
                     });
-                  },child: Text("Calculators",style: TextStyle(color: (hoverValue[6] || selectedValue == 6 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Calculators",style: TextStyle(color: (hoverValue[6] || selectedValue == 6 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -156,7 +157,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 7;
                     });
-                  },child: Text("Guidelines",style: TextStyle(color: (hoverValue[7] || selectedValue == 7 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Guidelines",style: TextStyle(color: (hoverValue[7] || selectedValue == 7 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -171,7 +172,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 8;
                     });
-                  },child: Text("Surveys",style: TextStyle(color: (hoverValue[8] || selectedValue == 8 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Surveys",style: TextStyle(color: (hoverValue[8] || selectedValue == 8 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -186,7 +187,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 9;
                     });
-                  },child: Text("News",style: TextStyle(color: (hoverValue[9] || selectedValue == 9 ) ? Colors.blue: Colors.black))),
+                  },child: Text("News",style: TextStyle(color: (hoverValue[9] || selectedValue == 9 ) ? blue: Colors.black))),
               Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
               InkWell(
                   onHover: (value) {
@@ -201,7 +202,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState((){
                       selectedValue = 10;
                     });
-                  },child: Text("Clinical Trials",style: TextStyle(color: (hoverValue[10] || selectedValue == 10 ) ? Colors.blue: Colors.black))),
+                  },child: Text("Clinical Trials",style: TextStyle(color: (hoverValue[10] || selectedValue == 10 ) ? blue: Colors.black))),
               SizedBox(width: 100,),
             ],
           ),
