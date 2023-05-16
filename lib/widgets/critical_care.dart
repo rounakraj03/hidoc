@@ -21,7 +21,7 @@ Widget CriticalCareWidget(){
           child: Column(
             children: [
               Container(
-                margin: kIsWeb ? EdgeInsets.symmetric(horizontal: 200) : null,
+                margin: kIsWeb ? EdgeInsets.symmetric(horizontal: 250) : null,
                 decoration: BoxDecoration(
                     color: kIsWeb ? Colors.white : Colors.grey[50],
                     borderRadius: BorderRadius.circular(10)
@@ -51,15 +51,15 @@ Widget CriticalCareWidget(){
 
               Container(
                 decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),  // shadow color
-                        spreadRadius: 5,  // spread radius
-                        blurRadius: 5,   // blur radius
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                    color: Colors.white,
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     color: Colors.grey.withOpacity(0.5),  // shadow color
+                    //     spreadRadius: 5,  // spread radius
+                    //     blurRadius: 5,   // blur radius
+                    //     offset: Offset(0, 3), // changes position of shadow
+                    //   ),
+                    // ],
+                    // color: Colors.white,
                     // borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30))
                     borderRadius: BorderRadius.all(Radius.circular(30))
                 ),
@@ -72,15 +72,9 @@ Widget CriticalCareWidget(){
                           child: Stack(
                             children: [
                               Container(
-                                decoration: BoxDecoration(
-                                // color: Colors.grey[200],
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30))
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
-                                  child: Image.network(state.selectedArticle["articleImg"],width: double.maxFinite, fit: BoxFit.fill, height:200,errorBuilder: (context, error, stackTrace) {
-                                    return Image.asset(Assets.error,fit: BoxFit.cover);
-                                  }))),
+                                child: Image.network(state.selectedArticle["articleImg"], fit: BoxFit.cover, height:200,errorBuilder: (context, error, stackTrace) {
+                                  return Image.asset(Assets.error,fit: BoxFit.cover);
+                                })),
                               Positioned(
                                 bottom: 0,
                                 right: 0,
@@ -102,6 +96,7 @@ Widget CriticalCareWidget(){
                             ],
                           ),
                         ),
+                        SizedBox(width: 30,),
                         Flexible(
                           flex: 3,
                           child: Padding(
@@ -110,7 +105,7 @@ Widget CriticalCareWidget(){
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                               SizedBox(height: 20,),
-                              Text(state.selectedArticle["articleTitle"], style: AppTextStyles.webHeading1,overflow: TextOverflow.fade, maxLines: 2),
+                              Text(state.selectedArticle["articleTitle"], style: AppTextStyles.webHeading1,overflow: TextOverflow.visible,maxLines: 1),
                               SizedBox(height: 15,),
                               Text(state.selectedArticle["articleDescription"],overflow: TextOverflow.ellipsis, maxLines: 2,style: TextStyle(fontSize: 12)),
                               SizedBox(height: 30,),

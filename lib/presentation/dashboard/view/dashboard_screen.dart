@@ -58,7 +58,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           builder: (context, state) {
             return Container(
               decoration: const BoxDecoration(
-                image: kIsWeb ? null : DecorationImage(image:  AssetImage(Assets.bg2Image),fit: BoxFit.cover)
+                image: kIsWeb ? null : DecorationImage(image:  AssetImage(Assets.bg2Image),fit: BoxFit.cover),
+                color: kIsWeb ? Color.fromARGB(255, 244, 244, 244) : null
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
