@@ -58,7 +58,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           builder: (context, state) {
             return Container(
               decoration: const BoxDecoration(
-                image: DecorationImage(image:  AssetImage(Assets.bg2Image),fit: BoxFit.cover)
+                image: kIsWeb ? null : DecorationImage(image:  AssetImage(Assets.bg2Image),fit: BoxFit.cover)
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -103,7 +103,53 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                     //todo add here refresh indicator
-                    Expanded(
+                    kIsWeb ? Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: ListView.separated(itemBuilder: (context, index) {
+                          if(index == 0){
+                            return CriticalCareWidget();
+                            // return SizedBox();
+                          }
+                          else if(index == 1){
+                            return HidocBulletin();
+                          }
+                          else if(index==2){
+                            return TrendingHidocBulletin();
+                          }
+                          else if(index ==3){
+                            return Row(
+                              children: [
+                                Flexible( flex: 1,child: LatestArticle()),
+                                SizedBox(width: 10,),
+                                Flexible( flex: 1,child: TrendingArticle()),
+                                SizedBox(width: 10,),
+                                Flexible(flex: 1,child: ExploreArticle())
+                              ],
+                            );
+                          }
+                          else if(index ==4){
+                            return News();
+                          }
+                          else if(index ==5){
+                            return Quiz();
+                          }
+                          else if(index ==6){
+                            return VisitWidget();
+                          }
+                          return Text("Hello World");
+                        },
+                          itemCount: 7,
+                          separatorBuilder: (context, index) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 15,),
+                              ],
+                            );
+                          },),
+                      ),
+                    ) :Expanded(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: ListView.separated(itemBuilder: (context, index) {

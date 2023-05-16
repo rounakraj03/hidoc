@@ -31,7 +31,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
         children: [
           Row(
             children: [
-              Image.asset(Assets.hidoc_logo, height: 50,),
+              Image.asset(Assets.hidoc_logo,color: Colors.cyan,fit: BoxFit.fitWidth, height: 50,),
             ],
           ),
           Row(

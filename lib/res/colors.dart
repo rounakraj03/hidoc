@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primary = Color(0xFFFF5B00);
+  static const Color primary = kIsWeb ? Colors.cyan :Color(0xFFFF5B00);
   // static const Color primary = Color(0xFFFF0303);
   // static const Color primary = Color(0xFFC40808);
   // static const Color primary = Color(0xFFFFFFFF);
