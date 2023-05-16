@@ -36,6 +36,7 @@ dependencies:
   intl: ^0.17.0
   loading_animation_widget: ^1.2.0+4
   url_launcher: ^6.1.11
+  anim_search_bar: ^2.0.3
 
 dev_dependencies:
   flutter_test:
