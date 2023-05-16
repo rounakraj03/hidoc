@@ -21,7 +21,7 @@ Widget CriticalCareWidget(){
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 200),
+                margin: kIsWeb ? EdgeInsets.symmetric(horizontal: 200) : null,
                 decoration: BoxDecoration(
                     color: kIsWeb ? Colors.white : Colors.grey[50],
                     borderRadius: BorderRadius.circular(10)
@@ -34,7 +34,10 @@ Widget CriticalCareWidget(){
                   items: state.exploreArticle.map((e) {
                     // print("e -> $e");
                     return DropdownMenuItem(
-                      child: Center(child: Text(e["articleTitle"],overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 16),)),
+                      child: Center(
+                          child: Text(e["articleTitle"],
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 16))),
                       value: e["id"],
                     );
                   }).toList(),
