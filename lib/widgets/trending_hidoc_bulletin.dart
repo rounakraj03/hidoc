@@ -55,7 +55,7 @@ Widget TrendingHidocBulletin(){
                   ),
                 ),
                 SizedBox(height: 20,),
-                ElevatedButton(onPressed: (){}, child: Container(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),child: Text("Read More Bulletins",style: TextStyle(fontSize: 20),),))
+                Visibility(visible: !kIsWeb,child: ElevatedButton(onPressed: (){}, child: Container(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),child: Text("Read More Bulletins",style: TextStyle(fontSize: 20),),)))
                 // FTButton(title: "Read More Bulletins")
               ],
 

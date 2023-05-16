@@ -120,8 +120,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               ],
                             );
                           }
-                          else if(index ==2){
+                          else if(index == 2){
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 350),
+                              child: ElevatedButton(
+                                // style: ButtonStyle(shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)))),
+                                  onPressed: (){},
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                                    child: Text("Read More Bulletins",
+                                      style: TextStyle(fontSize: 20)))),
+                            );
+                          }
+                          else if(index ==3){
                             return Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(width: 30,),
                                 Flexible( flex: 1,child: LatestArticle()),
@@ -133,18 +146,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               ],
                             );
                           }
-                          else if(index ==3){
+                          else if(index ==4){
                             return News();
                           }
-                          else if(index ==4){
+                          else if(index ==5){
                             return Quiz();
                           }
-                          else if(index ==5){
+                          else if(index ==6){
                             return VisitWidget();
                           }
                           return Text("Hello World");
                         },
-                          itemCount: 6,
+                          itemCount: 7,
                           separatorBuilder: (context, index) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
