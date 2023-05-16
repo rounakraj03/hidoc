@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
+import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,7 +23,7 @@ Widget TrendingArticle(){
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Trending Articles", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28)),
+                  Text("Trending Articles", style: kIsWeb ? AppTextStyles.webHeading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28)),
                   SizedBox(height: 10,),
                   Container(height: 1,padding: EdgeInsets.symmetric(horizontal: 100),color: Colors.black,),
 
@@ -35,7 +37,7 @@ Widget TrendingArticle(){
                           return Image.asset(Assets.error,fit: BoxFit.cover);
                         }),
                         SizedBox(height: 10,),
-                        Text(state.trandingArticle[index]["articleTitle"], style: TextStyle(color: Colors.black,fontWeight: FontWeight.normal),),
+                        Text(state.trandingArticle[index]["articleTitle"], style: kIsWeb ? AppTextStyles.webSubheading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.normal),),
                       ],
                     );
                   },

@@ -120,11 +120,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           else if(index ==3){
                             return Row(
                               children: [
+                                SizedBox(width: 30,),
                                 Flexible( flex: 1,child: LatestArticle()),
                                 SizedBox(width: 10,),
                                 Flexible( flex: 1,child: TrendingArticle()),
                                 SizedBox(width: 10,),
-                                Flexible(flex: 1,child: ExploreArticle())
+                                Flexible(flex: 1,child: ExploreArticle()),
+                                SizedBox(width: 30,),
                               ],
                             );
                           }

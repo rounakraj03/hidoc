@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
+import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,7 +25,7 @@ Widget ExploreArticle(){
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("Explore more in Articles", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28)),
+                      Text("Explore more in Articles", style: kIsWeb ? AppTextStyles.webHeading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28)),
                       SizedBox(height: 10,),
                       Container(height: 1,padding: EdgeInsets.symmetric(horizontal: 100),color: Colors.black,),
 
@@ -31,7 +33,7 @@ Widget ExploreArticle(){
                       ListView.separated(itemBuilder: (context, index) {
                         if(index == 0){
                         }
-                        return Text(state.exploreArticle[index]["articleTitle"], style: TextStyle(color: Colors.black,fontWeight: FontWeight.normal),);
+                        return Text(state.exploreArticle[index]["articleTitle"], style: kIsWeb ? AppTextStyles.webSubheading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.normal),);
                       },
                         separatorBuilder: (context, index) {
                           return Column(
