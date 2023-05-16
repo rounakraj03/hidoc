@@ -76,8 +76,6 @@ Widget CriticalCareWidget(){
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
                                   child: Image.network(state.selectedArticle["articleImg"],width: double.maxFinite, fit: BoxFit.fill, height:200,errorBuilder: (context, error, stackTrace) {
-                                    print("error in loading image -> $error");
-                                    print("image link -> ${state.selectedArticle["articleImg"]}");
                                     return Image.asset(Assets.error,fit: BoxFit.cover);
                                   }))),
                               Positioned(
