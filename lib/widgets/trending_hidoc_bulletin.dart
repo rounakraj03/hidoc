@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
+import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,7 +21,11 @@ Widget TrendingHidocBulletin(){
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-                  color: Colors.blue[100],
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  // color: Colors.blue[100],
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -29,8 +35,8 @@ Widget TrendingHidocBulletin(){
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(state.trandingBulletin[index]["articleTitle"], style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                            Text(state.trandingBulletin[index]["articleDescription"], maxLines: 3,overflow: TextOverflow.ellipsis,style: TextStyle(color: Colors.black,),),
+                            Text(state.trandingBulletin[index]["articleTitle"], style: kIsWeb ? AppTextStyles.webHeading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                            Text(state.trandingBulletin[index]["articleDescription"], maxLines: 3,overflow: TextOverflow.ellipsis,style: kIsWeb ? AppTextStyles.webSubheading1 : TextStyle(color: Colors.black,),),
                             SizedBox(height: 10,),
                             RichText(text: TextSpan(text: "Read more"
                                 ,recognizer: TapGestureRecognizer()

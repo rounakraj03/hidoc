@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
+import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,8 +18,10 @@ Widget HidocBulletin(){
       child: BlocBuilder<DashboardBloc, DashboardState>(
           builder: (context, state) {
             return Container(
+              alignment: Alignment.topCenter,
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListView.separated(itemBuilder: (context, index) {
@@ -28,8 +32,8 @@ Widget HidocBulletin(){
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(state.bulletin[index-1]["articleTitle"], style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                        Text(state.bulletin[index-1]["articleDescription"], maxLines: 3,overflow: TextOverflow.ellipsis,style: TextStyle(color: Colors.black,),),
+                        Text(state.bulletin[index-1]["articleTitle"], style: kIsWeb ? AppTextStyles.webHeading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                        Text(state.bulletin[index-1]["articleDescription"], maxLines: 3,overflow: TextOverflow.ellipsis,style: kIsWeb ? AppTextStyles.webSubheading1 : TextStyle(color: Colors.black,),),
                         SizedBox(height: 10,),
                         RichText(text: TextSpan(text: "Read more",
                             recognizer: TapGestureRecognizer()

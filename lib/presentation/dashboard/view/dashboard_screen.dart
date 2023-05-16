@@ -105,19 +105,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     //todo add here refresh indicator
                     kIsWeb ? Expanded(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 80),
                         child: ListView.separated(itemBuilder: (context, index) {
                           if(index == 0){
                             return CriticalCareWidget();
                             // return SizedBox();
                           }
                           else if(index == 1){
-                            return HidocBulletin();
+                            return Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(flex:1,child: HidocBulletin()),
+                                Flexible(flex: 1,child: TrendingHidocBulletin())
+                              ],
+                            );
                           }
-                          else if(index==2){
-                            return TrendingHidocBulletin();
-                          }
-                          else if(index ==3){
+                          else if(index ==2){
                             return Row(
                               children: [
                                 SizedBox(width: 30,),
@@ -130,18 +133,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               ],
                             );
                           }
-                          else if(index ==4){
+                          else if(index ==3){
                             return News();
                           }
-                          else if(index ==5){
+                          else if(index ==4){
                             return Quiz();
                           }
-                          else if(index ==6){
+                          else if(index ==5){
                             return VisitWidget();
                           }
                           return Text("Hello World");
                         },
-                          itemCount: 7,
+                          itemCount: 6,
                           separatorBuilder: (context, index) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
