@@ -48,7 +48,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(width: 100,),
+                SizedBox(width: 10,),
                 InkWell(
                   onHover: (value) {
                     setState(() {
@@ -214,7 +214,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                         selectedValue = 10;
                       });
                     },child: Text("Clinical Trials",style: TextStyle(color: (hoverValue[10] || selectedValue == 10 ) ? blue: Colors.black))),
-                SizedBox(width: 100,),
+                SizedBox(width: 10,),
               ],
             ),
           ),
@@ -223,11 +223,11 @@ class _HidocNavBarState extends State<HidocNavBar> {
                 AnimSearchBar(
                     width: 400,
                     textController: searchController,
-                  suffixIcon: Icon(Icons.search),
+                    suffixIcon: Icon(Icons.search),
                     onSuffixTap: (){
                       setState(() {
                         print("submitted serach value");
-                      });
+                        });
                       },
                     onSubmitted:(p0) {
                       print("WHat the hell this button is doinfg???");
