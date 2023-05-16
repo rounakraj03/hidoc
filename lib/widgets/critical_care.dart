@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
+import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -74,7 +75,9 @@ Widget CriticalCareWidget(){
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
-                                  child: Image.network(state.selectedArticle["articleImg"],width: double.maxFinite, fit: BoxFit.fill,errorBuilder: (context, error, stackTrace) {
+                                  child: Image.network(state.selectedArticle["articleImg"],width: double.maxFinite, fit: BoxFit.fill, height:200,errorBuilder: (context, error, stackTrace) {
+                                    print("error in loading image -> $error");
+                                    print("image link -> ${state.selectedArticle["articleImg"]}");
                                     return Image.asset(Assets.error,fit: BoxFit.cover);
                                   }))),
                               Positioned(
@@ -106,9 +109,9 @@ Widget CriticalCareWidget(){
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                               SizedBox(height: 20,),
-                              Text(state.selectedArticle["articleTitle"], style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),maxLines: 2,overflow: TextOverflow.fade,),
+                              Text(state.selectedArticle["articleTitle"], style: AppTextStyles.webHeading1,overflow: TextOverflow.fade, maxLines: 2),
                               SizedBox(height: 15,),
-                              Text(state.selectedArticle["articleDescription"],overflow: TextOverflow.ellipsis, maxLines: 2,),
+                              Text(state.selectedArticle["articleDescription"],overflow: TextOverflow.ellipsis, maxLines: 2,style: TextStyle(fontSize: 12)),
                               SizedBox(height: 30,),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -116,7 +119,7 @@ Widget CriticalCareWidget(){
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = ()
                                       {
-                                        launchUrl(Uri.parse(state.selectedArticle["redirectLink"]),mode: LaunchMode.externalApplication);
+                                        launchUrl(Uri.parse(state.selectedArticle["redirectLink"]),mode: LaunchMode.platformDefault);
                                       },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue)),),
                               ),
                               ],),
