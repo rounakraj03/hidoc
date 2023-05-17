@@ -20,6 +20,12 @@ class _HidocNavBarState extends State<HidocNavBar> {
   List<String> hoverTextValue = ["Home","Services","About","Media","Team","Careers","Muskaan","Contact","For Doctors","KOL Factory"];
   int selectedValue = 0;
 
+  List<String> servicesList = ["For Pharma", "For Doctors"];
+  List<String> pharmaList = ["Pharma Services", "Courses"];
+
+  List<String> forDoctorsList = ["Hidoc Dr.(India)","Hidoc Dr.(Global)","Legal Helpdesk","College Doc","NAT"];
+List forDoctorsListIcon = [];
+
 
   void resetAllValues(){
     setState(() {
@@ -70,7 +76,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       child: Text(
                           hoverTextValue[index],
                           style: TextStyle(
-                              color: (hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.w100)),
+                              color: (hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
                     ));
                 },
               separatorBuilder: (context, index) => SizedBox(width: 20,),
