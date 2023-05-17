@@ -61,7 +61,9 @@ List forDoctorsListIcon = [];
               if(index == 9){
                 return Center(
                   child: ElevatedButton(
-                    style: ButtonStyle(backgroundColor:(hoverValue[index] || selectedValue == index ) ? MaterialStateProperty.all(blue) : MaterialStateProperty.all(AppColors.pinkColor)),
+                    style: ButtonStyle(
+                        backgroundColor: (hoverValue[index] || selectedValue == index ) ?
+                        MaterialStateProperty.all(blue) : MaterialStateProperty.all(AppColors.pinkColor)),
                     onPressed: (){
                       resetAllValues();
                       setState((){
@@ -82,6 +84,36 @@ List forDoctorsListIcon = [];
                             color: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
                   ),
                 );
+              }else if(index==1){
+                return InkWell(
+                    onHover: (value) {
+                      setState(() {
+                        if(selectedValue != index){
+                          hoverValue[index] =  value? true: false;
+                        }
+                      });
+                    },
+                    onTap: () {
+                      resetAllValues();
+                      setState((){
+                        selectedValue = index;
+                        changeSelectedState(selectedValue);
+                      });
+                    },
+                    child: Center(
+                      child: DropdownButton(
+                        dropdownColor: AppColors.navBarColor,
+                        onChanged: (value) {
+                          print("value -> $value");
+                        },
+                        items: servicesList.map((e) => DropdownMenuItem(
+                          child: Text(e, style: TextStyle(color: Colors.white),),
+                          value: e,
+                          onTap: () {},
+                        )).toList(),
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ));
               }
                 return InkWell(
                     onHover: (value) {
