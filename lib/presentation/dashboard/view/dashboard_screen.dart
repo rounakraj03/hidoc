@@ -104,7 +104,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                     //todo add here refresh indicator
-                    kIsWeb ? Expanded(
+                    kIsWeb ? state.defaultState != 3 ? Text("Hello World") : Expanded(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 80),
                         child: ListView.separated(itemBuilder: (context, index) {

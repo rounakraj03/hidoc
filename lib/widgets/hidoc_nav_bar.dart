@@ -1,6 +1,10 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:hidoc/di/di.dart';
+import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/res/assets.dart';
+
+final dashboardBloc = inject<DashboardBloc>();
 
 class HidocNavBar extends StatefulWidget {
   const HidocNavBar({Key? key}) : super(key: key);
@@ -12,7 +16,7 @@ class HidocNavBar extends StatefulWidget {
 class _HidocNavBarState extends State<HidocNavBar> {
 
   List hoverValue = [false,false,false,false,false,false,false,false,false,false,false];
-  int selectedValue = 0;
+  int selectedValue = 3;
   bool isSearching = false;
   final searchController = TextEditingController();
 
@@ -21,6 +25,11 @@ class _HidocNavBarState extends State<HidocNavBar> {
     setState(() {
       hoverValue = [false,false,false,false,false,false,false,false,false,false,false];
     });
+  }
+
+  void changeSelectedState(int selectedValue){
+    print("selected value ->$selectedValue");
+    dashboardBloc.changeDefaultState(selectedValue);
   }
 
   @override
@@ -61,6 +70,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 0;
+                        changeSelectedState(selectedValue);
                       });
                     },
                     child: Text("Social",style: TextStyle(color: (hoverValue[0] || selectedValue == 0 ) ? blue: Colors.black))),
@@ -77,6 +87,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 1;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Cases",style: TextStyle(color: (hoverValue[1] || selectedValue == 1 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -92,6 +103,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 2;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Quizzes",style: TextStyle(color: (hoverValue[2] || selectedValue == 2 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -107,6 +119,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 3;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Articles",style: TextStyle(color: (hoverValue[3] || selectedValue == 3 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -122,6 +135,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 4;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Drugs",style: TextStyle(color: (hoverValue[4] || selectedValue == 4 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -137,6 +151,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 5;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Webinars",style: TextStyle(color: (hoverValue[5] || selectedValue == 5 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -152,6 +167,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 6;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Calculators",style: TextStyle(color: (hoverValue[6] || selectedValue == 6 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -167,6 +183,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 7;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Guidelines",style: TextStyle(color: (hoverValue[7] || selectedValue == 7 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -182,6 +199,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 8;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Surveys",style: TextStyle(color: (hoverValue[8] || selectedValue == 8 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -197,6 +215,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 9;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("News",style: TextStyle(color: (hoverValue[9] || selectedValue == 9 ) ? blue: Colors.black))),
                 Container(height: 30, margin: EdgeInsets.symmetric(horizontal: 5),color: Colors.black54,width: 3,),
@@ -212,6 +231,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       resetAllValues();
                       setState((){
                         selectedValue = 10;
+                        changeSelectedState(selectedValue);
                       });
                     },child: Text("Clinical Trials",style: TextStyle(color: (hoverValue[10] || selectedValue == 10 ) ? blue: Colors.black))),
                 SizedBox(width: 10,),
