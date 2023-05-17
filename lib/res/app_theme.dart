@@ -8,6 +8,7 @@ class AppTheme {
 
   static ThemeData get theme {
     return ThemeData(
+      fontFamily: 'Poppins',
         primaryColor: AppColors.primary,
         focusColor: AppColors.primary,
         // scaffoldBackgroundColor: AppColors.primary,
