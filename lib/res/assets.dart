@@ -38,4 +38,11 @@ class Assets {
   static const String whatsapp = "assets/icons/whatsapp.svg";
   static const String heart = "assets/icons/heart.svg";
   static const String profile = "assets/icons/profile.svg";
+
+  //staticImages
+  static const String homeImg1 = "assets/staticImages/homeImg1.png";
+  static const String homeImg2 = "assets/staticImages/homeImg2.png";
+  static const String hidoclogo = "staticImages/logo.png";
+
+
 }
