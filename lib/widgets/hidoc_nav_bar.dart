@@ -102,6 +102,12 @@ List forDoctorsListIcon = [];
                     },
                     child: Center(
                       child: DropdownButton(
+                        hint: Center(
+                          child: Text(
+                              hoverTextValue[index],
+                              style: TextStyle(
+                                  color: (hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
+                        ),
                         dropdownColor: AppColors.navBarColor,
                         onChanged: (value) {
                           print("value -> $value");
