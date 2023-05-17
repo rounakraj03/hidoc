@@ -102,6 +102,7 @@ List forDoctorsListIcon = [];
                     },
                     child: Center(
                       child: DropdownButton(
+                        underline: SizedBox(),
                         hint: Center(
                           child: Text(
                               hoverTextValue[index],
@@ -117,7 +118,6 @@ List forDoctorsListIcon = [];
                           value: e,
                           onTap: () {},
                         )).toList(),
-                        style: TextStyle(color: Colors.red),
                       ),
                     ));
               }
