@@ -1,4 +1,3 @@
-import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
@@ -38,8 +37,10 @@ List forDoctorsListIcon = [];
     dashboardBloc.changeDefaultState(selectedValue);
   }
 
+
   @override
   Widget build(BuildContext context) {
+    final sw = MediaQuery.of(context).size.width;//1000
     var blue = Colors.cyan;
     return Container(
       decoration: BoxDecoration(
@@ -51,12 +52,37 @@ List forDoctorsListIcon = [];
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(Assets.hidoclogo,fit: BoxFit.fitHeight, height: 50,),
+          Image.asset(Assets.hidoclogo, height: 50,),
           ListView.separated(
             shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
+              if(index == 9){
+                return Center(
+                  child: ElevatedButton(
+                    style: ButtonStyle(backgroundColor:(hoverValue[index] || selectedValue == index ) ? MaterialStateProperty.all(blue) : MaterialStateProperty.all(AppColors.pinkColor)),
+                    onPressed: (){
+                      resetAllValues();
+                      setState((){
+                        selectedValue = index;
+                        changeSelectedState(selectedValue);
+                      });
+                    },
+                    onHover: (value) {
+                      setState(() {
+                        if(selectedValue != index){
+                          hoverValue[index] =  value? true: false;
+                        }
+                      });
+                      },
+                    child: Text(
+                        hoverTextValue[index],
+                        style: TextStyle(
+                            color: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
+                  ),
+                );
+              }
                 return InkWell(
                     onHover: (value) {
                       setState(() {
