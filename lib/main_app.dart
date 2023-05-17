@@ -21,6 +21,7 @@ class MainApp extends StatelessWidget {
       // home: SplashScreen(),
       home: DashboardScreen(),
       builder: AppLoader.initBuilder(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
