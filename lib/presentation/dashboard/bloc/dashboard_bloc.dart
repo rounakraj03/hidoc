@@ -39,4 +39,8 @@ class DashboardBloc extends Cubit<DashboardState> {
     }
   }
 
+  void changeDefaultState(int id){
+    emit(state.copyWith(defaultState: id));
+  }
+
 }

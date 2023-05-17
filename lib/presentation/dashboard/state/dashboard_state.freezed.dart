@@ -27,6 +27,7 @@ mixin _$DashboardState {
       throw _privateConstructorUsedError;
   List<dynamic> get bulletin => throw _privateConstructorUsedError;
   int get sID => throw _privateConstructorUsedError;
+  int get defaultState => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DashboardStateCopyWith<DashboardState> get copyWith =>
@@ -49,7 +50,8 @@ abstract class $DashboardStateCopyWith<$Res> {
       Map<dynamic, dynamic> article,
       Map<dynamic, dynamic> selectedArticle,
       List<dynamic> bulletin,
-      int sID});
+      int sID,
+      int defaultState});
 }
 
 /// @nodoc
@@ -75,6 +77,7 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
     Object? selectedArticle = null,
     Object? bulletin = null,
     Object? sID = null,
+    Object? defaultState = null,
   }) {
     return _then(_value.copyWith(
       news: null == news
@@ -117,6 +120,10 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
           ? _value.sID
           : sID // ignore: cast_nullable_to_non_nullable
               as int,
+      defaultState: null == defaultState
+          ? _value.defaultState
+          : defaultState // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -139,7 +146,8 @@ abstract class _$$_DashboardStateCopyWith<$Res>
       Map<dynamic, dynamic> article,
       Map<dynamic, dynamic> selectedArticle,
       List<dynamic> bulletin,
-      int sID});
+      int sID,
+      int defaultState});
 }
 
 /// @nodoc
@@ -163,6 +171,7 @@ class __$$_DashboardStateCopyWithImpl<$Res>
     Object? selectedArticle = null,
     Object? bulletin = null,
     Object? sID = null,
+    Object? defaultState = null,
   }) {
     return _then(_$_DashboardState(
       news: null == news
@@ -203,6 +212,10 @@ class __$$_DashboardStateCopyWithImpl<$Res>
           ? _value.sID
           : sID // ignore: cast_nullable_to_non_nullable
               as int,
+      defaultState: null == defaultState
+          ? _value.defaultState
+          : defaultState // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -226,7 +239,8 @@ class _$_DashboardState implements _DashboardState {
         "articleImg": ""
       },
       final List<dynamic> bulletin = const [],
-      this.sID = 0})
+      this.sID = 0,
+      this.defaultState = 3})
       : _news = news,
         _trandingBulletin = trandingBulletin,
         _latestArticle = latestArticle,
@@ -315,10 +329,13 @@ class _$_DashboardState implements _DashboardState {
   @override
   @JsonKey()
   final int sID;
+  @override
+  @JsonKey()
+  final int defaultState;
 
   @override
   String toString() {
-    return 'DashboardState(news: $news, trandingBulletin: $trandingBulletin, specialityName: $specialityName, latestArticle: $latestArticle, exploreArticle: $exploreArticle, trandingArticle: $trandingArticle, article: $article, selectedArticle: $selectedArticle, bulletin: $bulletin, sID: $sID)';
+    return 'DashboardState(news: $news, trandingBulletin: $trandingBulletin, specialityName: $specialityName, latestArticle: $latestArticle, exploreArticle: $exploreArticle, trandingArticle: $trandingArticle, article: $article, selectedArticle: $selectedArticle, bulletin: $bulletin, sID: $sID, defaultState: $defaultState)';
   }
 
   @override
@@ -341,7 +358,9 @@ class _$_DashboardState implements _DashboardState {
             const DeepCollectionEquality()
                 .equals(other._selectedArticle, _selectedArticle) &&
             const DeepCollectionEquality().equals(other._bulletin, _bulletin) &&
-            (identical(other.sID, sID) || other.sID == sID));
+            (identical(other.sID, sID) || other.sID == sID) &&
+            (identical(other.defaultState, defaultState) ||
+                other.defaultState == defaultState));
   }
 
   @override
@@ -356,7 +375,8 @@ class _$_DashboardState implements _DashboardState {
       const DeepCollectionEquality().hash(_article),
       const DeepCollectionEquality().hash(_selectedArticle),
       const DeepCollectionEquality().hash(_bulletin),
-      sID);
+      sID,
+      defaultState);
 
   @JsonKey(ignore: true)
   @override
@@ -376,7 +396,8 @@ abstract class _DashboardState implements DashboardState {
       final Map<dynamic, dynamic> article,
       final Map<dynamic, dynamic> selectedArticle,
       final List<dynamic> bulletin,
-      final int sID}) = _$_DashboardState;
+      final int sID,
+      final int defaultState}) = _$_DashboardState;
 
   @override
   List<dynamic> get news;
@@ -398,6 +419,8 @@ abstract class _DashboardState implements DashboardState {
   List<dynamic> get bulletin;
   @override
   int get sID;
+  @override
+  int get defaultState;
   @override
   @JsonKey(ignore: true)
   _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>

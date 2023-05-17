@@ -13,6 +13,7 @@ class Assets {
   static const String bg2Image = "assets/images/bg2.png";
   static const String calculator = "assets/images/calc.png";
   static const String trophy = "assets/images/trophy.png";
+  static const String hidoc_logo = "assets/images/hidoc_logo.png";
 
   //icons
   static const String angleRight = "assets/icons/angle-right.svg";

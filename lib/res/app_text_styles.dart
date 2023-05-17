@@ -27,4 +27,6 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle webHeading1 = const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 14);
+  static TextStyle webSubheading1 = const TextStyle(color: Colors.black,fontWeight: FontWeight.normal, fontSize: 12);
 }
