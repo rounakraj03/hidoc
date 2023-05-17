@@ -70,7 +70,7 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       child: Text(
                           hoverTextValue[index],
                           style: TextStyle(
-                              color: (hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14)),
+                              color: (hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.w100)),
                     ));
                 },
               separatorBuilder: (context, index) => SizedBox(width: 20,),
