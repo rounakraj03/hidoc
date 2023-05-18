@@ -20,16 +20,13 @@ class HidocNavBar extends StatefulWidget {
 
 class _HidocNavBarState extends State<HidocNavBar> {
 
-  // List hoverValue = [false,false,false,false,false,false,false,false,false,false];
   List<String> hoverTextValue = ["Home","Services","About","Media","Team","Careers","Muskaan","Contact","For Doctors","KOL Factory"];
   int selectedValue = 0;
-  // List isDropDownSelected = [false, false];
 
   List<String> servicesList = ["For Pharma", "For Doctors"];
   List<String> pharmaList = ["Pharma Services", "Courses"];
 
   List<String> forDoctorsList = ["Hidoc Dr.(India)","Hidoc Dr.(Global)","Legal Helpdesk","College Doc","NAT"];
-  // List<bool> forDoctorsListSelected = [false,false,false,false,false];
 
   TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
 
@@ -80,7 +77,6 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       setState(() {
                         if(selectedValue != index){
                           hidocNavBarBloc.changeHoverValues(index,value);
-                          // hidocNavBarBloc.state.hoverValue[index] =  value? true: false;
                         }
                       });
                       },
@@ -96,7 +92,6 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       setState(() {
                         if(selectedValue != index){
                           hidocNavBarBloc.changeHoverValues(index,value);
-                          // hidocNavBarBloc.state.hoverValue[index] =  value? true: false;
                         }
                       });
                     },
@@ -110,7 +105,6 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       onCanceled: () {
                         setState(() {
                           hidocNavBarBloc.changeDropDownValue(0, false);
-                          // hidocNavBarBloc.state.isDropDownSelected[0] =false;
                         });
                         },
                       tooltip: "",
@@ -123,11 +117,9 @@ class _HidocNavBarState extends State<HidocNavBar> {
                         ],
                       )),
                       color: AppColors.navBarColor,
-                    // icon: Icon(Icons.arrow_drop_down),
                     itemBuilder: (context) {
                       setState((){
                         hidocNavBarBloc.changeDropDownValue(0, true);
-                        // hidocNavBarBloc.state.isDropDownSelected[0] = true;
                       });
                       return [
                         PopupMenuItem(
@@ -159,7 +151,6 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     setState(() {
                       if(selectedValue != index){
                         hidocNavBarBloc.changeHoverValues(index,value);
-                        // hidocNavBarBloc.state.hoverValue[index] =  value? true: false;
                       }
                     });
                   },
@@ -204,7 +195,6 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       setState(() {
                         if(selectedValue != index){
                           hidocNavBarBloc.changeHoverValues(index,value);
-                          // hidocNavBarBloc.state.hoverValue[index] =  value? true: false;
                         }
                       });
                       },
@@ -232,9 +222,9 @@ class _HidocNavBarState extends State<HidocNavBar> {
 
 
 class DoctorPopUpItem extends StatefulWidget {
-  final Widget leadingWidget;
+  final Widget? leadingWidget;
   final String text;
-  const DoctorPopUpItem({required this.leadingWidget, required this.text, Key? key}) : super(key: key);
+  const DoctorPopUpItem({this.leadingWidget, required this.text, Key? key}) : super(key: key);
 
   @override
   State<DoctorPopUpItem> createState() => _DoctorPopUpItemState();
@@ -263,7 +253,7 @@ class _DoctorPopUpItemState extends State<DoctorPopUpItem>{
             child: Center(
               child: Row(
               children: [
-                widget.leadingWidget,
+                widget.leadingWidget ?? SizedBox(),
                 SizedBox(width: 10,),
                 Text(widget.text,style: TextStyle(color: isHovering? Colors.cyan: Colors.white)),
             ],
