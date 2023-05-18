@@ -113,14 +113,22 @@ List forDoctorsListIcon = [];
                       return [
                         PopupMenuItem(
                           child: PopupMenuButton(
-                            icon: Icon(Icons.arrow_drop_down),
+                            color: AppColors.navBarColor,
+                              child: Center(child: Row(
+                                children: [
+                                  Text("For Pharma",style: TextStyle(color: Colors.white)),
+                                  Icon(Icons.arrow_drop_down, color: Colors.white,)
+                                ],
+                              )),
                             itemBuilder: (context) {
                               return [
-                                PopupMenuItem(child: Text("Pharma Services"), value: "Pharma Services"),
-                                PopupMenuItem(child: Text("Courses"), value: "Courses"),
+                                PopupMenuItem(child: Text("Pharma Services",style: TextStyle(color: Colors.white)), value: "Pharma Services"),
+                                PopupMenuItem(child: Text("Courses",style: TextStyle(color: Colors.white)), value: "Courses"),
                               ];
                       }),
-                        )];
+                        ),
+                        PopupMenuItem(child: Text("For Doctor",style: TextStyle(color: Colors.white),),)
+                      ];
                     },)
                 );
               }
