@@ -3,8 +3,10 @@ import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:hidoc/res/colors.dart';
+import 'package:hidoc/widgets/Hidoc_Nav_Bar/bloc/hidoc_nav_bar_bloc.dart';
 
 final dashboardBloc = inject<DashboardBloc>();
+final hidocNavBarBloc = inject<HidocNavBarBloc>();
 
 class HidocNavBar extends StatefulWidget {
   const HidocNavBar({Key? key}) : super(key: key);
@@ -15,25 +17,19 @@ class HidocNavBar extends StatefulWidget {
 
 class _HidocNavBarState extends State<HidocNavBar> {
 
-  List hoverValue = [false,false,false,false,false,false,false,false,false,false];
+  // List hoverValue = [false,false,false,false,false,false,false,false,false,false];
   List<String> hoverTextValue = ["Home","Services","About","Media","Team","Careers","Muskaan","Contact","For Doctors","KOL Factory"];
   int selectedValue = 0;
-  List isDropDownSelected = [false, false];
+  // List isDropDownSelected = [false, false];
 
   List<String> servicesList = ["For Pharma", "For Doctors"];
   List<String> pharmaList = ["Pharma Services", "Courses"];
 
   List<String> forDoctorsList = ["Hidoc Dr.(India)","Hidoc Dr.(Global)","Legal Helpdesk","College Doc","NAT"];
-List forDoctorsListIcon = [];
+  // List<bool> forDoctorsListSelected = [false,false,false,false,false];
 
-TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
+  TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
 
-
-  void resetAllValues(){
-    setState(() {
-      hoverValue = [false,false,false,false,false,false,false,false,false,false];
-    });
-  }
 
   void changeSelectedState(int selectedValue){
     print("selected value ->$selectedValue");
@@ -65,10 +61,10 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                 return Center(
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: (hoverValue[index] || selectedValue == index ) ?
+                        backgroundColor: (hidocNavBarBloc.state.hoverValue[index] || selectedValue == index ) ?
                         MaterialStateProperty.all(blue) : MaterialStateProperty.all(AppColors.pinkColor)),
                     onPressed: (){
-                      resetAllValues();
+                      hidocNavBarBloc.resetAllValues();
                       setState((){
                         selectedValue = index;
                         changeSelectedState(selectedValue);
@@ -77,7 +73,8 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                     onHover: (value) {
                       setState(() {
                         if(selectedValue != index){
-                          hoverValue[index] =  value? true: false;
+                          hidocNavBarBloc.changeHoverValues(index,value);
+                          // hidocNavBarBloc.state.hoverValue[index] =  value? true: false;
                         }
                       });
                       },
@@ -92,7 +89,8 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                     onHover: (value) {
                       setState(() {
                         if(selectedValue != index){
-                          hoverValue[index] =  value? true: false;
+                          hidocNavBarBloc.changeHoverValues(index,value);
+                          // hidocNavBarBloc.state.hoverValue[index] =  value? true: false;
                         }
                       });
                     },
@@ -105,7 +103,8 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                     child: PopupMenuButton(
                       onCanceled: () {
                         setState(() {
-                          isDropDownSelected[0] =false;
+                          hidocNavBarBloc.changeDropDownValue(0, false);
+                          // hidocNavBarBloc.state.isDropDownSelected[0] =false;
                         });
                         },
                       tooltip: "",
@@ -113,7 +112,7 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                       child: Center(child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text("Services",style: whiteColorTextStyle.copyWith(color: (hoverValue[index] || isDropDownSelected[0]) ? blue: Colors.white)),
+                          Text("Services",style: whiteColorTextStyle.copyWith(color: (hidocNavBarBloc.state.hoverValue[index] || hidocNavBarBloc.state.isDropDownSelected[0]) ? blue: Colors.white)),
                           Icon(Icons.arrow_drop_down, color: Colors.white,)
                         ],
                       )),
@@ -121,7 +120,8 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                     // icon: Icon(Icons.arrow_drop_down),
                     itemBuilder: (context) {
                       setState((){
-                        isDropDownSelected[0] = true;
+                        hidocNavBarBloc.changeDropDownValue(0, true);
+                        // hidocNavBarBloc.state.isDropDownSelected[0] = true;
                       });
                       return [
                         PopupMenuItem(
@@ -152,12 +152,13 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                   onHover: (value) {
                     setState(() {
                       if(selectedValue != index){
-                        hoverValue[index] =  value? true: false;
+                        hidocNavBarBloc.changeHoverValues(index,value);
+                        // hidocNavBarBloc.state.hoverValue[index] =  value? true: false;
                       }
                     });
                   },
                   onTap: () {
-                    resetAllValues();
+                    hidocNavBarBloc.resetAllValues();
                     setState((){
                       selectedValue = index;
                       changeSelectedState(selectedValue);
@@ -169,35 +170,49 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                     child: Center(child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(hoverTextValue[index],style: whiteColorTextStyle.copyWith(color: (hoverValue[index] || isDropDownSelected[1]) ? blue: Colors.white)),
+                        Text(hoverTextValue[index],style: whiteColorTextStyle.copyWith(color: (hidocNavBarBloc.state.hoverValue[index] || hidocNavBarBloc.state.isDropDownSelected[1]) ? blue: Colors.white)),
                         Icon(Icons.arrow_drop_down, color: Colors.white,)
                       ],
                     )),
                     color: AppColors.navBarColor,
                     onCanceled: () {
                       setState(() {
-                        isDropDownSelected[1] =false;
+                        hidocNavBarBloc.state.isDropDownSelected[1] =false;
                       });
                     },
                     itemBuilder: (context) {
                       setState((){
-                        isDropDownSelected[1] = true;
+                        hidocNavBarBloc.state.isDropDownSelected[1] = true;
                       });
                       return [
                         PopupMenuItem(
-                          child: Center(child: Row(
-                            children: [
-                              // Icon(Icons.flag, color: Colors.white,),
-                              Image.asset(Assets.indialogo,height: 30,),
-                              SizedBox(width: 10,),
-                              Text(forDoctorsList[0],style: whiteColorTextStyle),
-                            ],
-                          )),
+                          enabled: true,
+                          child: MouseRegion(
+                            onEnter: (event) {
+                              setState(() {
+                                hidocNavBarBloc.changeDoctorValues(0);
+                                print("ENTERED" + hidocNavBarBloc.state.forDoctorsListSelected.toString());
+                              });
+                            },
+                            onExit: (event) {
+                              setState(() {
+                                hidocNavBarBloc.resetAllDoctorValues();
+                                print("EXITED" + hidocNavBarBloc.state.forDoctorsListSelected.toString());
+                              });
+                            },
+                            child: Center(child: Row(
+                              children: [
+                                Image.asset(Assets.indialogo,height: 30,),
+                                SizedBox(width: 10,),
+                                Builder(builder: (context) => Text(forDoctorsList[0],style: whiteColorTextStyle.copyWith(color: hidocNavBarBloc.state.forDoctorsListSelected[0] ? blue : Colors.white))),
+                              ],
+                            )),
+                          ),
                         ),
                         PopupMenuItem(
+                          enabled: true,
                           child: Center(child: Row(
                             children: [
-                              // Icon(Icons.flag, color: Colors.white,),
                               Image.asset(Assets.earthlogo,height: 30,),
                               SizedBox(width: 10,),
                               Text(forDoctorsList[1],style:whiteColorTextStyle),
@@ -205,6 +220,7 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                           )),
                         ),
                         PopupMenuItem(
+                          enabled: true,
                           child: Center(child: Row(
                             children: [
                               Icon(Icons.balance_outlined, color: Colors.white,),
@@ -214,6 +230,7 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                           )),
                         ),
                         PopupMenuItem(
+                          enabled: true,
                           child: Center(child: Row(
                             children: [
                               Icon(Icons.calendar_month_outlined, color: Colors.white,),
@@ -223,6 +240,7 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                           )),
                         ),
                         PopupMenuItem(
+                          enabled: true,
                           child: Center(child: Row(
                             children: [
                               Icon(Icons.note_alt_outlined, color: Colors.white,),
@@ -240,12 +258,13 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                     onHover: (value) {
                       setState(() {
                         if(selectedValue != index){
-                          hoverValue[index] =  value? true: false;
+                          hidocNavBarBloc.changeHoverValues(index,value);
+                          // hidocNavBarBloc.state.hoverValue[index] =  value? true: false;
                         }
                       });
                       },
                     onTap: () {
-                      resetAllValues();
+                      hidocNavBarBloc.resetAllValues();
                       setState((){
                         selectedValue = index;
                         changeSelectedState(selectedValue);
@@ -255,7 +274,7 @@ TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
                       child: Text(
                           hoverTextValue[index],
                           style: TextStyle(
-                              color: (hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
+                              color: (hidocNavBarBloc.state.hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
                     ));
                 },
               separatorBuilder: (context, index) => SizedBox(width: 20,),

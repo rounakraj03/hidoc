@@ -14,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/widgets/critical_care.dart';
 import 'package:hidoc/widgets/explore_article.dart';
 import 'package:hidoc/widgets/hidoc_bulletin.dart';
-import 'package:hidoc/widgets/hidoc_nav_bar.dart';
+import 'package:hidoc/widgets/Hidoc_Nav_Bar/view/hidoc_nav_bar.dart';
 import 'package:hidoc/widgets/latest_article.dart';
 import 'package:hidoc/widgets/news.dart';
 import 'package:hidoc/widgets/quiz.dart';
