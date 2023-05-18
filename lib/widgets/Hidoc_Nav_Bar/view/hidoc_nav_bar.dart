@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hidoc/core/view/base_view.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:hidoc/res/colors.dart';
 import 'package:hidoc/widgets/Hidoc_Nav_Bar/bloc/hidoc_nav_bar_bloc.dart';
+import 'package:hidoc/widgets/Hidoc_Nav_Bar/state/hidoc_nav_bar_state.dart';
 
 final dashboardBloc = inject<DashboardBloc>();
 final hidocNavBarBloc = inject<HidocNavBarBloc>();
@@ -41,7 +44,10 @@ class _HidocNavBarState extends State<HidocNavBar> {
   Widget build(BuildContext context) {
     final sw = MediaQuery.of(context).size.width;//1000
     var blue = Colors.cyan;
-    return Container(
+    return BaseView<HidocNavBarBloc, HidocNavBarState>(
+        setupViewModel: (bloc) {},
+    builder: (context, state, bloc) {
+      return Container(
       decoration: BoxDecoration(
           color: AppColors.navBarColor,
         ),
@@ -164,7 +170,9 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       changeSelectedState(selectedValue);
                     });
                   },
-                  child: PopupMenuButton(
+                  child: BlocBuilder<HidocNavBarBloc, HidocNavBarState>(
+                      builder: (context, state) {
+                  return PopupMenuButton(
                     tooltip: "",
                     position: PopupMenuPosition.under,
                     child: Center(child: Row(
@@ -176,82 +184,19 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     )),
                     color: AppColors.navBarColor,
                     onCanceled: () {
-                      setState(() {
-                        hidocNavBarBloc.state.isDropDownSelected[1] =false;
-                      });
+                      hidocNavBarBloc.changeDropDownValue(1, false);
                     },
                     itemBuilder: (context) {
-                      setState((){
-                        hidocNavBarBloc.state.isDropDownSelected[1] = true;
-                      });
+                      hidocNavBarBloc.changeDropDownValue(1, true);
                       return [
-                        PopupMenuItem(
-                          enabled: true,
-                          child: MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                hidocNavBarBloc.changeDoctorValues(0);
-                                print("ENTERED" + hidocNavBarBloc.state.forDoctorsListSelected.toString());
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                hidocNavBarBloc.resetAllDoctorValues();
-                                print("EXITED" + hidocNavBarBloc.state.forDoctorsListSelected.toString());
-                              });
-                            },
-                            child: Center(child: Row(
-                              children: [
-                                Image.asset(Assets.indialogo,height: 30,),
-                                SizedBox(width: 10,),
-                                Builder(builder: (context) => Text(forDoctorsList[0],style: whiteColorTextStyle.copyWith(color: hidocNavBarBloc.state.forDoctorsListSelected[0] ? blue : Colors.white))),
-                              ],
-                            )),
-                          ),
-                        ),
-                        PopupMenuItem(
-                          enabled: true,
-                          child: Center(child: Row(
-                            children: [
-                              Image.asset(Assets.earthlogo,height: 30,),
-                              SizedBox(width: 10,),
-                              Text(forDoctorsList[1],style:whiteColorTextStyle),
-                            ],
-                          )),
-                        ),
-                        PopupMenuItem(
-                          enabled: true,
-                          child: Center(child: Row(
-                            children: [
-                              Icon(Icons.balance_outlined, color: Colors.white,),
-                              SizedBox(width: 10,),
-                              Text(forDoctorsList[2],style: whiteColorTextStyle),
-                            ],
-                          )),
-                        ),
-                        PopupMenuItem(
-                          enabled: true,
-                          child: Center(child: Row(
-                            children: [
-                              Icon(Icons.calendar_month_outlined, color: Colors.white,),
-                              SizedBox(width: 10,),
-                              Text(forDoctorsList[3],style: whiteColorTextStyle),
-                            ],
-                          )),
-                        ),
-                        PopupMenuItem(
-                          enabled: true,
-                          child: Center(child: Row(
-                            children: [
-                              Icon(Icons.note_alt_outlined, color: Colors.white,),
-                              SizedBox(width: 10,),
-                              Text(forDoctorsList[4],style: whiteColorTextStyle),
-                            ],
-                          )),
-                        ),
-
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.indialogo,height: 30,), text: forDoctorsList[0])),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.earthlogo,height: 30,), text: forDoctorsList[1])),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.balance_outlined, color: Colors.white,), text: forDoctorsList[2])),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.calendar_month_outlined, color: Colors.white,),text: forDoctorsList[3])),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.note_alt_outlined, color: Colors.white,), text: forDoctorsList[4])),
                       ];
-                    },),
+                    },);
+                      })
                 );
               }
                 return InkWell(
@@ -281,6 +226,50 @@ class _HidocNavBarState extends State<HidocNavBar> {
               itemCount: hoverTextValue.length),
         ],
       )
-    );
+    );});
   }
 }
+
+
+class DoctorPopUpItem extends StatefulWidget {
+  final Widget leadingWidget;
+  final String text;
+  const DoctorPopUpItem({required this.leadingWidget, required this.text, Key? key}) : super(key: key);
+
+  @override
+  State<DoctorPopUpItem> createState() => _DoctorPopUpItemState();
+}
+
+class _DoctorPopUpItemState extends State<DoctorPopUpItem>{
+  bool isHovering = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        print("Tapped");
+      },
+          onHover: (value) {
+            setState(() {
+              isHovering = value;
+              print("isHovering -> ${isHovering}");
+            });
+          },
+            child: Center(
+              child: Row(
+              children: [
+                widget.leadingWidget,
+                SizedBox(width: 10,),
+                Text(widget.text,style: TextStyle(color: isHovering? Colors.cyan: Colors.white)),
+            ],
+            )),
+          );
+  }
+}
+
+
