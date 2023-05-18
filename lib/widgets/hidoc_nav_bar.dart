@@ -18,12 +18,15 @@ class _HidocNavBarState extends State<HidocNavBar> {
   List hoverValue = [false,false,false,false,false,false,false,false,false,false];
   List<String> hoverTextValue = ["Home","Services","About","Media","Team","Careers","Muskaan","Contact","For Doctors","KOL Factory"];
   int selectedValue = 0;
+  List isDropDownSelected = [false, false];
 
   List<String> servicesList = ["For Pharma", "For Doctors"];
   List<String> pharmaList = ["Pharma Services", "Courses"];
 
   List<String> forDoctorsList = ["Hidoc Dr.(India)","Hidoc Dr.(Global)","Legal Helpdesk","College Doc","NAT"];
 List forDoctorsListIcon = [];
+
+TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
 
 
   void resetAllValues(){
@@ -94,128 +97,143 @@ List forDoctorsListIcon = [];
                       });
                     },
                     onTap: () {
-                      resetAllValues();
                       setState((){
                         selectedValue = index;
                         changeSelectedState(selectedValue);
                       });
                     },
                     child: PopupMenuButton(
-                      tooltip: "Services",
+                      onCanceled: () {
+                        setState(() {
+                          isDropDownSelected[0] =false;
+                        });
+                        },
+                      tooltip: "",
                       position: PopupMenuPosition.under,
                       child: Center(child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text("Services",style: TextStyle(color: Colors.white),),
+                          Text("Services",style: whiteColorTextStyle.copyWith(color: (hoverValue[index] || isDropDownSelected[0]) ? blue: Colors.white)),
                           Icon(Icons.arrow_drop_down, color: Colors.white,)
                         ],
                       )),
                       color: AppColors.navBarColor,
                     // icon: Icon(Icons.arrow_drop_down),
                     itemBuilder: (context) {
+                      setState((){
+                        isDropDownSelected[0] = true;
+                      });
                       return [
                         PopupMenuItem(
                           child: PopupMenuButton(
+                            tooltip: "",
                             position: PopupMenuPosition.under,
                             color: AppColors.navBarColor,
                               child: Center(child: Row(
                                 children: [
-                                  Text("For Pharma",style: TextStyle(color: Colors.white)),
+                                  Text("For Pharma",style: whiteColorTextStyle),
                                   Icon(Icons.arrow_drop_down, color: Colors.white,)
                                 ],
                               )),
                             itemBuilder: (context) {
                               return [
-                                PopupMenuItem(child: Text("Pharma Services",style: TextStyle(color: Colors.white)), value: "Pharma Services"),
-                                PopupMenuItem(child: Text("Courses",style: TextStyle(color: Colors.white)), value: "Courses"),
+                                PopupMenuItem(child: Text("Pharma Services",style: whiteColorTextStyle), value: "Pharma Services"),
+                                PopupMenuItem(child: Text("Courses",style: whiteColorTextStyle), value: "Courses"),
                               ];
                       }),
                         ),
-                        PopupMenuItem(child: Text("For Doctor",style: TextStyle(color: Colors.white),),)
+                        PopupMenuItem(child: Text("For Doctor",style: whiteColorTextStyle),)
                       ];
                     },)
                 );
               }
               else if(index == 8){
                 return InkWell(
-                    onHover: (value) {
+                  onHover: (value) {
+                    setState(() {
+                      if(selectedValue != index){
+                        hoverValue[index] =  value? true: false;
+                      }
+                    });
+                  },
+                  onTap: () {
+                    resetAllValues();
+                    setState((){
+                      selectedValue = index;
+                      changeSelectedState(selectedValue);
+                    });
+                  },
+                  child: PopupMenuButton(
+                    tooltip: "",
+                    position: PopupMenuPosition.under,
+                    child: Center(child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(hoverTextValue[index],style: whiteColorTextStyle.copyWith(color: (hoverValue[index] || isDropDownSelected[1]) ? blue: Colors.white)),
+                        Icon(Icons.arrow_drop_down, color: Colors.white,)
+                      ],
+                    )),
+                    color: AppColors.navBarColor,
+                    onCanceled: () {
                       setState(() {
-                        if(selectedValue != index){
-                          hoverValue[index] =  value? true: false;
-                        }
+                        isDropDownSelected[1] =false;
                       });
                     },
-                    onTap: () {
-                      resetAllValues();
+                    itemBuilder: (context) {
                       setState((){
-                        selectedValue = index;
-                        changeSelectedState(selectedValue);
+                        isDropDownSelected[1] = true;
                       });
-                    },
-                    child: PopupMenuButton(
-                      tooltip: hoverTextValue[index],
-                      position: PopupMenuPosition.under,
-                      child: Center(child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(hoverTextValue[index],style: TextStyle(color: Colors.white),),
-                          Icon(Icons.arrow_drop_down, color: Colors.white,)
-                        ],
-                      )),
-                      color: AppColors.navBarColor,
-                      // icon: Icon(Icons.arrow_drop_down),
-                      itemBuilder: (context) {
-                        return [
-                          PopupMenuItem(
-                            child: Center(child: Row(
-                              children: [
-                                // Icon(Icons.flag, color: Colors.white,),
-                                Image.asset(Assets.indialogo,height: 30,),
-                                SizedBox(width: 10,),
-                                Text(forDoctorsList[0],style: TextStyle(color: Colors.white)),
-                              ],
-                            )),
-                          ),
-                          PopupMenuItem(
-                            child: Center(child: Row(
-                              children: [
-                                // Icon(Icons.flag, color: Colors.white,),
-                                Image.asset(Assets.earthlogo,height: 30,),
-                                SizedBox(width: 10,),
-                                Text(forDoctorsList[1],style: TextStyle(color: Colors.white)),
-                              ],
-                            )),
-                          ),
-                          PopupMenuItem(
-                            child: Center(child: Row(
-                              children: [
-                                Icon(Icons.balance_outlined, color: Colors.white,),
-                                SizedBox(width: 10,),
-                                Text(forDoctorsList[2],style: TextStyle(color: Colors.white)),
-                              ],
-                            )),
-                          ),
-                          PopupMenuItem(
-                            child: Center(child: Row(
-                              children: [
-                                Icon(Icons.calendar_month_outlined, color: Colors.white,),
-                                SizedBox(width: 10,),
-                                Text(forDoctorsList[3],style: TextStyle(color: Colors.white)),
-                              ],
-                            )),
-                          ),
-                          PopupMenuItem(
-                            child: Center(child: Row(
-                              children: [
-                                Icon(Icons.note_alt_outlined, color: Colors.white,),
-                                SizedBox(width: 10,),
-                                Text(forDoctorsList[4],style: TextStyle(color: Colors.white)),
-                              ],
-                            )),
-                          ),
+                      return [
+                        PopupMenuItem(
+                          child: Center(child: Row(
+                            children: [
+                              // Icon(Icons.flag, color: Colors.white,),
+                              Image.asset(Assets.indialogo,height: 30,),
+                              SizedBox(width: 10,),
+                              Text(forDoctorsList[0],style: whiteColorTextStyle),
+                            ],
+                          )),
+                        ),
+                        PopupMenuItem(
+                          child: Center(child: Row(
+                            children: [
+                              // Icon(Icons.flag, color: Colors.white,),
+                              Image.asset(Assets.earthlogo,height: 30,),
+                              SizedBox(width: 10,),
+                              Text(forDoctorsList[1],style:whiteColorTextStyle),
+                            ],
+                          )),
+                        ),
+                        PopupMenuItem(
+                          child: Center(child: Row(
+                            children: [
+                              Icon(Icons.balance_outlined, color: Colors.white,),
+                              SizedBox(width: 10,),
+                              Text(forDoctorsList[2],style: whiteColorTextStyle),
+                            ],
+                          )),
+                        ),
+                        PopupMenuItem(
+                          child: Center(child: Row(
+                            children: [
+                              Icon(Icons.calendar_month_outlined, color: Colors.white,),
+                              SizedBox(width: 10,),
+                              Text(forDoctorsList[3],style: whiteColorTextStyle),
+                            ],
+                          )),
+                        ),
+                        PopupMenuItem(
+                          child: Center(child: Row(
+                            children: [
+                              Icon(Icons.note_alt_outlined, color: Colors.white,),
+                              SizedBox(width: 10,),
+                              Text(forDoctorsList[4],style: whiteColorTextStyle),
+                            ],
+                          )),
+                        ),
 
-                        ];
-                      },)
+                      ];
+                    },),
                 );
               }
                 return InkWell(
