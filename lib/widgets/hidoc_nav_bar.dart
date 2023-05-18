@@ -136,6 +136,81 @@ List forDoctorsListIcon = [];
                     },)
                 );
               }
+              else if(index == 8){
+                return InkWell(
+                    onHover: (value) {
+                      setState(() {
+                        if(selectedValue != index){
+                          hoverValue[index] =  value? true: false;
+                        }
+                      });
+                    },
+                    onTap: () {
+                      resetAllValues();
+                      setState((){
+                        selectedValue = index;
+                        changeSelectedState(selectedValue);
+                      });
+                    },
+                    child: PopupMenuButton(
+                      tooltip: hoverTextValue[index],
+                      position: PopupMenuPosition.under,
+                      child: Center(child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(hoverTextValue[index],style: TextStyle(color: Colors.white),),
+                          Icon(Icons.arrow_drop_down, color: Colors.white,)
+                        ],
+                      )),
+                      color: AppColors.navBarColor,
+                      // icon: Icon(Icons.arrow_drop_down),
+                      itemBuilder: (context) {
+                        return [
+                          PopupMenuItem(
+                            child: Center(child: Row(
+                              children: [
+                                Icon(Icons.flag, color: Colors.white,),
+                                Text(forDoctorsList[0],style: TextStyle(color: Colors.white)),
+                              ],
+                            )),
+                          ),
+                          PopupMenuItem(
+                            child: Center(child: Row(
+                              children: [
+                                Icon(Icons.flag, color: Colors.white,),
+                                Text(forDoctorsList[1],style: TextStyle(color: Colors.white)),
+                              ],
+                            )),
+                          ),
+                          PopupMenuItem(
+                            child: Center(child: Row(
+                              children: [
+                                Icon(Icons.flag, color: Colors.white,),
+                                Text(forDoctorsList[2],style: TextStyle(color: Colors.white)),
+                              ],
+                            )),
+                          ),
+                          PopupMenuItem(
+                            child: Center(child: Row(
+                              children: [
+                                Icon(Icons.flag, color: Colors.white,),
+                                Text(forDoctorsList[3],style: TextStyle(color: Colors.white)),
+                              ],
+                            )),
+                          ),
+                          PopupMenuItem(
+                            child: Center(child: Row(
+                              children: [
+                                Icon(Icons.flag, color: Colors.white,),
+                                Text(forDoctorsList[4],style: TextStyle(color: Colors.white)),
+                              ],
+                            )),
+                          ),
+
+                        ];
+                      },)
+                );
+              }
                 return InkWell(
                     onHover: (value) {
                       setState(() {
