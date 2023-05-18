@@ -101,7 +101,10 @@ List forDoctorsListIcon = [];
                       });
                     },
                     child: PopupMenuButton(
+                      tooltip: "Services",
+                      position: PopupMenuPosition.under,
                       child: Center(child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Text("Services",style: TextStyle(color: Colors.white),),
                           Icon(Icons.arrow_drop_down, color: Colors.white,)
@@ -113,6 +116,7 @@ List forDoctorsListIcon = [];
                       return [
                         PopupMenuItem(
                           child: PopupMenuButton(
+                            position: PopupMenuPosition.under,
                             color: AppColors.navBarColor,
                               child: Center(child: Row(
                                 children: [
