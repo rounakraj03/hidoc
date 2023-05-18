@@ -43,6 +43,8 @@ class Assets {
   static const String homeImg1 = "assets/staticImages/homeImg1.png";
   static const String homeImg2 = "assets/staticImages/homeImg2.png";
   static const String hidoclogo = "staticImages/logo.png";
+  static const String indialogo = "staticImages/india.png";
+  static const String earthlogo = "staticImages/earth.png";
 
 
 }

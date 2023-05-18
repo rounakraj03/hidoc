@@ -169,7 +169,9 @@ List forDoctorsListIcon = [];
                           PopupMenuItem(
                             child: Center(child: Row(
                               children: [
-                                Icon(Icons.flag, color: Colors.white,),
+                                // Icon(Icons.flag, color: Colors.white,),
+                                Image.asset(Assets.indialogo,height: 30,),
+                                SizedBox(width: 10,),
                                 Text(forDoctorsList[0],style: TextStyle(color: Colors.white)),
                               ],
                             )),
@@ -177,7 +179,9 @@ List forDoctorsListIcon = [];
                           PopupMenuItem(
                             child: Center(child: Row(
                               children: [
-                                Icon(Icons.flag, color: Colors.white,),
+                                // Icon(Icons.flag, color: Colors.white,),
+                                Image.asset(Assets.earthlogo,height: 30,),
+                                SizedBox(width: 10,),
                                 Text(forDoctorsList[1],style: TextStyle(color: Colors.white)),
                               ],
                             )),
@@ -185,7 +189,8 @@ List forDoctorsListIcon = [];
                           PopupMenuItem(
                             child: Center(child: Row(
                               children: [
-                                Icon(Icons.flag, color: Colors.white,),
+                                Icon(Icons.balance_outlined, color: Colors.white,),
+                                SizedBox(width: 10,),
                                 Text(forDoctorsList[2],style: TextStyle(color: Colors.white)),
                               ],
                             )),
@@ -193,7 +198,8 @@ List forDoctorsListIcon = [];
                           PopupMenuItem(
                             child: Center(child: Row(
                               children: [
-                                Icon(Icons.flag, color: Colors.white,),
+                                Icon(Icons.calendar_month_outlined, color: Colors.white,),
+                                SizedBox(width: 10,),
                                 Text(forDoctorsList[3],style: TextStyle(color: Colors.white)),
                               ],
                             )),
@@ -201,7 +207,8 @@ List forDoctorsListIcon = [];
                           PopupMenuItem(
                             child: Center(child: Row(
                               children: [
-                                Icon(Icons.flag, color: Colors.white,),
+                                Icon(Icons.note_alt_outlined, color: Colors.white,),
+                                SizedBox(width: 10,),
                                 Text(forDoctorsList[4],style: TextStyle(color: Colors.white)),
                               ],
                             )),
