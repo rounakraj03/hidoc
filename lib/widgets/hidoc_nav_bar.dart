@@ -100,26 +100,29 @@ List forDoctorsListIcon = [];
                         changeSelectedState(selectedValue);
                       });
                     },
-                    child: Center(
-                      child: DropdownButton(
-                        underline: SizedBox(),
-                        hint: Center(
-                          child: Text(
-                              hoverTextValue[index],
-                              style: TextStyle(
-                                  color: (hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
-                        ),
-                        dropdownColor: AppColors.navBarColor,
-                        onChanged: (value) {
-                          print("value -> $value");
-                        },
-                        items: servicesList.map((e) => DropdownMenuItem(
-                          child: Text(e, style: TextStyle(color: Colors.white),),
-                          value: e,
-                          onTap: () {},
-                        )).toList(),
-                      ),
-                    ));
+                    child: PopupMenuButton(
+                      child: Center(child: Row(
+                        children: [
+                          Text("Services",style: TextStyle(color: Colors.white),),
+                          Icon(Icons.arrow_drop_down, color: Colors.white,)
+                        ],
+                      )),
+                      color: AppColors.navBarColor,
+                    // icon: Icon(Icons.arrow_drop_down),
+                    itemBuilder: (context) {
+                      return [
+                        PopupMenuItem(
+                          child: PopupMenuButton(
+                            icon: Icon(Icons.arrow_drop_down),
+                            itemBuilder: (context) {
+                              return [
+                                PopupMenuItem(child: Text("Pharma Services"), value: "Pharma Services"),
+                                PopupMenuItem(child: Text("Courses"), value: "Courses"),
+                              ];
+                      }),
+                        )];
+                    },)
+                );
               }
                 return InkWell(
                     onHover: (value) {
