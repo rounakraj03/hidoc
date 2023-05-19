@@ -53,6 +53,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 color: Colors.white
               ),
               child: Scaffold(
+                drawer: HidocDrawer(),
                 body: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
