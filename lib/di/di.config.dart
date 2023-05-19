@@ -22,11 +22,13 @@ import 'package:hidoc/data/network/network_call.dart' as _i12;
 import 'package:hidoc/data/network/service/api_service.dart' as _i11;
 import 'package:hidoc/data/repo/auth_repository.dart' as _i13;
 import 'package:hidoc/data/repo/impl/auth_repository_impl.dart' as _i14;
-import 'package:hidoc/di/register_module.dart' as _i19;
+import 'package:hidoc/di/register_module.dart' as _i20;
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart' as _i15;
-import 'package:hidoc/presentation/home_screen/bloc/home_screen_bloc.dart'
+import 'package:hidoc/presentation/home_page_screen/bloc/home_page_screen_bloc.dart'
     as _i17;
-import 'package:hidoc/presentation/splash/bloc/splash_bloc.dart' as _i18;
+import 'package:hidoc/presentation/home_screen/bloc/home_screen_bloc.dart'
+    as _i18;
+import 'package:hidoc/presentation/splash/bloc/splash_bloc.dart' as _i19;
 import 'package:hidoc/widgets/Hidoc_Nav_Bar/bloc/hidoc_nav_bar_bloc.dart'
     as _i16;
 import 'package:injectable/injectable.dart' as _i2;
@@ -74,11 +76,13 @@ extension GetItInjectableX on _i1.GetIt {
         _i15.DashboardBloc(gh<_i13.AuthRepository>()));
     gh.singleton<_i16.HidocNavBarBloc>(
         _i16.HidocNavBarBloc(gh<_i13.AuthRepository>()));
-    gh.singleton<_i17.HomeScreenBloc>(
-        _i17.HomeScreenBloc(gh<_i13.AuthRepository>()));
-    gh.singleton<_i18.SplashBloc>(_i18.SplashBloc(gh<_i13.AuthRepository>()));
+    gh.singleton<_i17.HomePageScreenBloc>(
+        _i17.HomePageScreenBloc(gh<_i13.AuthRepository>()));
+    gh.singleton<_i18.HomeScreenBloc>(
+        _i18.HomeScreenBloc(gh<_i13.AuthRepository>()));
+    gh.singleton<_i19.SplashBloc>(_i19.SplashBloc(gh<_i13.AuthRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i19.RegisterModule {}
+class _$RegisterModule extends _i20.RegisterModule {}
