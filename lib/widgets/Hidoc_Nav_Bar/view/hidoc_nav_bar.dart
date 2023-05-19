@@ -26,13 +26,14 @@ class _HidocNavBarState extends State<HidocNavBar> {
   List<String> servicesList = ["For Pharma", "For Doctors"];
   List<String> pharmaList = ["Pharma Services", "Courses"];
 
+  bool forPharmaHovering = false;
+
   List<String> forDoctorsList = ["Hidoc Dr.(India)","Hidoc Dr.(Global)","Legal Helpdesk","College Doc","NAT"];
 
   TextStyle whiteColorTextStyle  = TextStyle(color: Colors.white);
 
 
   void changeSelectedState(int selectedValue){
-    print("selected value ->$selectedValue");
     dashboardBloc.changeDefaultState(selectedValue);
   }
 
@@ -122,25 +123,8 @@ class _HidocNavBarState extends State<HidocNavBar> {
                         hidocNavBarBloc.changeDropDownValue(0, true);
                       });
                       return [
-                        PopupMenuItem(
-                          child: PopupMenuButton(
-                            tooltip: "",
-                            position: PopupMenuPosition.under,
-                            color: AppColors.navBarColor,
-                              child: Center(child: Row(
-                                children: [
-                                  Text("For Pharma",style: whiteColorTextStyle),
-                                  Icon(Icons.arrow_drop_down, color: Colors.white,)
-                                ],
-                              )),
-                            itemBuilder: (context) {
-                              return [
-                                PopupMenuItem(child: Text("Pharma Services",style: whiteColorTextStyle), value: "Pharma Services"),
-                                PopupMenuItem(child: Text("Courses",style: whiteColorTextStyle), value: "Courses"),
-                              ];
-                      }),
-                        ),
-                        PopupMenuItem(child: Text("For Doctor",style: whiteColorTextStyle),)
+                        PopupMenuItem(child: PopUpMenuButtonWidget(),),
+                        PopupMenuItem(child: DoctorPopUpItem(text: "For Doctor", voidCallback: () => print("For Doctor"))),
                       ];
                     },)
                 );
@@ -224,8 +208,8 @@ class _HidocNavBarState extends State<HidocNavBar> {
 class DoctorPopUpItem extends StatefulWidget {
   final Widget? leadingWidget;
   final String text;
-  final VoidCallback voidCallback;
-  const DoctorPopUpItem({this.leadingWidget, required this.text, required this.voidCallback, Key? key}) : super(key: key);
+  final VoidCallback? voidCallback;
+  const DoctorPopUpItem({this.leadingWidget, required this.text, this.voidCallback, Key? key}) : super(key: key);
 
   @override
   State<DoctorPopUpItem> createState() => _DoctorPopUpItemState();
@@ -243,7 +227,9 @@ class _DoctorPopUpItemState extends State<DoctorPopUpItem>{
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        widget.voidCallback();
+        if(widget.voidCallback != null) {
+          widget.voidCallback!();
+        }
         // print("Tapped");
       },
           onHover: (value) {
@@ -264,3 +250,42 @@ class _DoctorPopUpItemState extends State<DoctorPopUpItem>{
 }
 
 
+
+class PopUpMenuButtonWidget extends StatefulWidget {
+  const PopUpMenuButtonWidget({Key? key}) : super(key: key);
+
+  @override
+  State<PopUpMenuButtonWidget> createState() => _PopUpMenuButtonWidgetState();
+}
+
+class _PopUpMenuButtonWidgetState extends State<PopUpMenuButtonWidget> {
+
+  bool forPharmaHovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+        onHover: (value) {
+          setState(() {
+        forPharmaHovering = value;
+      });
+    },
+      child: PopupMenuButton(
+        tooltip: "",
+        position: PopupMenuPosition.under,
+        color: AppColors.navBarColor,
+        child: Center(child: Row(
+          children: [
+          Text("For Pharma",style: TextStyle(color: forPharmaHovering ? Colors.cyan : Colors.white)),
+          Icon(Icons.arrow_drop_down, color: Colors.white,)
+          ],
+      )),
+      itemBuilder: (context) {
+        return [
+          PopupMenuItem(child: DoctorPopUpItem(text: "Pharma Services", voidCallback: () => print("Pharma Services"))),
+          PopupMenuItem(child: DoctorPopUpItem(text: "Courses", voidCallback: () => print("Courses"))),
+        ];
+      }));
+  }
+}
