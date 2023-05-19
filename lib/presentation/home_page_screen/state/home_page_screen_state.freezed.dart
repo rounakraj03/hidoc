@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomePageScreenState {
+  bool get isLoading => throw _privateConstructorUsedError;
   List<dynamic> get news => throw _privateConstructorUsedError;
   List<dynamic> get trandingBulletin => throw _privateConstructorUsedError;
   dynamic get specialityName => throw _privateConstructorUsedError;
@@ -41,7 +42,8 @@ abstract class $HomePageScreenStateCopyWith<$Res> {
       _$HomePageScreenStateCopyWithImpl<$Res, HomePageScreenState>;
   @useResult
   $Res call(
-      {List<dynamic> news,
+      {bool isLoading,
+      List<dynamic> news,
       List<dynamic> trandingBulletin,
       dynamic specialityName,
       List<dynamic> latestArticle,
@@ -67,6 +69,7 @@ class _$HomePageScreenStateCopyWithImpl<$Res, $Val extends HomePageScreenState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? news = null,
     Object? trandingBulletin = null,
     Object? specialityName = freezed,
@@ -80,6 +83,10 @@ class _$HomePageScreenStateCopyWithImpl<$Res, $Val extends HomePageScreenState>
     Object? defaultState = null,
   }) {
     return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       news: null == news
           ? _value.news
           : news // ignore: cast_nullable_to_non_nullable
@@ -137,7 +144,8 @@ abstract class _$$_HomePageScreenStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<dynamic> news,
+      {bool isLoading,
+      List<dynamic> news,
       List<dynamic> trandingBulletin,
       dynamic specialityName,
       List<dynamic> latestArticle,
@@ -161,6 +169,7 @@ class __$$_HomePageScreenStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? news = null,
     Object? trandingBulletin = null,
     Object? specialityName = freezed,
@@ -174,6 +183,10 @@ class __$$_HomePageScreenStateCopyWithImpl<$Res>
     Object? defaultState = null,
   }) {
     return _then(_$_HomePageScreenState(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       news: null == news
           ? _value._news
           : news // ignore: cast_nullable_to_non_nullable
@@ -224,7 +237,8 @@ class __$$_HomePageScreenStateCopyWithImpl<$Res>
 
 class _$_HomePageScreenState implements _HomePageScreenState {
   const _$_HomePageScreenState(
-      {final List<dynamic> news = const [],
+      {this.isLoading = false,
+      final List<dynamic> news = const [],
       final List<dynamic> trandingBulletin = const [],
       this.specialityName = "",
       final List<dynamic> latestArticle = const [],
@@ -250,6 +264,9 @@ class _$_HomePageScreenState implements _HomePageScreenState {
         _selectedArticle = selectedArticle,
         _bulletin = bulletin;
 
+  @override
+  @JsonKey()
+  final bool isLoading;
   final List<dynamic> _news;
   @override
   @JsonKey()
@@ -335,7 +352,7 @@ class _$_HomePageScreenState implements _HomePageScreenState {
 
   @override
   String toString() {
-    return 'HomePageScreenState(news: $news, trandingBulletin: $trandingBulletin, specialityName: $specialityName, latestArticle: $latestArticle, exploreArticle: $exploreArticle, trandingArticle: $trandingArticle, article: $article, selectedArticle: $selectedArticle, bulletin: $bulletin, sID: $sID, defaultState: $defaultState)';
+    return 'HomePageScreenState(isLoading: $isLoading, news: $news, trandingBulletin: $trandingBulletin, specialityName: $specialityName, latestArticle: $latestArticle, exploreArticle: $exploreArticle, trandingArticle: $trandingArticle, article: $article, selectedArticle: $selectedArticle, bulletin: $bulletin, sID: $sID, defaultState: $defaultState)';
   }
 
   @override
@@ -343,6 +360,8 @@ class _$_HomePageScreenState implements _HomePageScreenState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomePageScreenState &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._news, _news) &&
             const DeepCollectionEquality()
                 .equals(other._trandingBulletin, _trandingBulletin) &&
@@ -366,6 +385,7 @@ class _$_HomePageScreenState implements _HomePageScreenState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      isLoading,
       const DeepCollectionEquality().hash(_news),
       const DeepCollectionEquality().hash(_trandingBulletin),
       const DeepCollectionEquality().hash(specialityName),
@@ -388,7 +408,8 @@ class _$_HomePageScreenState implements _HomePageScreenState {
 
 abstract class _HomePageScreenState implements HomePageScreenState {
   const factory _HomePageScreenState(
-      {final List<dynamic> news,
+      {final bool isLoading,
+      final List<dynamic> news,
       final List<dynamic> trandingBulletin,
       final dynamic specialityName,
       final List<dynamic> latestArticle,
@@ -400,6 +421,8 @@ abstract class _HomePageScreenState implements HomePageScreenState {
       final int sID,
       final int defaultState}) = _$_HomePageScreenState;
 
+  @override
+  bool get isLoading;
   @override
   List<dynamic> get news;
   @override

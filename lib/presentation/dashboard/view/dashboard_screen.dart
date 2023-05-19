@@ -39,7 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    dashboardBloc.initialize();
+    // dashboardBloc.initialize();
   }
 
 

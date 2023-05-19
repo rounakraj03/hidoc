@@ -5,17 +5,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
+import 'package:hidoc/presentation/home_page_screen/bloc/home_page_screen_bloc.dart';
+import 'package:hidoc/presentation/home_page_screen/state/home_page_screen_state.dart';
 import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final dashboardBloc = inject<DashboardBloc>();
+final homePageScreenBloc = inject<HomePageScreenBloc>();
 
 
 Widget LatestArticle(){
   return BlocProvider.value(
-      value: dashboardBloc,
-      child: BlocBuilder<DashboardBloc, DashboardState>(
+      value: homePageScreenBloc,
+      child: BlocBuilder<HomePageScreenBloc, HomePageScreenState>(
           builder: (context, state) {
             return Container(
               decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
@@ -23,7 +25,7 @@ Widget LatestArticle(){
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Latest Articles", style: kIsWeb ? AppTextStyles.webHeading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28)),
+                  Text("Latest Articles", style: kIsWeb ? AppTextStyles.webHeading : TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28)),
                   SizedBox(height: 10,),
                   Container(height: 1,padding: EdgeInsets.symmetric(horizontal: 100),color: Colors.black,),
 
@@ -31,7 +33,7 @@ Widget LatestArticle(){
                   ListView.separated(itemBuilder: (context, index) {
                     if(index == 0){
                     }
-                    return Text(state.exploreArticle[index]["articleTitle"], style: kIsWeb ? AppTextStyles.webSubheading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.normal),);
+                    return Text(state.exploreArticle[index]["articleTitle"], style: kIsWeb ? AppTextStyles.webHeading : TextStyle(color: Colors.black,fontWeight: FontWeight.normal),);
                   },
                     separatorBuilder: (context, index) {
                       return Column(

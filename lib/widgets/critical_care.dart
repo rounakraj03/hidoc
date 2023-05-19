@@ -105,7 +105,7 @@ Widget CriticalCareWidget(){
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                               SizedBox(height: 20,),
-                              Text(state.selectedArticle["articleTitle"], style: AppTextStyles.webHeading1,overflow: TextOverflow.visible,maxLines: 1),
+                              Text(state.selectedArticle["articleTitle"], style: AppTextStyles.webHeading,overflow: TextOverflow.visible,maxLines: 1),
                               SizedBox(height: 15,),
                               Text(state.selectedArticle["articleDescription"],overflow: TextOverflow.ellipsis, maxLines: 2,style: TextStyle(fontSize: 12)),
                               SizedBox(height: 30,),

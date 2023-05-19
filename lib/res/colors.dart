@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color primary = kIsWeb ? Colors.cyan :Color(0xFFFF5B00);
+  static const Color grey = Color.fromRGBO(201, 200, 200, 1.0);
+  // static const Color grey = Color.fromRGBO(255, 254, 254, 0.7725490196078432);
   static const Color navBarColor = Color.fromARGB(255, 9, 22, 52);
-  static const Color pinkColor = Color.fromARGB(255, 177, 26, 92);
+  static const Color pinkColor = Color.fromARGB(255, 238, 29, 66);
   static const Color desertStorm = Color(0xFFF8F8F8);
   static const Color white = Color(0xFFFFFFFF);
   static const Color rangoonGreen = Color(0xFF171717);

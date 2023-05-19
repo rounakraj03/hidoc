@@ -45,6 +45,7 @@ class Assets {
   static const String hidoclogo = "assets/staticImages/logo.png";
   static const String indialogo = "assets/staticImages/india.png";
   static const String earthlogo = "assets/staticImages/earth.png";
+  static const String main1 = "assets/staticImages/main1.png";
 
 
 }
