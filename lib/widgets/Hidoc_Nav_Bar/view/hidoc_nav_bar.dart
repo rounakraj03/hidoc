@@ -72,9 +72,12 @@ class HidocDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: AppColors.navBarColor,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(Assets.hidoclogo, height: 50,),
+          SizedBox(height: 20,),
+          Divider(height: 2,color: Colors.white,),
+          SizedBox(height: 20,),
           ListViewWidget(axis: Axis.vertical, seperatorHeight:  30),
         ],
       ),
@@ -99,130 +102,131 @@ class _ListViewWidgetState extends State<ListViewWidget> {
     var blue = Colors.cyan;
     return  BaseView<HidocNavBarBloc, HidocNavBarState>(
         setupViewModel: (bloc) {},
-    builder: (context, state, bloc) { return ListView.separated(
-        shrinkWrap: true,
-        scrollDirection: widget.axis ?? Axis.horizontal,
-        physics: (widget.scrollable == null) ? null :  NeverScrollableScrollPhysics() ,
-        itemBuilder: (context, index) {
-          if(index == 9){
-            return Center(
-              child: ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: (hidocNavBarBloc.state.hoverValue[index] || selectedValue == index ) ?
-                    MaterialStateProperty.all(blue) : MaterialStateProperty.all(AppColors.pinkColor)),
-                onPressed: (){
-                  hidocNavBarBloc.resetAllValues();
-                  selectedValue = index;
-                  changeSelectedState(selectedValue);
-                },
-                onHover: (value) {
-                  if(selectedValue != index){
-                    hidocNavBarBloc.changeHoverValues(index,value);
-                  }
-                },
-                child: Text(
-                    hoverTextValue[index],
-                    style: TextStyle(
-                        color: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
-              ),
-            );
-          }else if(index==1){
-            return InkWell(
-                onHover: (value) {
-                  if(selectedValue != index){
-                    hidocNavBarBloc.changeHoverValues(index,value);
-                  }
-                },
-                onTap: () {
-                  selectedValue = index;
-                  changeSelectedState(selectedValue);
-                },
-                child: PopupMenuButton(
-                  onCanceled: () {
-                    hidocNavBarBloc.changeDropDownValue(0, false);
+        builder: (context, state, bloc) {
+          return ListView.separated(
+            shrinkWrap: true,
+            scrollDirection: widget.axis ?? Axis.horizontal,
+            physics: (widget.scrollable == null) ? null :  NeverScrollableScrollPhysics() ,
+            itemBuilder: (context, index) {
+              if(index == 9){
+                return Center(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: (hidocNavBarBloc.state.hoverValue[index] || selectedValue == index ) ?
+                        MaterialStateProperty.all(blue) : MaterialStateProperty.all(AppColors.pinkColor)),
+                    onPressed: (){
+                      hidocNavBarBloc.resetAllValues();
+                      selectedValue = index;
+                      changeSelectedState(selectedValue);
+                    },
+                    onHover: (value) {
+                      if(selectedValue != index){
+                        hidocNavBarBloc.changeHoverValues(index,value);
+                      }
+                    },
+                    child: Text(
+                        hoverTextValue[index],
+                        style: TextStyle(
+                            color: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
+                  ),
+                );
+              }else if(index==1){
+                return InkWell(
+                    onHover: (value) {
+                      if(selectedValue != index){
+                        hidocNavBarBloc.changeHoverValues(index,value);
+                      }
+                    },
+                    onTap: () {
+                      selectedValue = index;
+                      changeSelectedState(selectedValue);
+                    },
+                    child: PopupMenuButton(
+                      onCanceled: () {
+                        hidocNavBarBloc.changeDropDownValue(0, false);
+                      },
+                      tooltip: "",
+                      position: PopupMenuPosition.under,
+                      child: Center(child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("Services",style: whiteColorTextStyle.copyWith(color: (hidocNavBarBloc.state.hoverValue[index] || hidocNavBarBloc.state.isDropDownSelected[0]) ? blue: Colors.white)),
+                          Icon(Icons.arrow_drop_down, color: Colors.white,)
+                        ],
+                      )),
+                      color: AppColors.navBarColor,
+                      itemBuilder: (context) {
+                        hidocNavBarBloc.changeDropDownValue(0, true);
+                        return [
+                          PopupMenuItem(child: PopUpMenuButtonWidget(),),
+                          PopupMenuItem(child: DoctorPopUpItem(text: "For Doctor", voidCallback: () => print("For Doctor"))),
+                        ];
+                      },)
+                );
+              }
+              else if(index == 8){
+                return InkWell(
+                    onHover: (value) {
+                      if(selectedValue != index){
+                        hidocNavBarBloc.changeHoverValues(index,value);
+                      }
+                    },
+                    onTap: () {
+                      hidocNavBarBloc.resetAllValues();
+                      selectedValue = index;
+                      changeSelectedState(selectedValue);
+                    },
+                    child: BlocBuilder<HidocNavBarBloc, HidocNavBarState>(
+                        builder: (context, state) {
+                          return PopupMenuButton(
+                            tooltip: "",
+                            position: PopupMenuPosition.under,
+                            child: Center(child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(hoverTextValue[index],style: whiteColorTextStyle.copyWith(color: (hidocNavBarBloc.state.hoverValue[index] || hidocNavBarBloc.state.isDropDownSelected[1]) ? blue: Colors.white)),
+                                Icon(Icons.arrow_drop_down, color: Colors.white,)
+                              ],
+                            )),
+                            color: AppColors.navBarColor,
+                            onCanceled: () {
+                              hidocNavBarBloc.changeDropDownValue(1, false);
+                            },
+                            itemBuilder: (context) {
+                              hidocNavBarBloc.changeDropDownValue(1, true);
+                              return [
+                                PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.indialogo,height: 30,), text: forDoctorsList[0], voidCallback: () => print("Tapping"),)),
+                                PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.earthlogo,height: 30,), text: forDoctorsList[1], voidCallback: () => print("Tapping"))),
+                                PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.balance_outlined, color: Colors.white,), text: forDoctorsList[2], voidCallback: () => print("Tapping"))),
+                                PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.calendar_month_outlined, color: Colors.white,),text: forDoctorsList[3], voidCallback: () => print("Tapping"))),
+                                PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.note_alt_outlined, color: Colors.white,), text: forDoctorsList[4], voidCallback: () => print("Tapping"))),
+                              ];
+                            },);
+                        })
+                );
+              }
+              return InkWell(
+                  onHover: (value) {
+                    if(selectedValue != index){
+                      hidocNavBarBloc.changeHoverValues(index,value);
+                    }
                   },
-                  tooltip: "",
-                  position: PopupMenuPosition.under,
-                  child: Center(child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text("Services",style: whiteColorTextStyle.copyWith(color: (hidocNavBarBloc.state.hoverValue[index] || hidocNavBarBloc.state.isDropDownSelected[0]) ? blue: Colors.white)),
-                      Icon(Icons.arrow_drop_down, color: Colors.white,)
-                    ],
-                  )),
-                  color: AppColors.navBarColor,
-                  itemBuilder: (context) {
-                    hidocNavBarBloc.changeDropDownValue(0, true);
-                    return [
-                      PopupMenuItem(child: PopUpMenuButtonWidget(),),
-                      PopupMenuItem(child: DoctorPopUpItem(text: "For Doctor", voidCallback: () => print("For Doctor"))),
-                    ];
-                  },)
-            );
-          }
-          else if(index == 8){
-            return InkWell(
-                onHover: (value) {
-                  if(selectedValue != index){
-                    hidocNavBarBloc.changeHoverValues(index,value);
-                  }
-                },
-                onTap: () {
-                  hidocNavBarBloc.resetAllValues();
-                  selectedValue = index;
-                  changeSelectedState(selectedValue);
-                },
-                child: BlocBuilder<HidocNavBarBloc, HidocNavBarState>(
-                    builder: (context, state) {
-                      return PopupMenuButton(
-                        tooltip: "",
-                        position: PopupMenuPosition.under,
-                        child: Center(child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(hoverTextValue[index],style: whiteColorTextStyle.copyWith(color: (hidocNavBarBloc.state.hoverValue[index] || hidocNavBarBloc.state.isDropDownSelected[1]) ? blue: Colors.white)),
-                            Icon(Icons.arrow_drop_down, color: Colors.white,)
-                          ],
-                        )),
-                        color: AppColors.navBarColor,
-                        onCanceled: () {
-                          hidocNavBarBloc.changeDropDownValue(1, false);
-                        },
-                        itemBuilder: (context) {
-                          hidocNavBarBloc.changeDropDownValue(1, true);
-                          return [
-                            PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.indialogo,height: 30,), text: forDoctorsList[0], voidCallback: () => print("Tapping"),)),
-                            PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.earthlogo,height: 30,), text: forDoctorsList[1], voidCallback: () => print("Tapping"))),
-                            PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.balance_outlined, color: Colors.white,), text: forDoctorsList[2], voidCallback: () => print("Tapping"))),
-                            PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.calendar_month_outlined, color: Colors.white,),text: forDoctorsList[3], voidCallback: () => print("Tapping"))),
-                            PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.note_alt_outlined, color: Colors.white,), text: forDoctorsList[4], voidCallback: () => print("Tapping"))),
-                          ];
-                        },);
-                    })
-            );
-          }
-          return InkWell(
-              onHover: (value) {
-                if(selectedValue != index){
-                  hidocNavBarBloc.changeHoverValues(index,value);
-                }
-              },
-              onTap: () {
-                hidocNavBarBloc.resetAllValues();
-                selectedValue = index;
-                changeSelectedState(selectedValue);
-              },
-              child: Center(
-                child: Text(
-                    hoverTextValue[index],
-                    style: TextStyle(
-                        color: (hidocNavBarBloc.state.hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
-              ));
-        },
-        separatorBuilder: (context, index) => SizedBox(width: widget.seperatorWidth ?? 20, height: widget.seperatorHeight,),
-        itemCount: hoverTextValue.length);
-  });}
-}
+                  onTap: () {
+                    hidocNavBarBloc.resetAllValues();
+                    selectedValue = index;
+                    changeSelectedState(selectedValue);
+                  },
+                  child: Center(
+                    child: Text(
+                        hoverTextValue[index],
+                        style: TextStyle(
+                            color: (hidocNavBarBloc.state.hoverValue[index] || selectedValue == index ) ? blue: Colors.white,fontSize: 14, fontFamily: 'Poppins',fontWeight: FontWeight.normal)),
+                  ));
+            },
+            separatorBuilder: (context, index) => SizedBox(width: widget.seperatorWidth ?? 20, height: widget.seperatorHeight,),
+            itemCount: hoverTextValue.length);
+      });}
+    }
 
 
 

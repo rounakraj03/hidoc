@@ -48,18 +48,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
         value: dashboardBloc,
         child: BlocBuilder<DashboardBloc, DashboardState>(
           builder: (context, state) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Colors.white
-              ),
-              child: Scaffold(
-                drawer: HidocDrawer(),
-                body: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    HidocNavBar()
-                  ],
+            return SafeArea(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white
+                ),
+                child: Scaffold(
+
+                  drawer: HidocDrawer(),
+                  body: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      HidocNavBar()
+                    ],
+                  ),
                 ),
               ),
             );
