@@ -180,11 +180,11 @@ class _HidocNavBarState extends State<HidocNavBar> {
                     itemBuilder: (context) {
                       hidocNavBarBloc.changeDropDownValue(1, true);
                       return [
-                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.indialogo,height: 30,), text: forDoctorsList[0])),
-                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.earthlogo,height: 30,), text: forDoctorsList[1])),
-                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.balance_outlined, color: Colors.white,), text: forDoctorsList[2])),
-                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.calendar_month_outlined, color: Colors.white,),text: forDoctorsList[3])),
-                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.note_alt_outlined, color: Colors.white,), text: forDoctorsList[4])),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.indialogo,height: 30,), text: forDoctorsList[0], voidCallback: () => print("Tapping"),)),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Image.asset(Assets.earthlogo,height: 30,), text: forDoctorsList[1], voidCallback: () => print("Tapping"))),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.balance_outlined, color: Colors.white,), text: forDoctorsList[2], voidCallback: () => print("Tapping"))),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.calendar_month_outlined, color: Colors.white,),text: forDoctorsList[3], voidCallback: () => print("Tapping"))),
+                        PopupMenuItem(child: DoctorPopUpItem(leadingWidget:  Icon(Icons.note_alt_outlined, color: Colors.white,), text: forDoctorsList[4], voidCallback: () => print("Tapping"))),
                       ];
                     },);
                       })
@@ -224,7 +224,8 @@ class _HidocNavBarState extends State<HidocNavBar> {
 class DoctorPopUpItem extends StatefulWidget {
   final Widget? leadingWidget;
   final String text;
-  const DoctorPopUpItem({this.leadingWidget, required this.text, Key? key}) : super(key: key);
+  final VoidCallback voidCallback;
+  const DoctorPopUpItem({this.leadingWidget, required this.text, required this.voidCallback, Key? key}) : super(key: key);
 
   @override
   State<DoctorPopUpItem> createState() => _DoctorPopUpItemState();
@@ -242,12 +243,12 @@ class _DoctorPopUpItemState extends State<DoctorPopUpItem>{
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("Tapped");
+        widget.voidCallback();
+        // print("Tapped");
       },
           onHover: (value) {
             setState(() {
               isHovering = value;
-              print("isHovering -> ${isHovering}");
             });
           },
             child: Center(
