@@ -674,7 +674,18 @@ Widget PageEndWidget(){
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: [
                          Text("Address: ",style: AppTextStyles.cyan16,),
-                         Text("Infedis Infotech LLP. \nOffice 108, Suyog Center, Gultekdi, Pune- 411 037 \nToll Free : 1800-202-5091",style: AppTextStyles.white16,)
+                         Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: [
+                             Text("Infedis Infotech LLP. \nOffice 108, Suyog Center, Gultekdi, Pune- 411 037",style: AppTextStyles.white16,),
+                             RichText(text: TextSpan(text:"Toll Free : 1800-202-5091",
+                                 recognizer: TapGestureRecognizer()
+                                   ..onTap = ()
+                                   {
+                                     launchUrl(Uri.parse("tel:<1800-202-5091>"),mode: LaunchMode.platformDefault);
+                                   },style: TextStyle(color: Colors.cyan, decorationColor: Colors.white, fontSize: 16))),
+                           ],
+                         )
                        ],
                      ),
                     ],
