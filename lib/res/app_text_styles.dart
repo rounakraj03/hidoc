@@ -35,4 +35,6 @@ class AppTextStyles {
   static TextStyle black16w500 = const TextStyle(color: Colors.black,fontSize: 16, fontWeight: FontWeight.w700);
   static TextStyle white18 = const TextStyle(color: Colors.white,fontSize: 18);
   static TextStyle white12 = const TextStyle(color: Colors.white,fontSize: 12);
+  static TextStyle white14 = const TextStyle(color: Colors.white,fontSize: 14);
+  static TextStyle cyan16 = const TextStyle(color: Colors.cyan,fontSize: 16);
 }

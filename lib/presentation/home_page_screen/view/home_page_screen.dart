@@ -621,28 +621,103 @@ Widget PageEndWidget(){
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             padding: EdgeInsets.symmetric(vertical: 20,horizontal: 30),
             margin: EdgeInsets.symmetric(vertical: 20),
             color: AppColors.navBarColor,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(Assets.hidoclogo),
-                    Text("#1 Medical App for Doctors in India with 800K Monthly Users", style: AppTextStyles.white12,),
-                    Row(
-                      children: [
-                        IconButton(onPressed: (){launchUrl(Uri.parse("https://www.facebook.com/hidocdr"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.facebook, color: Colors.white),iconSize: 40),
-                        IconButton(onPressed: (){launchUrl(Uri.parse("https://www.linkedin.com/company/infedis-infotech"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.linkedin, color: Colors.white),iconSize: 40),
-                        IconButton(onPressed: (){launchUrl(Uri.parse("https://www.instagram.com/hidocdr/"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.instagram, color: Colors.white),iconSize: 40),
-                        IconButton(onPressed: (){launchUrl(Uri.parse("https://www.youtube.com/channel/UCjMVeETQ4fJzMfv3reoeIFw"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.youtube, color: Colors.white),iconSize: 40),
-                      ],
-                    )
-                  ],
-                )
+                Flexible(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset(Assets.hidoclogo),
+                      SizedBox(height: 10,),
+                      Text("#1 Medical App for Doctors in India with 800K Monthly Users", style: AppTextStyles.white14,),
+                      Row(
+                        children: [
+                          IconButton(onPressed: (){launchUrl(Uri.parse("https://www.facebook.com/hidocdr"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.facebook, color: Colors.white),iconSize: 40),
+                          IconButton(onPressed: (){launchUrl(Uri.parse("https://www.linkedin.com/company/infedis-infotech"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.linkedin, color: Colors.white),iconSize: 40),
+                          IconButton(onPressed: (){launchUrl(Uri.parse("https://www.instagram.com/hidocdr/"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.instagram, color: Colors.white),iconSize: 40),
+                          IconButton(onPressed: (){launchUrl(Uri.parse("https://www.youtube.com/channel/UCjMVeETQ4fJzMfv3reoeIFw"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.youtube, color: Colors.white),iconSize: 40),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(width: 20,),
+                Flexible(
+                  flex: 1,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("REACH US", style: AppTextStyles.white18,),
+                      SizedBox(height: 5,),
+                      Text("Please contact below details for any other information.", style: AppTextStyles.white16,),
+                      SizedBox(height: 10,),
+                     Column(
+                       mainAxisAlignment: MainAxisAlignment.start,
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Text("Email: ",style: AppTextStyles.cyan16,),
+                         Text("info@hidoc.co",style: AppTextStyles.white16,)
+                       ],
+                     ),
+                      SizedBox(height: 10,),
+                      Column(
+                       mainAxisAlignment: MainAxisAlignment.start,
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Text("Address: ",style: AppTextStyles.cyan16,),
+                         Text("Infedis Infotech LLP. \nOffice 108, Suyog Center, Gultekdi, Pune- 411 037 \nToll Free : 1800-202-5091",style: AppTextStyles.white16,)
+                       ],
+                     ),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 40,),
+                Flexible(
+                  flex: 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("HIDOC SERVICES", style: AppTextStyles.white18,),
+                      SizedBox(height: 25,),
+                      Container(
+                        padding: EdgeInsets.only(right: MediaQuery.of(context).size.width/9),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Flexible(flex:1,child: Image.asset(Assets.hidocServices1)),
+                                SizedBox(width: 5,),
+                                Flexible(flex:1,child: Image.asset(Assets.hidocServices2)),
+                                SizedBox(width: 5,),
+                                Flexible(flex:1,child: Image.asset(Assets.hidocServices3)),
+                              ],
+                            ),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: [
+                                Flexible(flex:1,child: Image.asset(Assets.hidocServices4)),
+                                SizedBox(width: 5,),
+                                Flexible(flex:1,child: Image.asset(Assets.hidocServices5)),
+                                SizedBox(width: 5,),
+                                Flexible(flex:1,child: Image.asset(Assets.hidocServices6)),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

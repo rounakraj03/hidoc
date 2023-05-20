@@ -50,6 +50,12 @@ class Assets {
   static const String instagram = "assets/staticImages/instagram.png";
   static const String linkedin = "assets/staticImages/linkedin.png";
   static const String youtube = "assets/staticImages/youtube.png";
+  static const String hidocServices1 = "assets/staticImages/services1.png";
+  static const String hidocServices2 = "assets/staticImages/services2.png";
+  static const String hidocServices3 = "assets/staticImages/services3.png";
+  static const String hidocServices4 = "assets/staticImages/services4.png";
+  static const String hidocServices5 = "assets/staticImages/services5.png";
+  static const String hidocServices6 = "assets/staticImages/services6.png";
 
 
 }
