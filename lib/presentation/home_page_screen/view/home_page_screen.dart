@@ -92,8 +92,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         WhatMoreOnHidoc(),
                         AdsWidget(),
                         PageEndWidget(),
-                        Article(),
-
                       ],
                     )
                     , isLoading: state.isLoading),
@@ -732,8 +730,36 @@ Widget PageEndWidget(){
               ],
             ),
           ),
-          Row(
-            children: [],
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Text("© Copyright 2022 "),
+                Text("Infedis Infotech LLP.", style: TextStyle(fontWeight: FontWeight.bold),),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RichText(text: TextSpan(text:"Terms and Conditions",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = ()
+                        {
+                          launchUrl(Uri.parse("https://hidoc.co/terms-n-conditions.html"),mode: LaunchMode.platformDefault);
+                        },style: TextStyle(color: Colors.cyan, decorationColor: Colors.white, fontSize: 16))),
+                  Text(" | "),
+                  RichText(text: TextSpan(text:"Privacy Policy",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = ()
+                        {
+                          launchUrl(Uri.parse("https://hidoc.co/privacy-policy.html"),mode: LaunchMode.platformDefault);
+                        },style: TextStyle(color: Colors.cyan, decorationColor: Colors.white, fontSize: 16))),
+                ],
+              )
+            ],
           )
 
         ],
