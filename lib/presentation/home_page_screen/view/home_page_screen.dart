@@ -90,6 +90,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           ),
                         ),
                         WhatMoreOnHidoc(),
+                        AdsWidget(),
+                        PageEndWidget(),
                         Article(),
 
                       ],
@@ -596,6 +598,58 @@ Widget WhatMoreOnHidoc(){
               ],
             ),
           )
+        ],
+      ),
+    );
+}
+
+Widget AdsWidget(){
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 30,horizontal: MediaQuery.of(context).size.width/8),
+      child: Row(
+        children: [
+          Flexible(flex:1,child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset(Assets.main1,))),
+          SizedBox(width: 30,),
+          Flexible(flex:1,child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset(Assets.main1,))),
+          // Image.asset(Assets.main1),
+        ],
+      ),
+    );
+}
+
+Widget PageEndWidget(){
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 20,horizontal: 30),
+            margin: EdgeInsets.symmetric(vertical: 20),
+            color: AppColors.navBarColor,
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(Assets.hidoclogo),
+                    Text("#1 Medical App for Doctors in India with 800K Monthly Users", style: AppTextStyles.white12,),
+                    Row(
+                      children: [
+                        IconButton(onPressed: (){}, icon: Image.asset(Assets.facebook, color: Colors.white),iconSize: 40),
+                        IconButton(onPressed: (){}, icon: Image.asset(Assets.linkedin, color: Colors.white),iconSize: 40),
+                        IconButton(onPressed: (){}, icon: Image.asset(Assets.instagram, color: Colors.white),iconSize: 40),
+                        IconButton(onPressed: (){}, icon: Image.asset(Assets.youtube, color: Colors.white),iconSize: 40),
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          Row(
+            children: [],
+          )
+
         ],
       ),
     );

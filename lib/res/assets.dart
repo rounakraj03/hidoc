@@ -46,6 +46,10 @@ class Assets {
   static const String indialogo = "assets/staticImages/india.png";
   static const String earthlogo = "assets/staticImages/earth.png";
   static const String main1 = "assets/staticImages/main1.png";
+  static const String facebook = "assets/staticImages/facebook.png";
+  static const String instagram = "assets/staticImages/instagram.png";
+  static const String linkedin = "assets/staticImages/linkedin.png";
+  static const String youtube = "assets/staticImages/youtube.png";
 
 
 }
