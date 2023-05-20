@@ -79,12 +79,17 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         Container(
                           padding: padding1,
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
+                              Flexible(child: LatestArticle()),
+                              SizedBox(width: 10,),
+                              Flexible(child: TrendingArticles()),
+                              SizedBox(width: 10,),
+                              Flexible(child: ExploreMoreInArticles())
                             ],
                           ),
                         ),
-                        Article(),
+                        WhatMoreOnHidoc(),
                         Article(),
 
                       ],
@@ -164,49 +169,55 @@ class _HomePageScreenState extends State<HomePageScreen> {
               SizedBox(height: 30,),
               Row(
                 children: [
-                  Stack(
-                    children: [
-                      Image.asset(Assets.main1, height: 250, width: 340,fit: BoxFit.fitHeight,),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.cyan,
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(30))
-                          ),
-                          height: 50,
-                          width: 60,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text("Points",style: AppTextStyles.white12,),
-                              Text("2",style: AppTextStyles.white18,)
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  Flexible(
+                    flex: 1,
+                    child: Stack(
                       children: [
-                        Text("Decoding the Nexus Criteria for Critical Care: A Comprehensive Guide",style: TextStyle(fontWeight: FontWeight.bold),),
-                        SizedBox(height: 30,),
-                        Text("The Nexus Criteria has been used by healthcare professionals to determine whether a patient needs critical care or not."),
-                        SizedBox(height: 50,),
-                        RichText(text: TextSpan(text: "Read full article to earn points",
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = ()
-                              {
-                            launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
-                            },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14,fontStyle: FontStyle.italic))),
-                        SizedBox(height: 20,),
-                        Text("Published Date: 15 Apr 2023", style: TextStyle(color: Colors.grey),)
+                        Image.asset(Assets.main1),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.cyan,
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(30))
+                            ),
+                            height: 50,
+                            width: 60,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text("Points",style: AppTextStyles.white12,),
+                                Text("2",style: AppTextStyles.white18,)
+                              ],
+                            ),
+                          ),
+                        )
                       ],
+                    ),
+                  ),
+                  Flexible(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Decoding the Nexus Criteria for Critical Care: A Comprehensive Guide",style: TextStyle(fontWeight: FontWeight.bold),),
+                          SizedBox(height: 30,),
+                          Text("The Nexus Criteria has been used by healthcare professionals to determine whether a patient needs critical care or not."),
+                          SizedBox(height: 50,),
+                          RichText(text: TextSpan(text: "Read full article to earn points",
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = ()
+                                {
+                              launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                              },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14,fontStyle: FontStyle.italic))),
+                          SizedBox(height: 20,),
+                          Text("Published Date: 15 Apr 2023", style: TextStyle(color: Colors.grey),)
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -360,7 +371,235 @@ class _HomePageScreenState extends State<HomePageScreen> {
   }
 
 
+Widget LatestArticle(){
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 20,),
+          Text("Latest Article", style: TextStyle(fontWeight: FontWeight.bold),),
+          SizedBox(height: 20,),
+          Divider(color: Colors.black,height: 2,),
+          Column(
+            children: [
+              SizedBox(height: 10,),
+              Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
+              SizedBox(height: 10,),
+              Divider(color: Colors.grey,height: 2,)
+            ],
+          ),
+          Column(
+            children: [
+              SizedBox(height: 10,),
+              Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
+              SizedBox(height: 10,),
+              Divider(color: Colors.grey,height: 2,)
+            ],
+          ),
+          Column(
+            children: [
+              SizedBox(height: 10,),
+              Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
+              SizedBox(height: 10,),
+              Divider(color: Colors.grey,height: 2,)
+            ],
+          ),
+        ],
+      ),
+    );
+}
 
+
+Widget ExploreMoreInArticles(){
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 20,),
+              Text("Explore More In Articles", style: TextStyle(fontWeight: FontWeight.bold),),
+              SizedBox(height: 20,),
+              Divider(color: Colors.black,height: 2,),
+              Column(
+                children: [
+                  SizedBox(height: 10,),
+                  Text("The future of intensive care: delerium should no longer be an issue"),
+                  SizedBox(height: 10,),
+                  Divider(color: Colors.grey,height: 2,)
+                ],
+              ),
+              Column(
+                children: [
+                  SizedBox(height: 10,),
+                  Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
+                  SizedBox(height: 10,),
+                  Divider(color: Colors.grey,height: 2,)
+                ],
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 20,),
+        ElevatedButton(
+            onPressed: (){},
+            child: Text("Explore Hidoc Dr.", style: AppTextStyles.white18,),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.cyan,
+                elevation: 5,
+                fixedSize: Size.fromHeight(50),
+                shape: BeveledRectangleBorder())
+        ),
+      ],
+    );
+}
+
+Widget TrendingArticles(){
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
+      child: Column(
+        children: [
+        SizedBox(height: 20,),
+        Text("Trending Articles", style: TextStyle(fontWeight: FontWeight.bold),),
+        SizedBox(height: 20,),
+        Divider(color: Colors.black,height: 2,),
+        Column(
+          children: [
+            Image.asset(Assets.main1),
+            SizedBox(height: 10,),
+            Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
+            SizedBox(height: 10,),
+            Divider(color: Colors.grey,height: 2,)
+          ]),
+          Column(
+            children: [
+              SizedBox(height: 10,),
+              Row(
+                children: [
+                  Flexible(flex:1,child: Image.asset(Assets.main1)),
+                  Flexible(flex:3,child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
+                  )),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Divider(color: Colors.grey,height: 2,)
+            ],
+          ),
+          Column(
+            children: [
+              SizedBox(height: 10,),
+              Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
+              SizedBox(height: 10,),
+              Divider(color: Colors.grey,height: 2,)
+            ],
+          ),
+        ])
+     );
+}
+
+
+Widget WhatMoreOnHidoc(){
+    return Container(
+      color: AppColors.lightGrey,
+      padding: padding1+EdgeInsets.symmetric(vertical: 30),
+      margin: EdgeInsets.symmetric(vertical: 20),
+      child: Column(
+        children: [
+          Text("What's more on Hidoc Dr.",style: AppTextStyles.webHeading,),
+          SizedBox(height: 20,),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: 2,
+                child: Container(
+                  decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        fit: FlexFit.tight,
+                        flex: 1,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("News", style: AppTextStyles.webHeading,),
+                              SizedBox(height: 30,),
+                              Text("Experts addressing burnout discuss the important not only of self-care, but also of improving workplace conditions.")
+                            ]
+                          ),
+                        ),
+                      ),
+                      Flexible(flex:1,child: Image.asset(Assets.main1))
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: 10),
+              Flexible(
+                flex: 1,
+                child: Container(
+                  decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
+                  padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(children: [
+                        // Flexible(flex: 1,child: Image.asset(Assets.trophy,fit: BoxFit.fitHeight)),
+                        Flexible(flex: 1,child: Icon(Icons.emoji_events_sharp, color: Colors.blue,size: 50,)),
+                        Flexible(flex: 2,child: Text("Quizzes : ",style: TextStyle(fontWeight: FontWeight.bold),)),
+                        Flexible(flex:4,child: Text("Participate & Win Exciting Prizes"))
+                      ],),
+                      SizedBox(height: 10,),
+                      Container(height: 2,color: Colors.black,),SizedBox(height: 8,),
+                      SizedBox(height: 10,),
+                      Row(children: [
+                        Flexible(flex: 1,child: Icon(Icons.calculate, color: Colors.blue,size: 50,)),
+                        Flexible(flex:2,child: Text("Medical Calculators : ",style: TextStyle(fontWeight: FontWeight.bold))),
+                        Flexible(flex:4,child: Text("Get Access to 800+ Evidence Based Calculators"))
+                      ],),
+                    ],
+                  ),
+                )
+              )
+            ],
+          ),
+          SizedBox(height: 10,),
+          Container(
+            color: AppColors.lightblue,
+            padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Social Network for doctors - A Special feature on Hidoc Dr.", style: AppTextStyles.webHeading),
+                Container(
+                  child: ElevatedButton(
+                      onPressed: (){},
+                      child: Text("Visit", style: AppTextStyles.white18,),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.cyan,
+                          elevation: 5,
+                          shape: StadiumBorder(),padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20)
+                      )
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+}
 
 
 }

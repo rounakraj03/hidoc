@@ -18,4 +18,5 @@ class AppColors {
   static const Color greyish = Color.fromARGB(255, 230, 233, 230);
   static const Color lightRed = Color(0xFFFF6659);
   static const Color lightblue = Color(0xFFDBF4F8);
+  static const Color lightGrey = Color(0xFFF5F5F5);
 }
