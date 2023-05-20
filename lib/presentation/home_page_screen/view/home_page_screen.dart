@@ -9,17 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:hidoc/res/colors.dart';
-import 'package:hidoc/widgets/critical_care.dart';
-import 'package:hidoc/widgets/explore_article.dart';
-import 'package:hidoc/widgets/hidoc_bulletin.dart';
-import 'package:hidoc/widgets/latest_article.dart';
 import 'package:hidoc/widgets/loading_widget.dart';
-import 'package:hidoc/widgets/news.dart';
-import 'package:hidoc/widgets/quiz.dart';
-import 'package:hidoc/widgets/trending_article.dart';
-import 'package:hidoc/widgets/trending_hidoc_bulletin.dart';
-import 'package:hidoc/widgets/visit_widget.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final homePageScreenBloc = inject<HomePageScreenBloc>();
@@ -64,7 +54,36 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           child: Divider(height: 2,color: Colors.black54,),
                         ),
                         SizedBox(height: 30,),
-                        Article(),
+                        Container(
+                          padding: padding1,
+                            child: Row(
+                              children: [
+                                Flexible(flex: 1,child: HidocBulletin()),
+                                Flexible(flex: 1,child: TrendingHidocBulletin())
+                            ],
+                        )),
+                        SizedBox(height: 30,),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal:MediaQuery.of(context).size.width/3),
+                          child: ElevatedButton(
+                              onPressed: (){},
+                              child: Text("Read More Bulletins", style: AppTextStyles.white18,),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.cyan,
+                                elevation: 5,
+                                fixedSize: Size.fromHeight(50),
+                                shape: BeveledRectangleBorder())
+                          ),
+                        ),
+                        SizedBox(height: 30,),
+                        Container(
+                          padding: padding1,
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
                         Article(),
                         Article(),
 
@@ -197,6 +216,151 @@ class _HomePageScreenState extends State<HomePageScreen> {
         )
     );
   }
+
+
+  Widget HidocBulletin(){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("Hidoc Bulletin",style: AppTextStyles.webHeading,),
+        Container(
+          color: AppColors.grey2,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BlueSizedBox(),
+              Text("Vaccine hesistancy: Where are we and where are we going?", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(height: 20,),
+              Text("A Justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human existence and"),
+              SizedBox(height: 20,),
+              RichText(text: TextSpan(text: "Read More",
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = ()
+                    {
+                      launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                    },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
+            ],
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BlueSizedBox(),
+            Text("Vaccine hesistancy: Where are we and where are we going?", style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(height: 20,),
+            Text("A Justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human existence and"),
+            SizedBox(height: 20,),
+            RichText(text: TextSpan(text: "Read More",
+                recognizer: TapGestureRecognizer()
+                  ..onTap = ()
+                  {
+                    launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                  },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BlueSizedBox(),
+            Text("Vaccine hesistancy: Where are we and where are we going?", style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(height: 20,),
+            Text("A Justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human existence and"),
+            SizedBox(height: 20,),
+            RichText(text: TextSpan(text: "Read More",
+                recognizer: TapGestureRecognizer()
+                  ..onTap = ()
+                  {
+                    launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                  },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget TrendingHidocBulletin(){
+    return Container(
+      width: double.maxFinite,
+      decoration: BoxDecoration(
+        color: AppColors.lightblue,
+        borderRadius: BorderRadius.circular(20)
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Trending Hidoc Bulletin",style: AppTextStyles.webHeading,),
+            SizedBox(height: 40,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Combination of Radiation therapy and Horomone therapy for Prostate Cancer (PCa)", style: TextStyle(fontWeight: FontWeight.bold),),
+                SizedBox(height: 20,),
+                Text("Prostate cancer (PCa), one of the current world's major health concerns has the highest incidence of any type of cancer. It is the 2nd most common type of cancer and the 5th most frequent cause of cancer-related death in men worldwide."),
+                SizedBox(height: 20,),
+                RichText(text: TextSpan(text: "Read More",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = ()
+                      {
+                        launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                      },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
+                SizedBox(height: 20,)
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Combination of Radiation therapy and Horomone therapy for Prostate Cancer (PCa)", style: TextStyle(fontWeight: FontWeight.bold),),
+                SizedBox(height: 20,),
+                Text("Prostate cancer (PCa), one of the current world's major health concerns has the highest incidence of any type of cancer. It is the 2nd most common type of cancer and the 5th most frequent cause of cancer-related death in men worldwide."),
+                SizedBox(height: 20,),
+                RichText(text: TextSpan(text: "Read More",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = ()
+                      {
+                        launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                      },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
+                SizedBox(height: 20,)
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Combination of Radiation therapy and Horomone therapy for Prostate Cancer (PCa)", style: TextStyle(fontWeight: FontWeight.bold),),
+                SizedBox(height: 20,),
+                Text("Prostate cancer (PCa), one of the current world's major health concerns has the highest incidence of any type of cancer. It is the 2nd most common type of cancer and the 5th most frequent cause of cancer-related death in men worldwide."),
+                SizedBox(height: 20,),
+                RichText(text: TextSpan(text: "Read More",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = ()
+                      {
+                        launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                      },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
+                SizedBox(height: 20,)
+              ],
+            ),
+
+
+          ],
+        ));
+  }
+
+  Widget BlueSizedBox(){
+    return Column(
+      children: [
+        SizedBox(height: 30,),
+        Container(height: 6, width: 200, color: Colors.cyan,),
+        SizedBox(height: 20,),
+      ],
+    );
+  }
+
+
+
 
 
 }
