@@ -578,20 +578,19 @@ Widget WhatMoreOnHidoc(){
           Container(
             color: AppColors.lightblue,
             padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Wrap(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Social Network for doctors - A Special feature on Hidoc Dr.", style: AppTextStyles.webHeading),
-                Container(
-                  child: ElevatedButton(
-                      onPressed: (){},
-                      child: Text("Visit", style: AppTextStyles.white18,),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.cyan,
-                          elevation: 5,
-                          shape: StadiumBorder(),padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20)
-                      )
-                  ),
+                SizedBox(width: 200,),
+                ElevatedButton(
+                    onPressed: (){launchUrl(Uri.parse("https://www.facebook.com/hidocdr"),mode: LaunchMode.platformDefault);},
+                    child: Text("Visit", style: AppTextStyles.white18,),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.cyan,
+                        elevation: 5,
+                        shape: StadiumBorder(),padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20)
+                    )
                 ),
               ],
             ),
@@ -636,7 +635,7 @@ Widget PageEndWidget(){
                       Image.asset(Assets.hidoclogo),
                       SizedBox(height: 10,),
                       Text("#1 Medical App for Doctors in India with 800K Monthly Users", style: AppTextStyles.white14,),
-                      Row(
+                      Wrap(
                         children: [
                           IconButton(onPressed: (){launchUrl(Uri.parse("https://www.facebook.com/hidocdr"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.facebook, color: Colors.white),iconSize: 40),
                           IconButton(onPressed: (){launchUrl(Uri.parse("https://www.linkedin.com/company/infedis-infotech"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.linkedin, color: Colors.white),iconSize: 40),
