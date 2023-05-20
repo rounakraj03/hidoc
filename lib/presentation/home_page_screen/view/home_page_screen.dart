@@ -635,10 +635,10 @@ Widget PageEndWidget(){
                     Text("#1 Medical App for Doctors in India with 800K Monthly Users", style: AppTextStyles.white12,),
                     Row(
                       children: [
-                        IconButton(onPressed: (){}, icon: Image.asset(Assets.facebook, color: Colors.white),iconSize: 40),
-                        IconButton(onPressed: (){}, icon: Image.asset(Assets.linkedin, color: Colors.white),iconSize: 40),
-                        IconButton(onPressed: (){}, icon: Image.asset(Assets.instagram, color: Colors.white),iconSize: 40),
-                        IconButton(onPressed: (){}, icon: Image.asset(Assets.youtube, color: Colors.white),iconSize: 40),
+                        IconButton(onPressed: (){launchUrl(Uri.parse("https://www.facebook.com/hidocdr"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.facebook, color: Colors.white),iconSize: 40),
+                        IconButton(onPressed: (){launchUrl(Uri.parse("https://www.linkedin.com/company/infedis-infotech"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.linkedin, color: Colors.white),iconSize: 40),
+                        IconButton(onPressed: (){launchUrl(Uri.parse("https://www.instagram.com/hidocdr/"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.instagram, color: Colors.white),iconSize: 40),
+                        IconButton(onPressed: (){launchUrl(Uri.parse("https://www.youtube.com/channel/UCjMVeETQ4fJzMfv3reoeIFw"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.youtube, color: Colors.white),iconSize: 40),
                       ],
                     )
                   ],
