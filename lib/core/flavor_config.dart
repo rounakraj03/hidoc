@@ -31,7 +31,6 @@ class FlavorConfig {
     }
     return _instance!;
   }
-
   bool get isDev => environment == Environment.dev;
 
   bool get isProd => environment == Environment.prod;
