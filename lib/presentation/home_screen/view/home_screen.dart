@@ -398,70 +398,53 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
   Widget TrendingHidocBulletin(){
-    return Container(
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-            color: AppColors.lightblue,
-            borderRadius: BorderRadius.circular(20)
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Trending Hidoc Bulletin",style: AppTextStyles.webHeading,),
-            SizedBox(height: 40,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Combination of Radiation therapy and Horomone therapy for Prostate Cancer (PCa)", style: TextStyle(fontWeight: FontWeight.bold),),
-                SizedBox(height: 20,),
-                Text("Prostate cancer (PCa), one of the current world's major health concerns has the highest incidence of any type of cancer. It is the 2nd most common type of cancer and the 5th most frequent cause of cancer-related death in men worldwide."),
-                SizedBox(height: 20,),
-                RichText(text: TextSpan(text: "Read More",
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = ()
-                      {
-                        launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
-                      },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
-                SizedBox(height: 20,)
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Combination of Radiation therapy and Horomone therapy for Prostate Cancer (PCa)", style: TextStyle(fontWeight: FontWeight.bold),),
-                SizedBox(height: 20,),
-                Text("Prostate cancer (PCa), one of the current world's major health concerns has the highest incidence of any type of cancer. It is the 2nd most common type of cancer and the 5th most frequent cause of cancer-related death in men worldwide."),
-                SizedBox(height: 20,),
-                RichText(text: TextSpan(text: "Read More",
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = ()
-                      {
-                        launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
-                      },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
-                SizedBox(height: 20,)
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Combination of Radiation therapy and Horomone therapy for Prostate Cancer (PCa)", style: TextStyle(fontWeight: FontWeight.bold),),
-                SizedBox(height: 20,),
-                Text("Prostate cancer (PCa), one of the current world's major health concerns has the highest incidence of any type of cancer. It is the 2nd most common type of cancer and the 5th most frequent cause of cancer-related death in men worldwide."),
-                SizedBox(height: 20,),
-                RichText(text: TextSpan(text: "Read More",
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = ()
-                      {
-                        launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
-                      },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
-                SizedBox(height: 20,)
-              ],
-            ),
+    return BlocProvider.value(
+        value: homeScreenBloc,
+        child: BlocBuilder<HomeScreenBloc,HomeScreenState>(
+            builder: (context, state)
+    {
+      return Container(
+          width: double.maxFinite,
+          decoration: BoxDecoration(
+              color: AppColors.lightblue,
+              borderRadius: BorderRadius.circular(20)
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Trending Hidoc Bulletin", style: AppTextStyles.webHeading,),
+              SizedBox(height: 40,),
+              ListView.separated(itemBuilder: (context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      state.trandingBulletin[index]["articleTitle"],
+                      style: TextStyle(fontWeight: FontWeight.bold),),
+                    SizedBox(height: 20,),
+                    Text(state.trandingBulletin[index]["articleDescription"]),
+                    SizedBox(height: 20,),
+                    RichText(text: TextSpan(text: "Read More",
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launchUrl(Uri.parse(state.trandingBulletin[index]["redirectLink"]),
+                                mode: LaunchMode.platformDefault);
+                          },
+                        style: TextStyle(color: Colors.cyan,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.blue,
+                            fontSize: 14))),
 
-
-          ],
-        ));
+                  ],
+                );
+              }, separatorBuilder: (context, index) => SizedBox(height: 20,),
+                  itemCount: state.trandingBulletin.length > 3 ? 3 : state.trandingBulletin.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true),
+            ],
+          ));
+    }));
   }
 
   Widget BlueSizedBox(){
