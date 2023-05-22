@@ -402,8 +402,8 @@ class _HomeScreenState extends State<HomeScreen> {
         value: homeScreenBloc,
         child: BlocBuilder<HomeScreenBloc,HomeScreenState>(
             builder: (context, state)
-    {
-      return Container(
+        {
+         return Container(
           width: double.maxFinite,
           decoration: BoxDecoration(
               color: AppColors.lightblue,
@@ -459,90 +459,100 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
   Widget LatestArticle(){
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 20,),
-          Text("Latest Article", style: TextStyle(fontWeight: FontWeight.bold),),
-          SizedBox(height: 20,),
-          Divider(color: Colors.black,height: 2,),
-          Column(
-            children: [
-              SizedBox(height: 10,),
-              Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
-              SizedBox(height: 10,),
-              Divider(color: Colors.grey,height: 2,)
-            ],
-          ),
-          Column(
-            children: [
-              SizedBox(height: 10,),
-              Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
-              SizedBox(height: 10,),
-              Divider(color: Colors.grey,height: 2,)
-            ],
-          ),
-          Column(
-            children: [
-              SizedBox(height: 10,),
-              Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
-              SizedBox(height: 10,),
-              Divider(color: Colors.grey,height: 2,)
-            ],
-          ),
-        ],
-      ),
-    );
+    return BlocProvider.value(
+        value: homeScreenBloc,
+        child: BlocBuilder<HomeScreenBloc,HomeScreenState>(
+            builder: (context, state)
+            {
+          return Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 20,),
+                Text("Latest Article", style: TextStyle(fontWeight: FontWeight.bold),),
+                SizedBox(height: 20,),
+                Divider(color: Colors.black,height: 2,),
+                SizedBox(height: 20,),
+                ListView.separated(
+                    itemBuilder: (context, index) => Column(
+                      children: [
+                        Text(state.exploreArticle[index]["articleTitle"], maxLines: 2,overflow: TextOverflow.visible),
+                      ],
+                    ),
+                    separatorBuilder: (context, index) => Column(
+                      children: [
+                      SizedBox(height: 20,),
+                      Divider(color: Colors.grey,height: 2,),
+                        SizedBox(height: 20,),
+                      ],),
+                    itemCount:state.exploreArticle.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true
+                )
+              ],
+            ),
+          );}));
   }
 
 
   Widget ExploreMoreInArticles(){
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 20,),
-              Text("Explore More In Articles", style: TextStyle(fontWeight: FontWeight.bold),),
-              SizedBox(height: 20,),
-              Divider(color: Colors.black,height: 2,),
-              Column(
-                children: [
-                  SizedBox(height: 10,),
-                  Text("The future of intensive care: delerium should no longer be an issue"),
-                  SizedBox(height: 10,),
-                  Divider(color: Colors.grey,height: 2,)
-                ],
-              ),
-              Column(
-                children: [
-                  SizedBox(height: 10,),
-                  Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
-                  SizedBox(height: 10,),
-                  Divider(color: Colors.grey,height: 2,)
-                ],
-              ),
-            ],
+    return BlocProvider.value(
+        value: homeScreenBloc,
+        child: BlocBuilder<HomeScreenBloc,HomeScreenState>(
+            builder: (context, state)
+    {
+      return Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 2)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 20,),
+                Text("Explore More In Articles",
+                  style: TextStyle(fontWeight: FontWeight.bold),),
+                SizedBox(height: 20,),
+                Divider(color: Colors.black, height: 2,),
+                SizedBox(height: 20,),
+                ListView.separated(
+                    itemBuilder: (context, index) =>
+                        Column(
+                          children: [
+                            Text(state.exploreArticle[index]["articleTitle"],
+                                maxLines: 2, overflow: TextOverflow.visible),
+                          ],
+                        ),
+                    separatorBuilder: (context, index) =>
+                        Column(
+                          children: [
+                            SizedBox(height: 20,),
+                            Divider(color: Colors.grey, height: 2,),
+                            SizedBox(height: 20,),
+                          ],),
+                    itemCount: state.exploreArticle.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true
+                )
+              ],
+            ),
           ),
-        ),
-        SizedBox(height: 20,),
-        ElevatedButton(
-            onPressed: (){},
-            child: Text("Explore Hidoc Dr.", style: AppTextStyles.white18,),
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.cyan,
-                elevation: 5,
-                fixedSize: Size.fromHeight(50),
-                shape: BeveledRectangleBorder())
-        ),
-      ],
-    );
+          SizedBox(height: 20,),
+          ElevatedButton(
+              onPressed: () {},
+              child: Text("Explore Hidoc Dr.", style: AppTextStyles.white18,),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.cyan,
+                  elevation: 5,
+                  fixedSize: Size.fromHeight(50),
+                  shape: BeveledRectangleBorder())
+          ),
+        ],
+      );
+    }));
   }
 
   Widget TrendingArticles(){
