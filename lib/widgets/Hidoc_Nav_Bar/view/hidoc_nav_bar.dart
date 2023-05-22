@@ -74,6 +74,7 @@ class HidocDrawer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          SizedBox(height: 30,),
           Image.asset(Assets.hidoclogo, height: 50,),
           SizedBox(height: 20,),
           Divider(height: 2,color: Colors.white,),
