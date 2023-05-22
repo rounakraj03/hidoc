@@ -23,7 +23,8 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
 
-  final padding1 = const EdgeInsets.symmetric(horizontal: 100);
+  EdgeInsets padding1 = EdgeInsets.symmetric(horizontal: 100);
+  final constraintSize = 1000;
 
   @override
   void initState() {
@@ -35,6 +36,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    padding1 = EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/15.0);
+    print("MediaQuery.of(context).size.width/4 -> ${MediaQuery.of(context).size.width/15.0}");
     return BlocProvider.value(
         value: homePageScreenBloc,
         child: BlocBuilder<HomePageScreenBloc, HomePageScreenState>(
@@ -54,14 +57,27 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           child: Divider(height: 2,color: Colors.black54,),
                         ),
                         SizedBox(height: 30,),
-                        Container(
-                          padding: padding1,
-                            child: Row(
-                              children: [
-                                Flexible(flex: 1,child: HidocBulletin()),
-                                Flexible(flex: 1,child: TrendingHidocBulletin())
-                            ],
-                        )),
+                        LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                          if(constraints.maxWidth > constraintSize){
+                            return Container(
+                                padding: padding1,
+                                child: Row(
+                                  children: [
+                                    Flexible(flex: 1,child: HidocBulletin()),
+                                    Flexible(flex: 1,child: TrendingHidocBulletin())
+                                  ],
+                                ));
+                          }else{
+                            return Container(
+                                padding: padding1,
+                                child: Column(
+                                  children: [
+                                    HidocBulletin(),
+                                    TrendingHidocBulletin()
+                                  ],
+                                ));
+                          }
+                        }),
                         SizedBox(height: 30,),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal:MediaQuery.of(context).size.width/3),
@@ -76,19 +92,37 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           ),
                         ),
                         SizedBox(height: 30,),
-                        Container(
-                          padding: padding1,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(child: LatestArticle()),
-                              SizedBox(width: 10,),
-                              Flexible(child: TrendingArticles()),
-                              SizedBox(width: 10,),
-                              Flexible(child: ExploreMoreInArticles())
-                            ],
-                          ),
-                        ),
+                      LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                        if(constraints.maxWidth > constraintSize){
+                          return Container(
+                            padding: padding1,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(child: LatestArticle()),
+                                SizedBox(width: 10,),
+                                Flexible(child: TrendingArticles()),
+                                SizedBox(width: 10,),
+                                Flexible(child: ExploreMoreInArticles())
+                              ],
+                            ),
+                          );
+                        } else{
+                          return Container(
+                            padding: padding1,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                LatestArticle(),
+                                SizedBox(height: 10,),
+                                TrendingArticles(),
+                                SizedBox(height: 10,),
+                                ExploreMoreInArticles()
+                              ],
+                            ),
+                          );
+                        }
+                      }),
                         WhatMoreOnHidoc(),
                         AdsWidget(),
                         PageEndWidget(),
@@ -167,61 +201,116 @@ class _HomePageScreenState extends State<HomePageScreen> {
               },),
 
               SizedBox(height: 30,),
-              Row(
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: Stack(
-                      children: [
-                        Image.asset(Assets.main1),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.cyan,
-                              borderRadius: BorderRadius.only(topLeft: Radius.circular(30))
-                            ),
-                            height: 50,
-                            width: 60,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("Points",style: AppTextStyles.white12,),
-                                Text("2",style: AppTextStyles.white18,)
-                              ],
-                            ),
+              LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                if(constraints.maxWidth > constraintSize){
+                  return Row(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: Stack(
+                          children: [
+                            Image.asset(Assets.main1),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.cyan,
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(30))
+                                ),
+                                height: 50,
+                                width: 60,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text("Points",style: AppTextStyles.white12,),
+                                    Text("2",style: AppTextStyles.white18,)
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Decoding the Nexus Criteria for Critical Care: A Comprehensive Guide",style: TextStyle(fontWeight: FontWeight.bold),),
+                              SizedBox(height: 30,),
+                              Text("The Nexus Criteria has been used by healthcare professionals to determine whether a patient needs critical care or not."),
+                              SizedBox(height: 50,),
+                              RichText(text: TextSpan(text: "Read full article to earn points",
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = ()
+                                    {
+                                      launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                                    },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14,fontStyle: FontStyle.italic))),
+                              SizedBox(height: 20,),
+                              Text("Published Date: 15 Apr 2023", style: TextStyle(color: Colors.grey),)
+                            ],
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                      )
+                    ],
+                  );
+                }
+                else {
+                  return Column(
+                    children: [
+                      Stack(
                         children: [
-                          Text("Decoding the Nexus Criteria for Critical Care: A Comprehensive Guide",style: TextStyle(fontWeight: FontWeight.bold),),
-                          SizedBox(height: 30,),
-                          Text("The Nexus Criteria has been used by healthcare professionals to determine whether a patient needs critical care or not."),
-                          SizedBox(height: 50,),
-                          RichText(text: TextSpan(text: "Read full article to earn points",
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = ()
-                                {
-                              launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
-                              },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14,fontStyle: FontStyle.italic))),
-                          SizedBox(height: 20,),
-                          Text("Published Date: 15 Apr 2023", style: TextStyle(color: Colors.grey),)
+                          Image.asset(Assets.main1),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.cyan,
+                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30))
+                              ),
+                              height: 50,
+                              width: 60,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text("Points",style: AppTextStyles.white12,),
+                                  Text("2",style: AppTextStyles.white18,)
+                                ],
+                              ),
+                            ),
+                          )
                         ],
                       ),
-                    ),
-                  )
-                ],
-              )
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Decoding the Nexus Criteria for Critical Care: A Comprehensive Guide",style: TextStyle(fontWeight: FontWeight.bold),),
+                            SizedBox(height: 30,),
+                            Text("The Nexus Criteria has been used by healthcare professionals to determine whether a patient needs critical care or not."),
+                            SizedBox(height: 50,),
+                            RichText(text: TextSpan(text: "Read full article to earn points",
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = ()
+                                  {
+                                    launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
+                                  },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14,fontStyle: FontStyle.italic))),
+                            SizedBox(height: 20,),
+                            Text("Published Date: 15 Apr 2023", style: TextStyle(color: Colors.grey),)
+                          ],
+                        ),
+                      )
+                    ],
+                  );
+                }
+              },)
             ],
           ),
         )
@@ -514,22 +603,24 @@ Widget WhatMoreOnHidoc(){
         children: [
           Text("What's more on Hidoc Dr.",style: AppTextStyles.webHeading,),
           SizedBox(height: 20,),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                flex: 2,
-                child: Container(
-                  decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    children: [
-                      Flexible(
-                        fit: FlexFit.tight,
-                        flex: 1,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
+        LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+      if(constraints.maxWidth > constraintSize){
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(
+              flex: 2,
+              child: Container(
+                decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Flexible(
+                      fit: FlexFit.tight,
+                      flex: 1,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -537,16 +628,16 @@ Widget WhatMoreOnHidoc(){
                               SizedBox(height: 30,),
                               Text("Experts addressing burnout discuss the important not only of self-care, but also of improving workplace conditions.")
                             ]
-                          ),
                         ),
                       ),
-                      Flexible(flex:1,child: Image.asset(Assets.main1))
-                    ],
-                  ),
+                    ),
+                    Flexible(flex:1,child: Image.asset(Assets.main1))
+                  ],
                 ),
               ),
-              SizedBox(width: 10),
-              Flexible(
+            ),
+            SizedBox(width: 10),
+            Flexible(
                 flex: 1,
                 child: Container(
                   decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
@@ -571,9 +662,64 @@ Widget WhatMoreOnHidoc(){
                     ],
                   ),
                 )
+            )
+          ],
+        );
+      }
+        else {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("News", style: AppTextStyles.webHeading,),
+                            SizedBox(height: 30,),
+                            Text("Experts addressing burnout discuss the important not only of self-care, but also of improving workplace conditions.")
+                          ]
+                      ),
+                    ),
+                    SizedBox(height: 30,),
+                    Image.asset(Assets.main1)
+                  ],
+                ),
+              ),
+              SizedBox(height: 10),
+              Container(
+                decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
+                padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(children: [
+                      // Flexible(flex: 1,child: Image.asset(Assets.trophy,fit: BoxFit.fitHeight)),
+                      Flexible(flex: 1,child: Icon(Icons.emoji_events_sharp, color: Colors.blue,size: 50,)),
+                      Flexible(flex: 2,child: Text("Quizzes : ",style: TextStyle(fontWeight: FontWeight.bold),)),
+                      Flexible(flex:4,child: Text("Participate & Win Exciting Prizes"))
+                    ],),
+                    SizedBox(height: 10,),
+                    Container(height: 2,color: Colors.black,),SizedBox(height: 8,),
+                    SizedBox(height: 10,),
+                    Row(children: [
+                      Flexible(flex: 1,child: Icon(Icons.calculate, color: Colors.blue,size: 50,)),
+                      Flexible(flex:2,child: Text("Medical Calculators : ",style: TextStyle(fontWeight: FontWeight.bold))),
+                      Flexible(flex:4,child: Text("Get Access to 800+ Evidence Based Calculators"))
+                    ],),
+                  ],
+                ),
               )
             ],
-          ),
+          );
+      }}),
+
           SizedBox(height: 10,),
           Container(
             color: AppColors.lightblue,
@@ -602,7 +748,7 @@ Widget WhatMoreOnHidoc(){
 
 Widget AdsWidget(){
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 30,horizontal: MediaQuery.of(context).size.width/8),
+      padding: EdgeInsets.symmetric(vertical: 10) + padding1,
       child: Row(
         children: [
           Flexible(flex:1,child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset(Assets.main1,))),
@@ -615,6 +761,7 @@ Widget AdsWidget(){
 }
 
 Widget PageEndWidget(){
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(
@@ -624,12 +771,116 @@ Widget PageEndWidget(){
             padding: EdgeInsets.symmetric(vertical: 20,horizontal: 30),
             margin: EdgeInsets.symmetric(vertical: 20),
             color: AppColors.navBarColor,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: Column(
+            child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+              if(constraints.maxWidth > constraintSize){
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(Assets.hidoclogo),
+                          SizedBox(height: 10,),
+                          Text("#1 Medical App for Doctors in India with 800K Monthly Users", style: AppTextStyles.white14,),
+                          Wrap(
+                            children: [
+                              IconButton(onPressed: (){launchUrl(Uri.parse("https://www.facebook.com/hidocdr"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.facebook, color: Colors.white),iconSize: 40),
+                              IconButton(onPressed: (){launchUrl(Uri.parse("https://www.linkedin.com/company/infedis-infotech"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.linkedin, color: Colors.white),iconSize: 40),
+                              IconButton(onPressed: (){launchUrl(Uri.parse("https://www.instagram.com/hidocdr/"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.instagram, color: Colors.white),iconSize: 40),
+                              IconButton(onPressed: (){launchUrl(Uri.parse("https://www.youtube.com/channel/UCjMVeETQ4fJzMfv3reoeIFw"),mode: LaunchMode.platformDefault);}, icon: Image.asset(Assets.youtube, color: Colors.white),iconSize: 40),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 20,),
+                    Flexible(
+                      flex: 1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("REACH US", style: AppTextStyles.white18,),
+                          SizedBox(height: 5,),
+                          Text("Please contact below details for any other information.", style: AppTextStyles.white16,),
+                          SizedBox(height: 10,),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Email: ",style: AppTextStyles.cyan16,),
+                              Text("info@hidoc.co",style: AppTextStyles.white16,)
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Address: ",style: AppTextStyles.cyan16,),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Infedis Infotech LLP. \nOffice 108, Suyog Center, Gultekdi, Pune- 411 037",style: AppTextStyles.white16,),
+                                  RichText(text: TextSpan(text:"Toll Free : 1800-202-5091",
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = ()
+                                        {
+                                          launchUrl(Uri.parse("tel:<1800-202-5091>"),mode: LaunchMode.platformDefault);
+                                        },style: TextStyle(color: Colors.cyan, decorationColor: Colors.white, fontSize: 16))),
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 40,),
+                    Flexible(
+                      flex: 2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("HIDOC SERVICES", style: AppTextStyles.white18,),
+                          SizedBox(height: 25,),
+                          Container(
+                            padding: EdgeInsets.only(right: MediaQuery.of(context).size.width/9),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Flexible(flex:1,child: Image.asset(Assets.hidocServices1)),
+                                    SizedBox(width: 5,),
+                                    Flexible(flex:1,child: Image.asset(Assets.hidocServices2)),
+                                    SizedBox(width: 5,),
+                                    Flexible(flex:1,child: Image.asset(Assets.hidocServices3)),
+                                  ],
+                                ),
+                                SizedBox(height: 5,),
+                                Row(
+                                  children: [
+                                    Flexible(flex:1,child: Image.asset(Assets.hidocServices4)),
+                                    SizedBox(width: 5,),
+                                    Flexible(flex:1,child: Image.asset(Assets.hidocServices5)),
+                                    SizedBox(width: 5,),
+                                    Flexible(flex:1,child: Image.asset(Assets.hidocServices6)),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                );}
+              else{return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(Assets.hidoclogo),
@@ -645,11 +896,8 @@ Widget PageEndWidget(){
                       )
                     ],
                   ),
-                ),
-                SizedBox(width: 20,),
-                Flexible(
-                  flex: 1,
-                  child: Column(
+                  SizedBox(height: 50,),
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -657,41 +905,38 @@ Widget PageEndWidget(){
                       SizedBox(height: 5,),
                       Text("Please contact below details for any other information.", style: AppTextStyles.white16,),
                       SizedBox(height: 10,),
-                     Column(
-                       mainAxisAlignment: MainAxisAlignment.start,
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                         Text("Email: ",style: AppTextStyles.cyan16,),
-                         Text("info@hidoc.co",style: AppTextStyles.white16,)
-                       ],
-                     ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Email: ",style: AppTextStyles.cyan16,),
+                          Text("info@hidoc.co",style: AppTextStyles.white16,)
+                        ],
+                      ),
                       SizedBox(height: 10,),
                       Column(
-                       mainAxisAlignment: MainAxisAlignment.start,
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                         Text("Address: ",style: AppTextStyles.cyan16,),
-                         Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             Text("Infedis Infotech LLP. \nOffice 108, Suyog Center, Gultekdi, Pune- 411 037",style: AppTextStyles.white16,),
-                             RichText(text: TextSpan(text:"Toll Free : 1800-202-5091",
-                                 recognizer: TapGestureRecognizer()
-                                   ..onTap = ()
-                                   {
-                                     launchUrl(Uri.parse("tel:<1800-202-5091>"),mode: LaunchMode.platformDefault);
-                                   },style: TextStyle(color: Colors.cyan, decorationColor: Colors.white, fontSize: 16))),
-                           ],
-                         )
-                       ],
-                     ),
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Address: ",style: AppTextStyles.cyan16,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Infedis Infotech LLP. \nOffice 108, Suyog Center, Gultekdi, Pune- 411 037",style: AppTextStyles.white16,),
+                              RichText(text: TextSpan(text:"Toll Free : 1800-202-5091",
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = ()
+                                    {
+                                      launchUrl(Uri.parse("tel:<1800-202-5091>"),mode: LaunchMode.platformDefault);
+                                    },style: TextStyle(color: Colors.cyan, decorationColor: Colors.white, fontSize: 16))),
+                            ],
+                          )
+                        ],
+                      ),
                     ],
                   ),
-                ),
-                SizedBox(width: 40,),
-                Flexible(
-                  flex: 2,
-                  child: Column(
+                  SizedBox(height: 50,),
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -725,9 +970,8 @@ Widget PageEndWidget(){
                       )
                     ],
                   ),
-                ),
-              ],
-            ),
+                ],
+              );}}),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
