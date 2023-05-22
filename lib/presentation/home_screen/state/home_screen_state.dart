@@ -6,6 +6,7 @@ part 'home_screen_state.freezed.dart';
 @freezed
 class HomeScreenState with _$HomeScreenState {
   const factory HomeScreenState({
+    @Default(false) bool isLoading,
     @Default([]) List news,
     @Default([]) List trandingBulletin,
     @Default("") specialityName,

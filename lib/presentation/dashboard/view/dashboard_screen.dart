@@ -7,6 +7,7 @@ import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hidoc/presentation/dashboard/state/dashboard_state.dart';
 import 'package:hidoc/presentation/home_page_screen/view/home_page_screen.dart';
+import 'package:hidoc/presentation/home_screen/view/home_screen.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:hidoc/res/colors.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       HidocNavBar(),
-                      HomePageScreen()
+                      HomeScreen()
+                      // HomePageScreen()
                     ],
                   ),
                 ),
