@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // static const Color primary = kIsWeb ? Colors.cyan :Color(0xFFFF5B00);
-  static const Color primary = Color.fromARGB(255, 9, 22, 52);
+  static const Color primary = Color.fromARGB(255, 238, 29, 66);
   static const Color grey = Color.fromRGBO(201, 200, 200, 1.0);
   static const Color grey2 = Color.fromARGB(232, 232, 232, 232);
   // static const Color grey = Color.fromRGBO(255, 254, 254, 0.7725490196078432);

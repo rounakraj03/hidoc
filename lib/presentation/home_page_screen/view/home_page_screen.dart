@@ -135,6 +135,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
         ));
   }
 
+  final _productSizesList = ["Small", "Medium", "Large", "XLarge"];
+  String? _selectedVal = "Small";
+
   Widget Article(){
     return Padding(
         padding: padding1,
@@ -145,60 +148,88 @@ class _HomePageScreenState extends State<HomePageScreen> {
             children: [
               Text("Articles",style: AppTextStyles.webHeading),
               SizedBox(height: 20,),
-              PopupMenuButton(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.pinkColor,
-                    borderRadius: BorderRadius.circular(20)
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  width: 500,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(child: Center(child: Text("Critical Care",style: AppTextStyles.white16))),
-                      Icon(Icons.arrow_drop_down,color: Colors.white,)
-                    ],
+              
+              Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.red, // Set the desired border color here
+                    width: 5, // Set the desired border width here
                   ),
                 ),
-                position: PopupMenuPosition.under,
-                itemBuilder: (context) {
-                return [
-                  PopupMenuItem(child: Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.pinkColor,
-                        borderRadius: BorderRadius.circular(20)
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    width: 500,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Center(child: Text("Text 1",style: AppTextStyles.white16)),
-                      ],
-                    ),
-                  )),
-                  PopupMenuItem(child: Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.pinkColor,
-                        borderRadius: BorderRadius.circular(20)
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    width: 500,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Center(child: Text("Text 2",style: AppTextStyles.white16)),
-                      ],
-                    ),
-                  )),
+                child: DropdownButtonFormField(
+                  alignment: Alignment.center,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  icon: Icon(Icons.arrow_drop_down, size: 30),
+                  decoration: InputDecoration(
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide.none
+                    )),
+                  value: _selectedVal,
+                  items: _productSizesList.map((e){
+                    return DropdownMenuItem(child: Text(e.toString(), style: AppTextStyles.black16w500,),value: e,);
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedVal = value as String;
+                    });
+                  },
+                ),
+              ),
 
-
-                ];
-              },),
+              // PopupMenuButton(
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       color: AppColors.pinkColor,
+              //       borderRadius: BorderRadius.circular(20)
+              //     ),
+              //     padding: EdgeInsets.symmetric(vertical: 10),
+              //     width: 500,
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       crossAxisAlignment: CrossAxisAlignment.center,
+              //       children: [
+              //         Expanded(child: Center(child: Text("Critical Care",style: AppTextStyles.white16))),
+              //         Icon(Icons.arrow_drop_down,color: Colors.white,)
+              //       ],
+              //     ),
+              //   ),
+              //   position: PopupMenuPosition.under,
+              //   itemBuilder: (context) {
+              //   return [
+              //     PopupMenuItem(child: Container(
+              //       decoration: BoxDecoration(
+              //           color: AppColors.pinkColor,
+              //           borderRadius: BorderRadius.circular(20)
+              //       ),
+              //       padding: EdgeInsets.symmetric(vertical: 10),
+              //       width: 500,
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: [
+              //           Center(child: Text("Text 1",style: AppTextStyles.white16)),
+              //         ],
+              //       ),
+              //     )),
+              //     PopupMenuItem(child: Container(
+              //       decoration: BoxDecoration(
+              //           color: AppColors.pinkColor,
+              //           borderRadius: BorderRadius.circular(20)
+              //       ),
+              //       padding: EdgeInsets.symmetric(vertical: 10),
+              //       width: 500,
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: [
+              //           Center(child: Text("Text 2",style: AppTextStyles.white16)),
+              //         ],
+              //       ),
+              //     )),
+              //   ];
+              // },),
 
               SizedBox(height: 30,),
               LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
