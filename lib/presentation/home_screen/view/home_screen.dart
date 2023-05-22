@@ -73,6 +73,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               return Container(
                                   padding: padding1,
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Flexible(flex: 1,child: HidocBulletin()),
                                       Flexible(flex: 1,child: TrendingHidocBulletin())
@@ -82,6 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               return Container(
                                   padding: padding1,
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       HidocBulletin(),
                                       SizedBox(height: 20,),
@@ -320,68 +324,78 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
   Widget HidocBulletin(){
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Hidoc Bulletin",style: AppTextStyles.webHeading,),
-        Container(
-          color: AppColors.grey2,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BlueSizedBox(),
-              Text("Vaccine hesistancy: Where are we and where are we going?", style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: 20,),
-              Text("A Justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human existence and"),
-              SizedBox(height: 20,),
-              RichText(text: TextSpan(text: "Read More",
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = ()
-                    {
-                      launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
-                    },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
-            ],
-          ),
-        ),
-        Column(
+    return BlocProvider.value(
+        value: homeScreenBloc,
+        child: BlocBuilder<HomeScreenBloc,HomeScreenState>(
+            builder: (context, state)
+          {
+         return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlueSizedBox(),
-            Text("Vaccine hesistancy: Where are we and where are we going?", style: TextStyle(fontWeight: FontWeight.bold)),
-            SizedBox(height: 20,),
-            Text("A Justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human existence and"),
-            SizedBox(height: 20,),
-            RichText(text: TextSpan(text: "Read More",
-                recognizer: TapGestureRecognizer()
-                  ..onTap = ()
-                  {
-                    launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
-                  },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
+            Text("Hidoc Bulletin", style: AppTextStyles.webHeading,),
+            ListView.separated(itemBuilder: (context, index) {
+              if(index == 0){
+                return Container(
+                  color: AppColors.grey2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BlueSizedBox(),
+                      Text(state.trandingBulletin[index]["articleTitle"],
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 20,),
+                      Text(state.trandingBulletin[index]["articleDescription"]),
+                      SizedBox(height: 20,),
+                      RichText(text: TextSpan(text: "Read More",
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              launchUrl(Uri.parse(state.trandingBulletin[index]["redirectLink"]),
+                                  mode: LaunchMode.platformDefault);
+                            },
+                          style: TextStyle(color: Colors.cyan,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.blue,
+                              fontSize: 14))),
+                    ],
+                  ),
+                );
+              }
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(state.trandingBulletin[index]["articleTitle"],
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  SizedBox(height: 20,),
+                  Text(state.trandingBulletin[index]["articleDescription"]),
+                  SizedBox(height: 20,),
+                  RichText(text: TextSpan(text: "Read More",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          launchUrl(Uri.parse(state.trandingBulletin[index]["redirectLink"]),
+                              mode: LaunchMode.platformDefault);
+                        },
+                      style: TextStyle(color: Colors.cyan,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.blue,
+                          fontSize: 14))),
+                ],
+              );
+            }, separatorBuilder: (context, index) => Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                BlueSizedBox(),
+              ],
+            ),
+                itemCount: state.trandingBulletin.length > 3 ? 3 : state.trandingBulletin.length,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true),
           ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BlueSizedBox(),
-            Text("Vaccine hesistancy: Where are we and where are we going?", style: TextStyle(fontWeight: FontWeight.bold)),
-            SizedBox(height: 20,),
-            Text("A Justified way to prevent infection explosion associated with lethal damage is timely vaccination. It provides immunization, builds self-immunity & provides overspread health protection. Infectious diseases & their variants are an uncontrollable threat to human existence and"),
-            SizedBox(height: 20,),
-            RichText(text: TextSpan(text: "Read More",
-                recognizer: TapGestureRecognizer()
-                  ..onTap = ()
-                  {
-                    launchUrl(Uri.parse("https://hidoc.co/"),mode: LaunchMode.platformDefault);
-                  },style: TextStyle(color: Colors.cyan, decoration: TextDecoration.underline, decorationColor: Colors.blue, fontSize: 14))),
-          ],
-        ),
-      ],
-    );
-  }
+        );
+      }));
+    }
 
   Widget TrendingHidocBulletin(){
     return Container(
