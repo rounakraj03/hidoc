@@ -622,176 +622,256 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
   Widget WhatMoreOnHidoc(){
-    return Container(
-      color: AppColors.lightGrey,
-      padding: padding1+EdgeInsets.symmetric(vertical: 30),
-      margin: EdgeInsets.symmetric(vertical: 20),
-      child: Column(
-        children: [
-          Text("What's more on Hidoc Dr.",style: AppTextStyles.webHeading,),
-          SizedBox(height: 20,),
-          LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-            if(constraints.maxWidth > constraintSize){
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    flex: 2,
-                    child: Container(
-                      decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Flexible(
-                            fit: FlexFit.tight,
+    return BlocProvider.value(
+        value: homeScreenBloc,
+        child: BlocBuilder<HomeScreenBloc,HomeScreenState>(
+            builder: (context, state)
+    {
+      return Container(
+        color: AppColors.lightGrey,
+        padding: padding1 + EdgeInsets.symmetric(vertical: 30),
+        margin: EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: [
+            Text("What's more on Hidoc Dr.", style: AppTextStyles.webHeading,),
+            SizedBox(height: 20,),
+            LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  if (constraints.maxWidth > constraintSize) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          flex: 2,
+                          child: Container(
+                            decoration: BoxDecoration(border: Border.all(
+                                color: Colors.black, width: 1)),
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child:ListView.builder(itemCount: state.news.length,
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,itemBuilder: (context, index) {
+                              if(index == 0){
+                                return Row(
+                                  children: [
+                                    Flexible(
+                                      fit: FlexFit.tight,
+                                      flex: 1,
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text("News",
+                                                style: AppTextStyles.webHeading,),
+                                              SizedBox(height: 30,),
+                                              Text(state.news[index]["title"])
+                                            ]
+                                        ),
+                                      ),
+                                    ),
+                                    Flexible(
+                                        flex: 1, child: Image.network(state.news[index]["urlToImage"],errorBuilder: (context, error, stackTrace) {
+                                          return Image.asset(Assets.error);
+                                    },))
+                                  ],
+                                );
+                              }
+                               return SizedBox();
+                            },),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Flexible(
                             flex: 1,
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              decoration: BoxDecoration(border: Border.all(
+                                  color: Colors.black, width: 1)),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 20),
                               child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("News", style: AppTextStyles.webHeading,),
-                                    SizedBox(height: 30,),
-                                    Text("Experts addressing burnout discuss the important not only of self-care, but also of improving workplace conditions.")
-                                  ]
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(children: [
+                                    // Flexible(flex: 1,child: Image.asset(Assets.trophy,fit: BoxFit.fitHeight)),
+                                    Flexible(flex: 1,
+                                        child: Icon(Icons.emoji_events_sharp,
+                                          color: Colors.blue, size: 50,)),
+                                    Flexible(flex: 2,
+                                        child: Text("Quizzes : ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),)),
+                                    Flexible(flex: 4,
+                                        child: Text(
+                                            "Participate & Win Exciting Prizes"))
+                                  ],),
+                                  SizedBox(height: 10,),
+                                  Container(height: 2, color: Colors.black,),
+                                  SizedBox(height: 8,),
+                                  SizedBox(height: 10,),
+                                  Row(children: [
+                                    Flexible(flex: 1,
+                                        child: Icon(
+                                          Icons.calculate, color: Colors.blue,
+                                          size: 50,)),
+                                    Flexible(flex: 2,
+                                        child: Text("Medical Calculators : ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold))),
+                                    Flexible(flex: 4,
+                                        child: Text(
+                                            "Get Access to 800+ Evidence Based Calculators"))
+                                  ],),
+                                ],
                               ),
-                            ),
-                          ),
-                          Flexible(flex:1,child: Image.asset(Assets.main1))
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Flexible(
-                      flex: 1,
-                      child: Container(
-                        decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-                        padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(children: [
-                              // Flexible(flex: 1,child: Image.asset(Assets.trophy,fit: BoxFit.fitHeight)),
-                              Flexible(flex: 1,child: Icon(Icons.emoji_events_sharp, color: Colors.blue,size: 50,)),
-                              Flexible(flex: 2,child: Text("Quizzes : ",style: TextStyle(fontWeight: FontWeight.bold),)),
-                              Flexible(flex:4,child: Text("Participate & Win Exciting Prizes"))
-                            ],),
-                            SizedBox(height: 10,),
-                            Container(height: 2,color: Colors.black,),SizedBox(height: 8,),
-                            SizedBox(height: 10,),
-                            Row(children: [
-                              Flexible(flex: 1,child: Icon(Icons.calculate, color: Colors.blue,size: 50,)),
-                              Flexible(flex:2,child: Text("Medical Calculators : ",style: TextStyle(fontWeight: FontWeight.bold))),
-                              Flexible(flex:4,child: Text("Get Access to 800+ Evidence Based Calculators"))
-                            ],),
-                          ],
-                        ),
-                      )
-                  )
-                ],
-              );
-            }
-            else {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
+                            )
+                        )
+                      ],
+                    );
+                  }
+                  else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black,
+                                  width: 1)),
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("News", style: AppTextStyles.webHeading,),
-                                SizedBox(height: 30,),
-                                Text("Experts addressing burnout discuss the important not only of self-care, but also of improving workplace conditions.")
-                              ]
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text("News",
+                                        style: AppTextStyles.webHeading,),
+                                      SizedBox(height: 30,),
+                                      Text(
+                                          "Experts addressing burnout discuss the important not only of self-care, but also of improving workplace conditions.")
+                                    ]
+                                ),
+                              ),
+                              SizedBox(height: 30,),
+                              Image.asset(Assets.main1)
+                            ],
                           ),
                         ),
-                        SizedBox(height: 30,),
-                        Image.asset(Assets.main1)
+                        SizedBox(height: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black,
+                                  width: 1)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(children: [
+                                // Flexible(flex: 1,child: Image.asset(Assets.trophy,fit: BoxFit.fitHeight)),
+                                Flexible(flex: 1,
+                                    child: Icon(Icons.emoji_events_sharp,
+                                      color: Colors.blue, size: 50,)),
+                                Flexible(flex: 2,
+                                    child: Text("Quizzes : ", style: TextStyle(
+                                        fontWeight: FontWeight.bold),)),
+                                Flexible(flex: 4,
+                                    child: Text(
+                                        "Participate & Win Exciting Prizes"))
+                              ],),
+                              SizedBox(height: 10,),
+                              Container(height: 2, color: Colors.black,),
+                              SizedBox(height: 8,),
+                              SizedBox(height: 10,),
+                              Row(children: [
+                                Flexible(flex: 1,
+                                    child: Icon(
+                                      Icons.calculate, color: Colors.blue,
+                                      size: 50,)),
+                                Flexible(flex: 2,
+                                    child: Text("Medical  Calculators : ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold))),
+                                Flexible(flex: 4,
+                                    child: Text(
+                                        "Get Access to 800+ Evidence Based Calculators"))
+                              ],),
+                            ],
+                          ),
+                        )
                       ],
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-                    padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(children: [
-                          // Flexible(flex: 1,child: Image.asset(Assets.trophy,fit: BoxFit.fitHeight)),
-                          Flexible(flex: 1,child: Icon(Icons.emoji_events_sharp, color: Colors.blue,size: 50,)),
-                          Flexible(flex: 2,child: Text("Quizzes : ",style: TextStyle(fontWeight: FontWeight.bold),)),
-                          Flexible(flex:4,child: Text("Participate & Win Exciting Prizes"))
-                        ],),
-                        SizedBox(height: 10,),
-                        Container(height: 2,color: Colors.black,),SizedBox(height: 8,),
-                        SizedBox(height: 10,),
-                        Row(children: [
-                          Flexible(flex: 1,child: Icon(Icons.calculate, color: Colors.blue,size: 50,)),
-                          Flexible(flex:2,child: Text("Medical  Calculators : ",style: TextStyle(fontWeight: FontWeight.bold))),
-                          Flexible(flex:4,child: Text("Get Access to 800+ Evidence Based Calculators"))
-                        ],),
-                      ],
-                    ),
-                  )
-                ],
-              );
-            }}),
+                    );
+                  }
+                }),
 
-          SizedBox(height: 10,),
-          Container(
-              color: AppColors.lightblue,
-              padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-              child:    LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-                if(constraints.maxWidth > constraintSize){
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Social Network for doctors - A Special feature on Hidoc Dr.", style: AppTextStyles.webHeading),
-                      ElevatedButton(
-                          onPressed: (){launchUrl(Uri.parse("https://www.facebook.com/hidocdr"),mode: LaunchMode.platformDefault);},
-                          child: Text("Visit", style: AppTextStyles.white18,),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.cyan,
-                              elevation: 5,
-                              shape: StadiumBorder(),padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20)
-                          )
-                      ),
-                    ],
-                  );
-                }else{
-                  return Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.end,
-                    children: [
-                      Text("Social Network for doctors - A Special feature on Hidoc Dr.", style: AppTextStyles.webHeading),
-                      // SizedBox(width: MediaQuery.of(context).size.width/6,),
-                      Center(
-                        child: ElevatedButton(
-                            onPressed: (){launchUrl(Uri.parse("https://www.facebook.com/hidocdr"),mode: LaunchMode.platformDefault);},
+            SizedBox(height: 10,),
+            Container(
+                color: AppColors.lightblue,
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                child: LayoutBuilder(builder: (BuildContext context,
+                    BoxConstraints constraints) {
+                  if (constraints.maxWidth > constraintSize) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            "Social Network for doctors - A Special feature on Hidoc Dr.",
+                            style: AppTextStyles.webHeading),
+                        ElevatedButton(
+                            onPressed: () {
+                              launchUrl(
+                                  Uri.parse("https://www.facebook.com/hidocdr"),
+                                  mode: LaunchMode.platformDefault);
+                            },
                             child: Text("Visit", style: AppTextStyles.white18,),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.cyan,
                                 elevation: 5,
-                                shape: StadiumBorder(),padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20)
+                                shape: StadiumBorder(), padding: EdgeInsets
+                                .symmetric(horizontal: 20, vertical: 20)
                             )
                         ),
-                      ),
-                    ],
-                  );
-                }})
-          )
-        ],
-      ),
-    );
+                      ],
+                    );
+                  } else {
+                    return Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.end,
+                      children: [
+                        Text(
+                            "Social Network for doctors - A Special feature on Hidoc Dr.",
+                            style: AppTextStyles.webHeading),
+                        // SizedBox(width: MediaQuery.of(context).size.width/6,),
+                        Center(
+                          child: ElevatedButton(
+                              onPressed: () {
+                                launchUrl(Uri.parse(
+                                    "https://www.facebook.com/hidocdr"),
+                                    mode: LaunchMode.platformDefault);
+                              },
+                              child: Text(
+                                "Visit", style: AppTextStyles.white18,),
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.cyan,
+                                  elevation: 5,
+                                  shape: StadiumBorder(),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 20)
+                              )
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                })
+            )
+          ],
+        ),
+      );
+    }));
   }
 
 
