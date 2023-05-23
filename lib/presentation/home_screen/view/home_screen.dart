@@ -173,13 +173,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Colors.red, // Set the desired border color here
-                        width: 5, // Set the desired border width here
+                        color: Colors.cyan, // Set the desired border color here
+                        width: 3, // Set the desired border width here
                       ),
                     ),
                     child: DropdownButtonFormField(
                       isExpanded: true,
-                      style: TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.fade, wordSpacing: 8),
+                      style: TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis, wordSpacing: 5),
                       icon: Icon(Icons.arrow_drop_down, size: 30),
                       decoration: InputDecoration(
                           border: UnderlineInputBorder(
@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           )),
                       value: state.selectedArticle["id"],
                       items: state.exploreArticle.map((e){
-                        return DropdownMenuItem(child: Center(child: Text(e["articleTitle"].toString(), style: AppTextStyles.black16w500,  overflow: TextOverflow.ellipsis,)),value: e["id"]);
+                        return DropdownMenuItem(child: Center(child: Text(e["articleTitle"].toString(), style: AppTextStyles.black16w500,  overflow: TextOverflow.ellipsis)),value: e["id"]);
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
