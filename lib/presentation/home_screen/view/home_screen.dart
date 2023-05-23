@@ -556,49 +556,68 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget TrendingArticles(){
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
-        child: Column(
-            children: [
-              SizedBox(height: 20,),
-              Text("Trending Articles", style: TextStyle(fontWeight: FontWeight.bold),),
-              SizedBox(height: 20,),
-              Divider(color: Colors.black,height: 2,),
-              Column(
+    return BlocProvider.value(
+        value: homeScreenBloc,
+        child: BlocBuilder<HomeScreenBloc,HomeScreenState>(
+            builder: (context, state)
+            {
+          return Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
+              child: Column(
                   children: [
-                    Image.asset(Assets.main1),
-                    SizedBox(height: 10,),
-                    Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
-                    SizedBox(height: 10,),
-                    Divider(color: Colors.grey,height: 2,)
-                  ]),
-              Column(
-                children: [
-                  SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      Flexible(flex:1,child: Image.asset(Assets.main1)),
-                      Flexible(flex:3,child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
-                      )),
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  Divider(color: Colors.grey,height: 2,)
-                ],
-              ),
-              Column(
-                children: [
-                  SizedBox(height: 10,),
-                  Text("Understanding the importance of Sirs Criteria in Modern Healthcare"),
-                  SizedBox(height: 10,),
-                  Divider(color: Colors.grey,height: 2,)
-                ],
-              ),
-            ])
-    );
+                    SizedBox(height: 20,),
+                    Text("Trending Articles", style: TextStyle(fontWeight: FontWeight.bold),),
+                    SizedBox(height: 20,),
+                    Divider(color: Colors.black,height: 2,),
+                    ListView.separated(itemBuilder: (context, index) {
+                      if(index == 0){
+                        return Column(
+                            children: [
+                              Image.network(state.trandingArticle[index]["articleImg"],errorBuilder: (context, error, stackTrace) {
+                                return Image.asset(Assets.error);
+                              }),
+                              SizedBox(height: 10,),
+                              Text(state.trandingArticle[index]["articleTitle"],maxLines: 2,overflow: TextOverflow.ellipsis,),
+                            ]);
+                      }
+                      else if(index == 1){
+                        return Column(
+                          children: [
+                            SizedBox(height: 10,),
+                            Row(
+                              children: [
+                                Flexible(flex:1,child: Image.network(state.trandingArticle[index]["articleImg"],errorBuilder: (context, error, stackTrace) {
+                                  return Image.asset(Assets.error);
+                                }),),
+                                Flexible(flex:3,child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Text(state.trandingArticle[index]["articleTitle"],maxLines: 2,overflow: TextOverflow.ellipsis,),
+                                )),
+                              ],
+                            ),
+                            SizedBox(height: 10,),
+                          ],
+                        );
+                      }
+                      return Column(
+                        children: [
+                          Text(state.trandingArticle[index]["articleTitle"],maxLines: 2,overflow: TextOverflow.ellipsis,),
+                          SizedBox(height: 10,),
+                        ],
+                      );
+                    }, separatorBuilder: (context, index) => Column(
+                      children: [
+                        SizedBox(height: 10,),
+                        Divider(color: Colors.grey,height: 2,),
+                      ],
+                    ),
+                      itemCount: state.trandingArticle.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,),
+                  ])
+                );
+            }));
   }
 
 
