@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hidoc/core/view/base_view.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
+import 'package:hidoc/res/app_text_styles.dart';
 import 'package:hidoc/res/assets.dart';
 import 'package:hidoc/res/colors.dart';
 import 'package:hidoc/widgets/Hidoc_Nav_Bar/bloc/hidoc_nav_bar_bloc.dart';
@@ -40,10 +42,36 @@ class _HidocNavBarState extends State<HidocNavBar> {
   @override
   Widget build(BuildContext context) {
     final sw = MediaQuery.of(context).size.width;//1000
-
     return BaseView<HidocNavBarBloc, HidocNavBarState>(
         setupViewModel: (bloc) {},
         builder: (context, state, bloc) {
+          if(sw < 600) {
+            return Container(
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: AppColors.navBarColor,width: 3))
+              ),
+              padding: EdgeInsets.only(bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      margin: EdgeInsets.all(20),
+                      padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+                        color: Colors.cyan.withOpacity(0.3)
+                      ),
+                      child: Text("Hidoc")),
+                  Stack(
+                    children: [
+                    IconButton(onPressed: (){Scaffold.of(context).openDrawer();}, icon: Icon(Icons.home_outlined, size: 50, color: Colors.black,)),
+                      Center(child: Text("Articles",style: AppTextStyles.webHeading)),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          }
       return Container(
       decoration: BoxDecoration(
           color: AppColors.navBarColor,

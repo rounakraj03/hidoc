@@ -43,7 +43,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Container(
                 decoration: BoxDecoration(
                   image: width > 600 ? null : DecorationImage(
-                    image:  AssetImage(Assets.mobileBg)
+                    image:  AssetImage(Assets.mobileBg3),fit: BoxFit.fill
                   ),
                   color: Colors.white,
                 ),
@@ -54,7 +54,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      HidocNavBar(),
+                      // Visibility(visible: width >600, child:
+                        HidocNavBar(),
+                      // ),
                       Visibility(visible: state.defaultState == 0,child: HomeScreen()),
                       Visibility(visible: state.defaultState == 2,child: HomePageScreen()),
                       Visibility(visible: (state.defaultState != 0 && state.defaultState != 2 ) ,child: Text("No Data Here")),

@@ -164,13 +164,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Articles",style: AppTextStyles.webHeading),
+                  // Text("Articles",style: AppTextStyles.webHeading),
                   SizedBox(height: 20,),
 
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: Colors.cyan, // Set the desired border color here
