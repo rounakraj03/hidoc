@@ -479,11 +479,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) => Column(
                       children: [
                         Text(state.exploreArticle[index]["articleTitle"], maxLines: 2,overflow: TextOverflow.visible),
+                        SizedBox(height: 20,),
                       ],
                     ),
                     separatorBuilder: (context, index) => Column(
                       children: [
-                      SizedBox(height: 20,),
                       Divider(color: Colors.grey,height: 2,),
                         SizedBox(height: 20,),
                       ],),
@@ -524,12 +524,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text(state.exploreArticle[index]["articleTitle"],
                                 maxLines: 2, overflow: TextOverflow.visible),
+                            SizedBox(height: 20,),
                           ],
                         ),
                     separatorBuilder: (context, index) =>
                         Column(
                           children: [
-                            SizedBox(height: 20,),
                             Divider(color: Colors.grey, height: 2,),
                             SizedBox(height: 20,),
                           ],),
