@@ -168,6 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: 20,),
 
                   Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
