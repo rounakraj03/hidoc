@@ -301,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Text(state.selectedArticle["articleTitle"],style: TextStyle(fontWeight: FontWeight.bold),overflow: TextOverflow.visible,maxLines: 1),
                                 SizedBox(height: 30,),
                                 Text(state.selectedArticle["articleDescription"],overflow: TextOverflow.ellipsis, maxLines: 2),
-                                SizedBox(height: 50,),
+                                SizedBox(height: 30,),
                                 RichText(text: TextSpan(text: "Read full article to earn points",
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = ()

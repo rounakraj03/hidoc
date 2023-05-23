@@ -48,6 +48,14 @@ class _HidocNavBarState extends State<HidocNavBar> {
           if(sw < 600) {
             return Container(
               decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.2),
+                      spreadRadius: 5,
+                      blurRadius: 6,
+                      offset: Offset(0, 4)
+                    ),
+                  ],
                 border: Border(bottom: BorderSide(color: AppColors.navBarColor,width: 3))
               ),
               padding: EdgeInsets.only(bottom: 10),
@@ -59,9 +67,9 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-                        color: Colors.cyan.withOpacity(0.3)
+                        color: Colors.cyan.withOpacity(0.2)
                       ),
-                      child: Text("Hidoc")),
+                      child: Text("Hidoc", style: TextStyle(fontWeight: FontWeight.bold),)),
                   Stack(
                     children: [
                     IconButton(onPressed: (){Scaffold.of(context).openDrawer();}, icon: Icon(Icons.home_outlined, size: 50, color: Colors.black,)),
