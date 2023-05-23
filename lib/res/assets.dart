@@ -38,4 +38,24 @@ class Assets {
   static const String whatsapp = "assets/icons/whatsapp.svg";
   static const String heart = "assets/icons/heart.svg";
   static const String profile = "assets/icons/profile.svg";
+
+  //staticImages
+  static const String homeImg1 = "assets/staticImages/homeImg1.png";
+  static const String homeImg2 = "assets/staticImages/homeImg2.png";
+  static const String hidoclogo = "assets/staticImages/logo.png";
+  static const String indialogo = "assets/staticImages/india.png";
+  static const String earthlogo = "assets/staticImages/earth.png";
+  static const String main1 = "assets/staticImages/main1.png";
+  static const String facebook = "assets/staticImages/facebook.png";
+  static const String instagram = "assets/staticImages/instagram.png";
+  static const String linkedin = "assets/staticImages/linkedin.png";
+  static const String youtube = "assets/staticImages/youtube.png";
+  static const String hidocServices1 = "assets/staticImages/services1.png";
+  static const String hidocServices2 = "assets/staticImages/services2.png";
+  static const String hidocServices3 = "assets/staticImages/services3.png";
+  static const String hidocServices4 = "assets/staticImages/services4.png";
+  static const String hidocServices5 = "assets/staticImages/services5.png";
+  static const String hidocServices6 = "assets/staticImages/services6.png";
+
+
 }

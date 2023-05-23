@@ -16,7 +16,7 @@ class DashboardState with _$DashboardState {
     @Default({"articleTitle":"","redirectLink":"","articleDescription":"","rewardPoints":0,"articleImg":""}) Map selectedArticle,
     @Default([]) List bulletin,
     @Default(0) int sID,
-    @Default(3) int defaultState,
+    @Default(0) int defaultState,
   }) =
       _DashboardState;
 }

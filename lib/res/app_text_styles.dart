@@ -27,6 +27,14 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle webHeading1 = const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 14);
-  static TextStyle webSubheading1 = const TextStyle(color: Colors.black,fontWeight: FontWeight.normal, fontSize: 12);
+  // static TextStyle webHeading1 = const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 14);
+  // static TextStyle webSubheading1 = const TextStyle(color: Colors.black,fontWeight: FontWeight.normal, fontSize: 12);
+
+  static TextStyle webHeading = const TextStyle(fontWeight: FontWeight.w800,fontSize: 28);
+  static TextStyle white16 = const TextStyle(color: Colors.white,fontSize: 16);
+  static TextStyle black16w500 = const TextStyle(color: Colors.black,fontSize: 16, fontWeight: FontWeight.w700);
+  static TextStyle white18 = const TextStyle(color: Colors.white,fontSize: 18);
+  static TextStyle white12 = const TextStyle(color: Colors.white,fontSize: 12);
+  static TextStyle white14 = const TextStyle(color: Colors.white,fontSize: 14);
+  static TextStyle cyan16 = const TextStyle(color: Colors.cyan,fontSize: 16);
 }

@@ -240,7 +240,7 @@ class _$_DashboardState implements _DashboardState {
       },
       final List<dynamic> bulletin = const [],
       this.sID = 0,
-      this.defaultState = 3})
+      this.defaultState = 0})
       : _news = news,
         _trandingBulletin = trandingBulletin,
         _latestArticle = latestArticle,

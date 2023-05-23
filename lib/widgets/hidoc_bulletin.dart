@@ -32,8 +32,8 @@ Widget HidocBulletin(){
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(state.bulletin[index-1]["articleTitle"], style: kIsWeb ? AppTextStyles.webHeading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                        Text(state.bulletin[index-1]["articleDescription"], maxLines: 3,overflow: TextOverflow.ellipsis,style: kIsWeb ? AppTextStyles.webSubheading1 : TextStyle(color: Colors.black,),),
+                        Text(state.bulletin[index-1]["articleTitle"], style: kIsWeb ? AppTextStyles.webHeading : TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                        Text(state.bulletin[index-1]["articleDescription"], maxLines: 3,overflow: TextOverflow.ellipsis,style: kIsWeb ? AppTextStyles.webHeading : TextStyle(color: Colors.black,),),
                         SizedBox(height: 10,),
                         RichText(text: TextSpan(text: "Read more",
                             recognizer: TapGestureRecognizer()

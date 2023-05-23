@@ -23,7 +23,7 @@ Widget TrendingArticle(){
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Trending Articles", style: kIsWeb ? AppTextStyles.webHeading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28)),
+                  Text("Trending Articles", style: kIsWeb ? AppTextStyles.webHeading : TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28)),
                   SizedBox(height: 10,),
                   Container(height: 1,padding: EdgeInsets.symmetric(horizontal: 100),color: Colors.black,),
 
@@ -37,7 +37,7 @@ Widget TrendingArticle(){
                           return Image.asset(Assets.error,fit: BoxFit.cover);
                         }),
                         SizedBox(height: 10,),
-                        Text(state.trandingArticle[index]["articleTitle"], style: kIsWeb ? AppTextStyles.webSubheading1 : TextStyle(color: Colors.black,fontWeight: FontWeight.normal),),
+                        Text(state.trandingArticle[index]["articleTitle"], style: kIsWeb ? AppTextStyles.webHeading : TextStyle(color: Colors.black,fontWeight: FontWeight.normal),),
                       ],
                     );
                   },
