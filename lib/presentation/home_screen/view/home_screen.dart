@@ -651,6 +651,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,itemBuilder: (context, index) {
                               if(index == 0){
+                                print("state.news[index]['urlToImage'] -> ${state.news[index]['urlToImage']}");
                                 return Row(
                                   children: [
                                     Flexible(
@@ -672,7 +673,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Flexible(
-                                        flex: 1, child: Image.network(state.news[index]["urlToImage"],errorBuilder: (context, error, stackTrace) {
+                                        flex: 1, child: Image.network(state.trandingArticle[index]["articleImg"],errorBuilder: (context, error, stackTrace) {
                                           return Image.asset(Assets.error);
                                     },))
                                   ],
