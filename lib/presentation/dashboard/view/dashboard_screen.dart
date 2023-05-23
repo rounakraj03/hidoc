@@ -42,7 +42,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             return SafeArea(
               child: Container(
                 decoration: BoxDecoration(
-                  image: width > 600 ? null : DecorationImage(
+                  image:  DecorationImage(
                     image:  AssetImage(Assets.mobileBg4),fit: BoxFit.fill,
                   ),
                   color: Colors.white,
