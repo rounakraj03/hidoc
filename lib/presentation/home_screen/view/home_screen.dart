@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, state) {
               return Expanded(
                 child: Container(
-                  color: AppColors.white,
+                  // color: AppColors.white,
                   child: LoadingWidget(
                       child: ListView(
                         shrinkWrap: true,
