@@ -52,6 +52,9 @@ class Assets {
   static const String youtube = "assets/staticImages/youtube.png";
   static const String mobileBg = "assets/staticImages/mobileBg.png";
   static const String mobileBg3 = "assets/staticImages/mobileBg3.png";
+  static const String mobileBg4 = "assets/staticImages/bg4.png";
+  static const String mobileBg5 = "assets/staticImages/bg5.png";
+  static const String mobileBg6 = "assets/staticImages/bg6.png";
   static const String house2 = "assets/staticImages/house.png";
   static const String hidocServices1 = "assets/staticImages/services1.png";
   static const String hidocServices2 = "assets/staticImages/services2.png";

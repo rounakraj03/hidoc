@@ -43,7 +43,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Container(
                 decoration: BoxDecoration(
                   image: width > 600 ? null : DecorationImage(
-                    image:  AssetImage(Assets.mobileBg3),fit: BoxFit.fill
+                    image:  AssetImage(Assets.mobileBg4),fit: BoxFit.fill,
                   ),
                   color: Colors.white,
                 ),

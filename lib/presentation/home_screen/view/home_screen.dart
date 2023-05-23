@@ -174,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Colors.cyan, // Set the desired border color here
+                        color: AppColors.navBarColor, // Set the desired border color here
                         width: 3, // Set the desired border width here
                       ),
                     ),
