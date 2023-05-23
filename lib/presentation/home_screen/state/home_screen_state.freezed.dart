@@ -250,7 +250,8 @@ class _$_HomeScreenState implements _HomeScreenState {
         "redirectLink": "",
         "articleDescription": "",
         "rewardPoints": 0,
-        "articleImg": ""
+        "articleImg": "",
+        "createdAt": "2022-12-30 12:46:26"
       },
       final List<dynamic> bulletin = const [],
       this.sID = 0,

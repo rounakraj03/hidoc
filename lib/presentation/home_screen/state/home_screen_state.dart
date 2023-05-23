@@ -14,7 +14,7 @@ class HomeScreenState with _$HomeScreenState {
     @Default([]) List exploreArticle,
     @Default([]) List trandingArticle,
     @Default({}) Map article,
-    @Default({"articleTitle":"","redirectLink":"","articleDescription":"","rewardPoints":0,"articleImg":""}) Map selectedArticle,
+    @Default({"articleTitle":"","redirectLink":"","articleDescription":"","rewardPoints":0,"articleImg":"","createdAt":"2022-12-30 12:46:26"}) Map selectedArticle,
     @Default([]) List bulletin,
     @Default(0) int sID,
     @Default(3) int defaultState,
