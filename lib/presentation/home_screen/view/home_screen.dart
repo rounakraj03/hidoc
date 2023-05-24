@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    padding1 = EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/15.0);
+    padding1 = EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/20);
     return BlocProvider.value(
         value: homeScreenBloc,
         child: BlocBuilder<HomeScreenBloc, HomeScreenState>(
@@ -267,7 +267,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Stack(
                             children: [
-                              Image.network(state.selectedArticle["articleImg"],errorBuilder: (context, error, stackTrace) {
+                              Image.network(state.selectedArticle["articleImg"],
+                                  fit: BoxFit.fitWidth,
+                                  errorBuilder: (context, error, stackTrace) {
                                 return Image.asset(Assets.error);
                               }),
                               Positioned(
@@ -339,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ListView.separated(itemBuilder: (context, index) {
               if(index == 0){
                 return Container(
-                  color: AppColors.grey2,
+                  // color: AppColors.white,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -408,10 +410,10 @@ class _HomeScreenState extends State<HomeScreen> {
          return Container(
           width: double.maxFinite,
           decoration: BoxDecoration(
-              color: AppColors.lightblue,
+              color: (MediaQuery.of(context).size.width < 600) ? Colors.transparent : AppColors.lightblue,
               borderRadius: BorderRadius.circular(20)
           ),
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          // padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -630,7 +632,7 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, state)
     {
       return Container(
-        color: AppColors.lightGrey,
+        color: (MediaQuery.of(context).size.width < 600) ? AppColors.white : AppColors.lightGrey,
         padding: padding1 + EdgeInsets.symmetric(vertical: 30),
         margin: EdgeInsets.symmetric(vertical: 20),
         child: Column(
