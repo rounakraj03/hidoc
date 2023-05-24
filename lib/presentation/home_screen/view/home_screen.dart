@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -819,7 +820,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
             SizedBox(height: 10,),
             Container(
-                color: AppColors.lightblue,
+                // color: AppColors.lightblue,
+                color: Colors.limeAccent,
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                 child: LayoutBuilder(builder: (BuildContext context,
                     BoxConstraints constraints) {
@@ -850,26 +852,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Wrap(
                       crossAxisAlignment: WrapCrossAlignment.end,
                       children: [
-                        Text(
-                            "Social Network for doctors - A Special feature on Hidoc Dr.",
-                            style: AppTextStyles.webHeading),
+                        // Text(
+                        //     "Social Network for doctors - ",
+                        //     style: AppTextStyles.webHeading),
+                        RichText(text: TextSpan(children: [
+                          TextSpan(text: "Social Network for doctors - ",style: AppTextStyles.webHeading.copyWith(color: Colors.black)),
+                          TextSpan(text: "A Special feature on Hidoc Dr.",style: GoogleFonts.dancingScript(color: Colors.pink, fontSize: 28, fontWeight: FontWeight.bold)),
+                        ]),
+                        ),
                         // SizedBox(width: MediaQuery.of(context).size.width/6,),
                         Center(
-                          child: ElevatedButton(
-                              onPressed: () {
-                                launchUrl(Uri.parse(
-                                    "https://www.facebook.com/hidocdr"),
-                                    mode: LaunchMode.platformDefault);
-                              },
-                              child: Text(
-                                "Visit", style: AppTextStyles.white18,),
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.cyan,
-                                  elevation: 5,
-                                  shape: StadiumBorder(),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 20)
-                              )
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 18.0),
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  launchUrl(Uri.parse(
+                                      "https://www.facebook.com/hidocdr"),
+                                      mode: LaunchMode.platformDefault);
+                                },
+                                child: Text(
+                                  "Visit", style: AppTextStyles.white18,),
+                                style: ElevatedButton.styleFrom(
+                                    // backgroundColor: Colors.cyan,
+                                    backgroundColor: Colors.pink,
+                                    elevation: 5,
+                                    shape: StadiumBorder(),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 20)
+                                )
+                            ),
                           ),
                         ),
                       ],
