@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:developer';
 
+import 'package:hidoc/res/colors.dart';
+
 
 // import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
@@ -26,6 +28,10 @@ Future<void> bootstrap() async {
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: AppColors.primary.withOpacity(0.4)
+      // statusBarColor: Colors.transparent
+  ));
 
   await registerDependencies();
   FlutterError.onError = (details) {

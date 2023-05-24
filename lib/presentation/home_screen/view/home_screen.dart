@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hidoc/di/di.dart';
@@ -88,6 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       HidocBulletin(),
+                                      SizedBox(height: 20,),
+                                      Divider(height: 2,color: Colors.black54,),
                                       SizedBox(height: 20,),
                                       TrendingHidocBulletin()
                                     ],
@@ -632,7 +636,7 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, state)
     {
       return Container(
-        color: (MediaQuery.of(context).size.width < 600) ? AppColors.white : AppColors.lightGrey,
+        color: (MediaQuery.of(context).size.width < 600) ? null : AppColors.lightGrey,
         padding: padding1 + EdgeInsets.symmetric(vertical: 30),
         margin: EdgeInsets.symmetric(vertical: 20),
         child: Column(
@@ -743,11 +747,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black,
                                   width: 1)),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
                             children: [
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                // padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment

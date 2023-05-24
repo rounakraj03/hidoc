@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTextStyles {
@@ -31,6 +32,7 @@ class AppTextStyles {
   // static TextStyle webSubheading1 = const TextStyle(color: Colors.black,fontWeight: FontWeight.normal, fontSize: 12);
 
   static TextStyle webHeading = const TextStyle(fontWeight: FontWeight.w800,fontSize: 28);
+  // static TextStyle webHeading = GoogleFonts.lato(fontWeight: FontWeight.bold,fontSize: 28);
   static TextStyle white16 = const TextStyle(color: Colors.white,fontSize: 16);
   static TextStyle black16w500 = const TextStyle(color: Colors.black,fontSize: 16, fontWeight: FontWeight.w700);
   static TextStyle white18 = const TextStyle(color: Colors.white,fontSize: 18);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hidoc/core/view/base_view.dart';
 import 'package:hidoc/di/di.dart';
 import 'package:hidoc/presentation/dashboard/bloc/dashboard_bloc.dart';
@@ -72,7 +73,8 @@ class _HidocNavBarState extends State<HidocNavBar> {
                       child: Text("Hidoc", style: TextStyle(fontWeight: FontWeight.bold),)),
                   Stack(
                     children: [
-                    IconButton(onPressed: (){Scaffold.of(context).openDrawer();}, icon: Icon(Icons.home_outlined, size: 50, color: Colors.black,)),
+                    Positioned(bottom: 0, child: IconButton(onPressed: (){Scaffold.of(context).openDrawer();}, icon: Icon(Icons.home_outlined, size: 50, color: Colors.black,))),
+                      // Center(child: Text("Articles",style: GoogleFonts.lato(fontWeight: FontWeight.bold,fontSize: 28))),
                       Center(child: Text("Articles",style: AppTextStyles.webHeading)),
                     ],
                   ),
